@@ -67,20 +67,21 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="热门酒单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thf-tD-fk6">
-                        <rect key="frame" x="20" y="379" width="68" height="21"/>
+                        <rect key="frame" x="13" y="379" width="68" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="btn_top_bar.png" width="193" height="99"/>
-        <image name="btn_top_story.png" width="193" height="99"/>
-        <image name="btn_top_user.png" width="193" height="99"/>
-        <image name="btn_top_wine.png" width="193" height="99"/>
+        <image name="btn_top_bar.png" width="193" height="100"/>
+        <image name="btn_top_story.png" width="193" height="100"/>
+        <image name="btn_top_user.png" width="193" height="100"/>
+        <image name="btn_top_wine.png" width="193" height="100"/>
     </resources>
 </document>

@@ -22,6 +22,20 @@
     self.userImage.layer.masksToBounds = YES;
     
     menuList = [[NSMutableArray alloc] initWithObjects:self.wineImage1, self.wineImage2, self.wineImage3, self.wineImage4, nil];
+
+    self.contentView.layer.borderColor = [UIColor colorWithRed:148.0/255 green:204.0/255 blue:204.0/255 alpha:1].CGColor;
+    self.contentView.layer.borderWidth = 1;
+    self.contentView.layer.cornerRadius = 2;
+}
+
+- (void) setFrame:(CGRect)frame
+{
+    frame.origin.x += 6;
+    frame.origin.y += 3;
+
+    frame.size.width -= 12;
+    frame.size.height -= 6;
+    [super setFrame:frame];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

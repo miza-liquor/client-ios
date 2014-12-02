@@ -41,6 +41,10 @@
     [self.mm_drawerController setMaximumRightDrawerWidth:180];
     [self.mm_drawerController setMaximumLeftDrawerWidth:240];
     
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+     v.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:v];
+    
     
     // change navigation bar background
     // fixed ios6, ios7
@@ -58,8 +62,11 @@
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     
     // bottom bar buttons setting
-    UIImage *imageBtnAdd = [UIImage imageNamed:@"icon.png"];
-    [self.bottomBtnAdd setBackgroundImage:imageBtnAdd forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    UIImage *imageBtnAdd = [UIImage imageNamed:@"btn_new_record.png"];
+//    [self.bottomBtnAdd setBackgroundImage:imageBtnAdd forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    UIButton *settingsView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
+    [settingsView setBackgroundImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
+    [self.bottomBtnAdd setCustomView: settingsView];
     
     // init data
     topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];

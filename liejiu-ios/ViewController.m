@@ -17,14 +17,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view, typically from a nib.
+    UIImage *backgroundImage = [UIImage imageNamed:@"Default-568h"];
+    UIImageView *backgroundImageView=[[UIImageView alloc]initWithFrame:self.view.frame];
+    [backgroundImageView setContentMode:UIViewContentModeScaleAspectFill];
+    backgroundImageView.image=backgroundImage;
+    [self.view insertSubview:backgroundImageView atIndex:0];
     
-    // set background image, auto fill the screen size
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"Default-568h@2x.png"] drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    UIColor *borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
+    self.btnLogin.layer.borderColor = borderColor.CGColor;
+    self.btnRegister.layer.borderColor = borderColor.CGColor;
 }
 
 - (void) viewWillAppear:(BOOL)animated
