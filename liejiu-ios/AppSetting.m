@@ -9,6 +9,8 @@
 #import "AppSetting.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "ExploreViewController.h"
+#import "WineCenterListTableViewCell.h"
 
 // api link
 static NSString *_hostName = @"http://zhangge.me:8882/v1/app/";
@@ -16,6 +18,8 @@ static NSString *_hostName = @"http://zhangge.me:8882/v1/app/";
 static bool _isLogined = NO;
 
 static NSMutableDictionary *_cacheData = Nil;
+
+static UIViewController *_currView = nil;
 
 @implementation AppSetting
 
@@ -108,6 +112,42 @@ static NSMutableDictionary *_cacheData = Nil;
     NSString *regex=@"^[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]$";
     NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [regexPredicate evaluateWithObject:email];
+}
+
++ (void) settingBoldLabel:(UILabel *)label boldText:(NSString *)text
+{
+    NSRange range = [label.text rangeOfString:text];
+    if (![label respondsToSelector:@selector(setAttributedText:)]) {
+        return;
+    }
+    
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:label.text];
+    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:label.font.pointSize]} range:range];
+    label.attributedText = attributedText;
+}
+
++ (void) drawToolBar:(UIViewController *)view
+{
+    _currView = view;
+    UIBarButtonItem *exploreBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_explore"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonCustomPressed:)];
+    UIBarButtonItem *winelistBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_winelist"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    // record btn setting
+    UIButton *addRecordView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
+    [addRecordView setImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
+    
+    UIBarButtonItem *newRecordBtn = [[UIBarButtonItem alloc] initWithCustomView:addRecordView];
+
+    [view setToolbarItems:[NSArray arrayWithObjects:exploreBtn, flexibleBtn, newRecordBtn, flexibleBtn, winelistBtn, nil]];
+}
+
++ (void)barButtonCustomPressed:(UIBarButtonItem*)btn
+{
+    NSLog(@"button tapped %@", btn.title);
+    ExploreViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"testName"];
+    [_currView.navigationController pushViewController:controller animated:YES];
+    controller = nil;
+    _currView = nil;
 }
 
 @end

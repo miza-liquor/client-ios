@@ -35,6 +35,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [AppSetting drawToolBar:self];
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+    v.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:v];
+    
+    // record btn setting
+    UIButton *addRecordView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
+    [addRecordView setBackgroundImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
+    [self.btnNewRecord setCustomView: addRecordView];
 
     if ([self.mm_drawerController.centerViewController.restorationIdentifier isEqualToString:@"storyList"])
     {
@@ -82,17 +93,16 @@
     }
 
     NSDictionary *info = (NSDictionary *)[stories objectAtIndex:indexPath.row];
-    NSString *imageUrl = (NSString *)[info objectForKey:@"photo"];
-    [cell.image sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     cell.title.text = (NSString *)[info objectForKey:@"title"];
-    cell.desc.text = (NSString *)[info objectForKey:@"desc"];
+    cell.date.text = (NSString *)[info objectForKey:@"date"];
+    [cell.image sd_setImageWithURL:[NSURL URLWithString:(NSString *)[info objectForKey:@"photo"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 160;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

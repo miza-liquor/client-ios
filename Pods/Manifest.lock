@@ -44,6 +44,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - KDCycleBannerView
   - MMDrawerController+Storyboard
+  - SDWebImage (~> 3.6)
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7

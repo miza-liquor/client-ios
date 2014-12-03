@@ -97,7 +97,7 @@
         <!--Explore View Controller-->
         <scene sceneID="pYr-yr-Sii">
             <objects>
-                <viewController id="dhy-KB-VG3" customClass="ExploreViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="testName" id="dhy-KB-VG3" customClass="ExploreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UWk-qL-Nfb"/>
                         <viewControllerLayoutGuide type="bottom" id="9TZ-Qz-Ydz"/>
@@ -120,37 +120,16 @@
                                     <outlet property="delegate" destination="dhy-KB-VG3" id="Upc-AN-Gjb"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="guq-yj-rZT">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <barButtonItem image="btn_explore.png" width="90" id="eoZ-2w-MZe"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mvp-EX-2BX"/>
-                                    <barButtonItem id="Lfq-9i-LHo">
-                                        <connections>
-                                            <segue destination="gYE-vO-5HI" kind="push" id="Wbt-qy-4xk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dCe-jx-rZL"/>
-                                    <barButtonItem image="btn_winelist.png" width="90" id="PIU-1k-DYE">
-                                        <connections>
-                                            <segue destination="NCI-WD-muE" kind="push" id="oOS-jf-P9k"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9TZ-Qz-Ydz" firstAttribute="top" secondItem="Mv3-gl-9Sy" secondAttribute="bottom" id="1n4-6A-AwW"/>
-                            <constraint firstItem="Mv3-gl-9Sy" firstAttribute="leading" secondItem="cQb-Px-rme" secondAttribute="leading" id="Lt1-lA-S7s"/>
-                            <constraint firstAttribute="trailing" secondItem="Mv3-gl-9Sy" secondAttribute="trailing" id="Sgq-oW-J6V"/>
-                            <constraint firstItem="Mv3-gl-9Sy" firstAttribute="top" secondItem="cQb-Px-rme" secondAttribute="top" id="sxd-km-9RP"/>
+                            <constraint firstItem="Mv3-gl-9Sy" firstAttribute="leading" secondItem="cQb-Px-rme" secondAttribute="leading" id="Azw-l2-9L4"/>
+                            <constraint firstAttribute="bottom" secondItem="Mv3-gl-9Sy" secondAttribute="bottom" id="bcC-uS-l8u"/>
+                            <constraint firstItem="Mv3-gl-9Sy" firstAttribute="top" secondItem="cQb-Px-rme" secondAttribute="top" id="fJb-h3-l5H"/>
+                            <constraint firstAttribute="trailing" secondItem="Mv3-gl-9Sy" secondAttribute="trailing" id="hv2-6u-YQu"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="hj5-dW-vqd">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="btn_drawer.png" id="2vN-Ls-mvH">
@@ -173,7 +152,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomBtnAdd" destination="Lfq-9i-LHo" id="8Dx-s3-szh"/>
                         <outlet property="tableView" destination="Mv3-gl-9Sy" id="FGc-Gq-Ay4"/>
                         <segue destination="wfX-jS-c3k" kind="push" identifier="topImage" id="5Gc-JO-dc0"/>
                         <segue destination="kCi-hP-3qj" kind="push" identifier="topUser" id="wa2-Gj-owP"/>
@@ -344,7 +322,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9hZ-F7-wqA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9hZ-F7-wqA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -355,7 +333,14 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9hZ-F7-wqA" firstAttribute="leading" secondItem="lsh-Gl-cw0" secondAttribute="leading" id="1KL-nT-wi4"/>
+                            <constraint firstItem="9hZ-F7-wqA" firstAttribute="top" secondItem="lsh-Gl-cw0" secondAttribute="top" id="nsf-vG-4DT"/>
+                            <constraint firstAttribute="bottom" secondItem="9hZ-F7-wqA" secondAttribute="bottom" id="qt4-xe-W4w"/>
+                            <constraint firstAttribute="trailing" secondItem="9hZ-F7-wqA" secondAttribute="trailing" id="xGj-ME-A5x"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="日报" id="YEK-jI-Z9G"/>
                     <connections>
                         <outlet property="tableView" destination="9hZ-F7-wqA" id="08q-Sf-o6O"/>
@@ -1800,7 +1785,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oyT-PL-N7Q">
             <objects>
-                <navigationController restorationIdentifier="homepage" storyboardIdentifier="homepage" automaticallyAdjustsScrollViewInsets="NO" id="zsu-pN-BEe" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="homepage" storyboardIdentifier="homepage" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="zsu-pN-BEe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lUV-Yd-LX8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1812,6 +1797,15 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="DFI-es-gY2">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="NO"/>
+                        </userDefinedRuntimeAttributes>
+                    </toolbar>
                     <connections>
                         <segue destination="dhy-KB-VG3" kind="relationship" relationship="rootViewController" id="is2-G1-XLZ"/>
                     </connections>
@@ -1830,6 +1824,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RaJ-fu-Oim">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="lwM-Cs-E1j"/>
                     </connections>
@@ -2006,9 +2004,7 @@
     <resources>
         <image name="Icon_80.png" width="57" height="57"/>
         <image name="btn_drawer.png" width="40" height="40"/>
-        <image name="btn_explore.png" width="80" height="36"/>
         <image name="btn_search.png" width="40" height="40"/>
-        <image name="btn_winelist.png" width="80" height="36"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -2016,9 +2012,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dul-HC-UJO"/>
+        <segue reference="Hh5-PE-MFt"/>
         <segue reference="5wg-xq-frH"/>
-        <segue reference="iFM-Aw-iKQ"/>
-        <segue reference="lWQ-mV-hli"/>
         <segue reference="o7G-Ex-V1u"/>
         <segue reference="i7h-g2-if1"/>
         <segue reference="krQ-if-Ocv"/>

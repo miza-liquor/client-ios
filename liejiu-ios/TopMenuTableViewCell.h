@@ -15,8 +15,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *wineImage2;
 @property (weak, nonatomic) IBOutlet UIImageView *wineImage3;
 @property (weak, nonatomic) IBOutlet UIImageView *wineImage4;
+@property (weak, nonatomic) IBOutlet UIImageView *wineImage5;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *menuName;
+@property (weak, nonatomic) IBOutlet UIImageView *likeImage;
+@property (weak, nonatomic) IBOutlet UILabel *likeNum;
 
 - (void) setTopMenuData:(NSDictionary *)data;
 

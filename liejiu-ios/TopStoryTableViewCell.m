@@ -11,13 +11,20 @@
 @implementation TopStoryTableViewCell
 @synthesize image = _image;
 @synthesize title = _title;
-@synthesize desc = _desc;
+@synthesize date = _date;
 
 - (void)awakeFromNib
 {
     // Initialization code
     self.image.layer.cornerRadius = 1;
     self.image.layer.masksToBounds = YES;
+}
+
+- (void) setFrame:(CGRect)frame
+{
+    frame.origin.y += 1;
+    frame.size.height -= 2;
+    [super setFrame:frame];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

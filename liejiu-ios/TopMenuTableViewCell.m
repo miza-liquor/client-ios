@@ -7,6 +7,7 @@
 //
 
 #import "TopMenuTableViewCell.h"
+#import "AppSetting.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation TopMenuTableViewCell
@@ -18,10 +19,10 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    self.userImage.layer.cornerRadius = 21;
+    self.userImage.layer.cornerRadius = 25;
     self.userImage.layer.masksToBounds = YES;
     
-    menuList = [[NSMutableArray alloc] initWithObjects:self.wineImage1, self.wineImage2, self.wineImage3, self.wineImage4, nil];
+    menuList = [[NSMutableArray alloc] initWithObjects:self.wineImage1, self.wineImage2, self.wineImage3, self.wineImage4, self.wineImage5, nil];
 
     self.contentView.layer.borderColor = [UIColor colorWithRed:148.0/255 green:204.0/255 blue:204.0/255 alpha:1].CGColor;
     self.contentView.layer.borderWidth = 1;
@@ -47,9 +48,18 @@
 
 - (void) setTopMenuData:(NSDictionary *)data
 {
-    self.userName.text = [NSString stringWithFormat:@"%@ 的酒单", (NSString *)[data objectForKey:@"creator_name"]];
+    NSString *userNameText =(NSString *)[data objectForKey:@"creator_name"];
+    self.userName.text = [NSString stringWithFormat:@"%@ 的酒单", userNameText];
     self.menuName.text = (NSString *)[data objectForKey:@"menu_name"];
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"creator_image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
+    self.likeNum.text = [NSString stringWithFormat:@"%d", [[data objectForKey:@"like_num"] intValue]];
+    int liked = [[data objectForKey:@"liked"] intValue];
+    NSString *likeImageName = liked == 0 ? @"icon_like" : @"icon_liked";
+    self.likeImage.image = [UIImage imageNamed:likeImageName];
+
+    [AppSetting settingBoldLabel:self.userName boldText:userNameText];
+
+    
     NSArray *menus = (NSArray *)[data objectForKey:@"menus"];
     int totalNum = [menuList count];
     int currNum = [menus count];
