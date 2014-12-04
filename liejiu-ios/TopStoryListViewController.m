@@ -61,7 +61,7 @@
             if (success == YES)
             {
                 stories = (NSArray *)[response objectForKey:@"data"];
-                [AppSetting setCache:@"userInfo" value:stories];
+                [AppSetting setCache:@"topStory" value:stories];
                 [self.tableView reloadData];
             }
         }];

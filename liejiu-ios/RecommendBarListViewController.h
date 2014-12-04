@@ -10,4 +10,6 @@
 
 @interface RecommendBarListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
