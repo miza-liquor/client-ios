@@ -34,7 +34,7 @@
     // Do any additional setup after loading the view.
     [AppSetting drawToolBar:self];
     
-    NSArray *cache = (NSArray *)[AppSetting getCache:@"topbar"];
+    NSArray *cache = (NSArray *)[AppSetting getCache:@"topbBar"];
     if (cache == Nil)
     {
         [AppSetting httpGet:@"topbar" parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {

@@ -11,5 +11,6 @@
 @interface TopWineCategoryTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *category;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 
 @end

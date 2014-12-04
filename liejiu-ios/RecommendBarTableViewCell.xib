@@ -75,6 +75,7 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.97254901960784312" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="barImage" destination="f6O-N0-Pea" id="uOx-Yr-ZbE"/>
                 <outlet property="barName" destination="KZB-lp-ECg" id="Hpq-Kp-u5S"/>

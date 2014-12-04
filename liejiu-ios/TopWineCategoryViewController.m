@@ -8,6 +8,8 @@
 
 #import "TopWineCategoryViewController.h"
 #import "TopWineCategoryTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "AppSetting.h"
 
 @interface TopWineCategoryViewController ()
 
@@ -32,12 +34,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    categories = @[
-                   @"啤酒 top50",
-                   @"威士忌 top50",
-                   @"金酒 top50",
-                   @"龙舌兰 top50"
-                ];
+    [AppSetting drawToolBar:self];
+    
+    NSArray *cache = (NSArray *)[AppSetting getCache:@"wineCategory"];
+    if (cache == Nil)
+    {
+        [AppSetting httpGet:@"winecategory" parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            if (success == YES)
+            {
+                categories = (NSArray *)[response objectForKey:@"data"];
+                [AppSetting setCache:@"wineCategory" value:categories];
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        categories = cache;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,13 +75,17 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.category.text = [categories objectAtIndex:indexPath.row];
+    NSDictionary *info = (NSDictionary *)[categories objectAtIndex:indexPath.row];
+    
+    cell.category.text = (NSString *)[info objectForKey:@"name"];
+    [cell.bgImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[info objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 130;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

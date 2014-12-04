@@ -35,16 +35,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    [self.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [self.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [self.mm_drawerController setMaximumRightDrawerWidth:180];
-    [self.mm_drawerController setMaximumLeftDrawerWidth:240];
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
      v.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:v];
-    
     
     // change navigation bar background
     // fixed ios6, ios7
@@ -67,6 +61,7 @@
     [self.bottomBtnAdd setCustomView: addRecordView];
 
     [AppSetting drawToolBar:self];
+    [AppSetting drawerSetting:self];
     
     // init data
     topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];

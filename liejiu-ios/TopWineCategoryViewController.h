@@ -17,5 +17,6 @@
 @interface TopWineCategoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id <TopWineCategoryViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

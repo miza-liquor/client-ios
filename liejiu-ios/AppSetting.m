@@ -11,6 +11,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "ExploreViewController.h"
 #import "WineCenterListTableViewCell.h"
+#import "MMDrawerVisualState.h"
 
 // api link
 static NSString *_hostName = @"http://zhangge.me:8882/v1/app/";
@@ -148,6 +149,16 @@ static UIViewController *_currView = nil;
     [_currView.navigationController pushViewController:controller animated:YES];
     controller = nil;
     _currView = nil;
+}
+
++ (void) drawerSetting:(UIViewController *)view
+{
+    [view.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [view.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    [view.mm_drawerController setMaximumLeftDrawerWidth:240];
+//    [view.mm_drawerController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];
+    [view.mm_drawerController setShowsShadow:YES];
+    
 }
 
 @end

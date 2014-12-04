@@ -100,7 +100,6 @@
 		B6DF27631A14EE5F0046629F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DF27621A14EE5F0046629F /* LoginViewController.m */; };
 		B6DF27671A14F2F10046629F /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DF27661A14F2F10046629F /* ExploreViewController.m */; };
 		B6DF276A1A14F3A60046629F /* DrawerLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DF27691A14F3A60046629F /* DrawerLeftViewController.m */; };
-		B6DF276D1A14F3C00046629F /* DrawerRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DF276C1A14F3C00046629F /* DrawerRightViewController.m */; };
 		B6F286C61A2DAA36009873B3 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C01A2DAA36009873B3 /* Icon-29.png */; };
 		B6F286C71A2DAA36009873B3 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C11A2DAA36009873B3 /* Icon-29@2x.png */; };
 		B6F286C81A2DAA36009873B3 /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C21A2DAA36009873B3 /* icon-57.png */; };
@@ -290,8 +289,6 @@
 		B6DF27661A14F2F10046629F /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
 		B6DF27681A14F3A60046629F /* DrawerLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerLeftViewController.h; sourceTree = "<group>"; };
 		B6DF27691A14F3A60046629F /* DrawerLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerLeftViewController.m; sourceTree = "<group>"; };
-		B6DF276B1A14F3C00046629F /* DrawerRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerRightViewController.h; sourceTree = "<group>"; };
-		B6DF276C1A14F3C00046629F /* DrawerRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerRightViewController.m; sourceTree = "<group>"; };
 		B6F286C01A2DAA36009873B3 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-29.png"; path = "resource/Icon-29.png"; sourceTree = "<group>"; };
 		B6F286C11A2DAA36009873B3 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-29@2x.png"; path = "resource/Icon-29@2x.png"; sourceTree = "<group>"; };
 		B6F286C21A2DAA36009873B3 /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-57.png"; path = "resource/icon-57.png"; sourceTree = "<group>"; };
@@ -503,8 +500,6 @@
 				B6DF27691A14F3A60046629F /* DrawerLeftViewController.m */,
 				B6223AB11A1C834A009BAC53 /* SettingTableViewController.h */,
 				B6223AB21A1C834A009BAC53 /* SettingTableViewController.m */,
-				B6DF276B1A14F3C00046629F /* DrawerRightViewController.h */,
-				B6DF276C1A14F3C00046629F /* DrawerRightViewController.m */,
 				B6DF27581A14EDF60046629F /* ExploreNoAuthViewController.h */,
 				B6DF27591A14EDF60046629F /* ExploreNoAuthViewController.m */,
 				B6DF27651A14F2F10046629F /* ExploreViewController.h */,
@@ -863,7 +858,6 @@
 				B6223ABF1A1CAC67009BAC53 /* HelpViewController.m in Sources */,
 				B62EBD8E1A1A393600BFED0B /* TopImageTableViewCell.m in Sources */,
 				B6223ABC1A1C9733009BAC53 /* FeedbackViewController.m in Sources */,
-				B6DF276D1A14F3C00046629F /* DrawerRightViewController.m in Sources */,
 				B646460F1A1B87120035F208 /* TopWineCategoryViewController.m in Sources */,
 				B6DF276A1A14F3A60046629F /* DrawerLeftViewController.m in Sources */,
 				B64646021A1B7B4C0035F208 /* TopWineListViewController.m in Sources */,
