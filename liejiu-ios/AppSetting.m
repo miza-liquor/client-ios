@@ -157,7 +157,7 @@ static UIViewController *_currView = nil;
     [view.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     [view.mm_drawerController setMaximumLeftDrawerWidth:240];
 //    [view.mm_drawerController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];
-    [view.mm_drawerController setShowsShadow:YES];
+    [view.mm_drawerController setShowsShadow:NO];
     
 }
 

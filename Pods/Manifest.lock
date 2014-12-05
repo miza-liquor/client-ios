@@ -43,6 +43,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - KDCycleBannerView
+  - MMDrawerController (~> 0.4.0)
   - MMDrawerController+Storyboard
   - SDWebImage (~> 3.6)
 
