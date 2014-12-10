@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "AppSetting.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
 
 @interface LoginViewController ()
 
@@ -97,7 +99,7 @@
             [AppSetting setCache:@"topMenu" value:(NSDictionary *) [data objectForKey:@"top_menu"]];
 
             self.navigationController.navigationBarHidden = YES;
-            [self performSegueWithIdentifier:@"explore" sender:self];
+            [self performSegueWithIdentifier:@"drawer" sender:self];
         } else {
             self.loginMsg.text = msg;
         }
@@ -113,6 +115,28 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"drawer"]) {
+        MMDrawerController *destinationViewController = (MMDrawerController *) segue.destinationViewController;
+        
+        // Instantitate and set the center view controller.
+        UIViewController *centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"homepage"];
+        [destinationViewController setCenterViewController:centerViewController];
+        
+        // Instantiate and set the left drawer controller.
+        UIViewController *leftDrawerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftSidebar"];
+        [destinationViewController setLeftDrawerViewController:leftDrawerViewController];
+        
+        // drawer setting
+        [destinationViewController setShowsShadow:YES];
+        [destinationViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+        [destinationViewController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+        [destinationViewController setMaximumLeftDrawerWidth:260];
+        [destinationViewController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];
+        
+    }
 }
 
 @end

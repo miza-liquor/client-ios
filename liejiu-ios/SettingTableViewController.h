@@ -10,5 +10,6 @@
 #import "UIViewController+MMDrawerController.h"
 
 @interface SettingTableViewController : UITableViewController
+- (IBAction)clickOnDrawerBtn:(id)sender;
 
 @end

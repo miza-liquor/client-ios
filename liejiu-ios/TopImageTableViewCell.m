@@ -99,7 +99,6 @@
 - (void) setSildeViewImages:(NSArray *)images
 {
     imageList = images;
-    NSLog(@"aaaaaaaaaaaaaaaaaaaaaaaa");
 }
 
 @end

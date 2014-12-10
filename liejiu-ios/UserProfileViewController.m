@@ -10,6 +10,7 @@
 #import "UserProfileInfoTableViewCell.h"
 #import "UserDrinkLikeTableViewCell.h"
 #import "UserMenuTableViewCell.h"
+#import "AppSetting.h"
 
 @interface UserProfileViewController ()
 
@@ -21,6 +22,8 @@
     NSArray *dataList;
     NSString *tabType;
 }
+@synthesize fromSubView;
+@synthesize userInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +49,15 @@
                 };
     dataList = @[@"1",@"2",@"3",@"4",@"5"];
     tabType = @"drinked";
+    
+    // check if open from drawer
+    if (!fromSubView)
+    {
+        UIBarButtonItem *drawerBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_drawer"] style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
+        self.navigationItem.leftBarButtonItem = drawerBtn;
+    }
+    
+    [AppSetting topBarStyleSetting:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,6 +146,11 @@
 - (void) onClickFollowBtn:(NSString *)followType
 {
     [self performSegueWithIdentifier:@"follow" sender:self];
+}
+
+#pragma mark - Button Handlers
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 @end

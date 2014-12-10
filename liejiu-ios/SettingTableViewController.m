@@ -7,6 +7,7 @@
 //
 
 #import "SettingTableViewController.h"
+#import "AppSetting.h"
 
 @interface SettingTableViewController ()
 
@@ -26,12 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [AppSetting topBarStyleSetting:self];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIColor *color = [UIColor colorWithRed:248.0/255 green:255.0/255 blue:255.0/255 alpha:1];
+    self.view.backgroundColor = color;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,15 +69,7 @@
         return;
     }
 
-    UIViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-        if ([self.mm_drawerController.centerViewController.restorationIdentifier isEqualToString:vc.restorationIdentifier])
-        {
-            return;
-        }
-        
-        self.mm_drawerController.centerViewController = vc;
-    }];
+    [self performSegueWithIdentifier:identifier sender:self];
 }
 
 /*
@@ -91,4 +83,8 @@
 }
 */
 
+- (IBAction)clickOnDrawerBtn:(id)sender
+{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 @end

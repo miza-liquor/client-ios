@@ -37,6 +37,6 @@
 
 + (void) drawToolBar:(UIViewController *)view;
 
-+ (void) drawerSetting:(UIViewController *)view;
++ (void) topBarStyleSetting:(UIViewController *)view;
 
 @end

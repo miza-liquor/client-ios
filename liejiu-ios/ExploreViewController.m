@@ -25,7 +25,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -49,19 +50,9 @@
     } else {
         /* Set background and foreground */
     }
-    
-    //setting navigation bar bg
-    UIImage *image = [UIImage imageNamed:@"bg_navbar.png"];
-    [image drawInRect:CGRectMake(0, 0, 320, 65)];
-    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-
-    // record btn setting
-    UIButton *addRecordView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
-    [addRecordView setBackgroundImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
-    [self.bottomBtnAdd setCustomView: addRecordView];
 
     [AppSetting drawToolBar:self];
-    [AppSetting drawerSetting:self];
+    [AppSetting topBarStyleSetting:self];
     
     // init data
     topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];

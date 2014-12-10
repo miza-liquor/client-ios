@@ -8,6 +8,7 @@
 
 #import "TopUserListViewController.h"
 #import "TopUserTableViewCell.h"
+#import "UserProfileViewController.h"
 
 @interface TopUserListViewController ()
 
@@ -93,6 +94,15 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self performSegueWithIdentifier:@"userDetail" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"userDetail"])
+    {
+        UserProfileViewController *userProfile = segue.destinationViewController;
+        userProfile.fromSubView = YES;
+    }
 }
 
 @end

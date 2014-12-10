@@ -144,21 +144,17 @@ static UIViewController *_currView = nil;
 
 + (void)barButtonCustomPressed:(UIBarButtonItem*)btn
 {
-    NSLog(@"button tapped %@", btn.title);
-    ExploreViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"testName"];
+    ExploreViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"explore"];
     [_currView.navigationController pushViewController:controller animated:YES];
     controller = nil;
     _currView = nil;
 }
 
-+ (void) drawerSetting:(UIViewController *)view
++ (void) topBarStyleSetting:(UIViewController *)view
 {
-    [view.mm_drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
-    [view.mm_drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-    [view.mm_drawerController setMaximumLeftDrawerWidth:240];
-//    [view.mm_drawerController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];
-    [view.mm_drawerController setShowsShadow:NO];
-    
+    //setting navigation bar bg
+    UIImage *image = [UIImage imageNamed:@"bg_navbar.png"];
+    [view.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
 }
 
 @end

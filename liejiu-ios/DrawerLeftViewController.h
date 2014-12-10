@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
 
-@interface DrawerLeftViewController : UITableViewController
+@interface DrawerLeftViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNickName;
-@property (weak, nonatomic) IBOutlet UILabel *msgNumber;
 
 @end

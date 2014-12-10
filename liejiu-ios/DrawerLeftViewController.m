@@ -8,6 +8,7 @@
 
 #import "DrawerLeftViewController.h"
 #import "AppSetting.h"
+#import "DrawerTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DrawerLeftViewController ()
@@ -16,6 +17,7 @@
 
 @implementation DrawerLeftViewController
 {
+    NSArray *drawerMenu;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,6 +34,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // init drawer data
+    drawerMenu = @[
+                   @{@"id": @"homepage", @"icon": @"icon_user_home", @"name": @"探索"},
+                   @{@"id": @"userProfile", @"icon": @"icon_user_home", @"name": @"个人主页"},
+                   @{@"id": @"storyList", @"icon": @"icon_story", @"name": @"日报"},
+                   @{@"id": @"myMessage", @"icon": @"icon_msg", @"name": @"消息", @"num": @"12"},
+                   @{@"id": @"addFriend", @"icon": @"icon_new_friend", @"name": @"添加好友"}
+                ];
+    
+    self.navigationController.navigationBarHidden = YES;
+
+    UIColor *color = [UIColor colorWithRed:248.0/255 green:255.0/255 blue:255.0/255 alpha:1];
+    self.view.backgroundColor = color;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    
+    
     NSDictionary *userInfo = (NSDictionary *)[AppSetting getCache:@"userInfo"];
     NSString *imageUrl = [userInfo objectForKey:@"cover"];
 
@@ -40,18 +59,26 @@
 
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     self.userNickName.text = [userInfo objectForKey:@"nickname"];
+    
+    // add bottom button
+    UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *setting = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_setting"] style:UIBarButtonItemStylePlain target:self action:@selector(settingButtonCustomPressed:)];
+    UIBarButtonItem *help = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_help"] style:UIBarButtonItemStylePlain target:self action:@selector(helpButtonCustomPressed:)];
+
+    [self.navigationController.toolbar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+
+    self.navigationController.toolbar.clipsToBounds = YES;
+
+    [self setToolbarItems:[NSArray arrayWithObjects:setting, flexibleBtn, help, nil]];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)settingButtonCustomPressed:(UIBarButtonItem*)btn
 {
-    // disable the navbar
-    self.navigationController.navigationBarHidden = YES;
+    [self openNewCenterView:@"setting"];
 }
-
-- (void) viewWillDisappear:(BOOL)animated
+- (void)helpButtonCustomPressed:(UIBarButtonItem*)btn
 {
-    // disable the navbar
-    self.navigationController.navigationBarHidden = NO;
+    [self openNewCenterView:@"help"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,47 +87,59 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - table view delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [drawerMenu count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifierList = @"DrawerTableViewCell";
+    DrawerTableViewCell *cell = (DrawerTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifierList];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifierList owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        cell.backgroundColor = [UIColor clearColor];
+    }
+    
+    NSDictionary *info = (NSDictionary *)[drawerMenu objectAtIndex:indexPath.row];
+    cell.icon.image = [UIImage imageNamed:(NSString *)[info objectForKey:@"icon"]];
+    cell.labelName.text = (NSString *)[info objectForKey:@"name"];
+    NSString *identify = (NSString *)[info objectForKey:@"id"];
+    
+    if ([identify isEqualToString:@"myMessage"])
+    {
+        cell.notic.hidden = NO;
+        cell.notic.text = (NSString *)[info objectForKey:@"num"];
+    } else {
+        cell.notic.hidden = YES;
+    }
+    
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 54;
+}
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"sss::%d", indexPath.row);
-    NSString *identifier;
-    switch (indexPath.row) {
-        case 0:
-            identifier = @"userProfile";
-            break;
-        case 1:
-            identifier = @"homepage";
-            break;
-        case 2:
-            identifier = @"storyList";
-            break;
-        case 3:
-            identifier = @"myMessage";
-            break;
-        case 4:
-            identifier = @"addFriend";
-            break;
-        case 5:
-            [self performSegueWithIdentifier:@"setting" sender:self];
-            return;
-            break;
-        case 6:
-            identifier = @"help";
-            break;
-        default:
-            return;
-            break;
-    }
-
+    NSDictionary *info = (NSDictionary *)[drawerMenu objectAtIndex:indexPath.row];
+    NSString *identifier = (NSString *)[info objectForKey:@"id"];
     UIViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:identifier];
-    [self.mm_drawerController closeDrawerAnimated:YES completion:^(BOOL finished) {
-        if ([self.mm_drawerController.centerViewController.restorationIdentifier isEqualToString:vc.restorationIdentifier])
-        {
-            return;
-        }
 
-        self.mm_drawerController.centerViewController = vc;
-    }];
+    [self.mm_drawerController setCenterViewController:vc withFullCloseAnimation:YES completion:nil];
+}
+
+- (void) openNewCenterView:(NSString *)identifier
+{
+    UIViewController *vc =  [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    [self.mm_drawerController setCenterViewController:vc withFullCloseAnimation:YES completion:nil];
 }
 
 @end

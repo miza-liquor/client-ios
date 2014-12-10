@@ -12,7 +12,6 @@
 
 @interface ExploreViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, TopImageTableViewCellDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *bottomBtnAdd;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction) clickOnSidebarMenu:(id)sender;
 - (IBAction) clickOnSearchBtn:(id)sender;
