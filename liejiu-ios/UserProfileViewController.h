@@ -13,7 +13,7 @@
 @interface UserProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UserProfileInfoTableViewCellDelegate>
 
 @property (nonatomic) BOOL fromSubView;
-@property (nonatomic) NSMutableDictionary *userInfo;
+@property (nonatomic) NSDictionary *userBasicInfo;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

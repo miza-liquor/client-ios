@@ -23,7 +23,7 @@
     NSString *tabType;
 }
 @synthesize fromSubView;
-@synthesize userInfo;
+@synthesize userBasicInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,8 +55,13 @@
     {
         UIBarButtonItem *drawerBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_drawer"] style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
         self.navigationItem.leftBarButtonItem = drawerBtn;
+        
+        // from drawer, is owner
+        self.userBasicInfo = (NSDictionary *)[AppSetting getCache:@"userInfo"];
     }
-    
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting:self];
 }
 
@@ -82,6 +87,8 @@
         {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
             cell = [nib objectAtIndex:0];
+
+            [cell setBasicUserInfo: self.userBasicInfo];
         }
 
         cell.delegate = self;
@@ -116,7 +123,7 @@
 {
     if (indexPath.row == 0)
     {
-        return 220;
+        return 305;
     } else {
         if ([tabType isEqualToString:@"menu"])
         {
