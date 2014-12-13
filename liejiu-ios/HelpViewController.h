@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+MMDrawerController.h"
 
 @interface HelpViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+- (IBAction)clickOnDrawerBtn:(id)sender;
 
 @end

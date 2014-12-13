@@ -7,6 +7,7 @@
 //
 
 #import "HelpViewController.h"
+#import "AppSetting.h"
 
 @interface HelpViewController ()
 
@@ -28,6 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [AppSetting topBarStyleSetting:self];
+    
     NSURL *nsurl = [NSURL URLWithString: @"http://www.baidu.com"];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:nsurl];
     [self.webView loadRequest:requestObj];
@@ -39,4 +42,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickOnDrawerBtn:(id)sender
+{
+    [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 @end

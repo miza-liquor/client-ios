@@ -973,7 +973,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="使用帮助" id="BHJ-qv-LcK"/>
+                    <navigationItem key="navigationItem" title="使用帮助" id="BHJ-qv-LcK">
+                        <barButtonItem key="leftBarButtonItem" image="btn_drawer.png" id="V4j-b1-hbe">
+                            <connections>
+                                <action selector="clickOnDrawerBtn:" destination="iJ5-SI-Z7X" id="CdW-aV-L7s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="uPC-fI-KsS" id="Daa-1D-zce"/>
                     </connections>
@@ -1776,6 +1782,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9hj-SH-4p3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
