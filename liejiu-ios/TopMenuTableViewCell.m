@@ -57,12 +57,12 @@
     NSString *likeImageName = liked == 0 ? @"icon_like" : @"icon_liked";
     self.likeImage.image = [UIImage imageNamed:likeImageName];
 
-    [AppSetting settingBoldLabel:self.userName boldText:userNameText];
+    [AppSetting settingLabel:self.userName withAttribute:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:self.userName.font.pointSize]} inSelectedText:userNameText];
 
     
     NSArray *menus = (NSArray *)[data objectForKey:@"menus"];
-    int totalNum = [menuList count];
-    int currNum = [menus count];
+    int totalNum = (int)[menuList count];
+    int currNum = (int)[menus count];
     
     for (int i = 0; i < totalNum; i++) {
         UIImageView *menuImage = (UIImageView *)[menuList objectAtIndex:i];

@@ -10,8 +10,11 @@
 
 @interface UserDrinkLikeTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *image1;
-@property (weak, nonatomic) IBOutlet UIImageView *image2;
-@property (weak, nonatomic) IBOutlet UIImageView *image3;
+@property (weak, nonatomic) IBOutlet UIButton *wine1;
+@property (weak, nonatomic) IBOutlet UIButton *wine2;
+@property (weak, nonatomic) IBOutlet UIButton *wine3;
+@property (weak, nonatomic) IBOutlet UIButton *wine4;
+
+- (void) setGroupData:(NSArray *)data;
 
 @end

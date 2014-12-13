@@ -32,6 +32,6 @@
 - (IBAction) clickOnTab:(id)sender;
 - (IBAction)clickONFollowInfoBtn:(id)sender;
 
-- (void) setBasicUserInfo:(NSDictionary *)userBasicInfo;
+- (void) setBasicUserInfo:(NSDictionary *)userBasicInfo withTab:(NSString *)tabName;
 
 @end

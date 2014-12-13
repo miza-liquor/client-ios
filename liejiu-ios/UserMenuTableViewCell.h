@@ -13,7 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuImage;
 @property (weak, nonatomic) IBOutlet UILabel *menuName;
 @property (weak, nonatomic) IBOutlet UILabel *author;
+@property (weak, nonatomic) IBOutlet UIImageView *authorImage;
 @property (weak, nonatomic) IBOutlet UILabel *wineNum;
 @property (weak, nonatomic) IBOutlet UILabel *collectedNum;
+
+- (void) setUserMenu:(NSDictionary*)data;
 
 @end

@@ -33,7 +33,7 @@
 
 + (BOOL) emailRegex:(NSString *)email;
 
-+ (void) settingBoldLabel:(UILabel *)label boldText:(NSString *)text;
++ (void) settingLabel:(UILabel *)label withAttribute:(NSDictionary *)attribute inSelectedText:(NSString *)text;
 
 + (void) drawToolBar:(UIViewController *)view;
 

@@ -115,7 +115,7 @@ static UIViewController *_currView = nil;
     return [regexPredicate evaluateWithObject:email];
 }
 
-+ (void) settingBoldLabel:(UILabel *)label boldText:(NSString *)text
++ (void) settingLabel:(UILabel *)label withAttribute:(NSDictionary *)attribute inSelectedText:(NSString *)text
 {
     NSRange range = [label.text rangeOfString:text];
     if (![label respondsToSelector:@selector(setAttributedText:)]) {
@@ -123,7 +123,7 @@ static UIViewController *_currView = nil;
     }
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:label.text];
-    [attributedText setAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:label.font.pointSize]} range:range];
+    [attributedText setAttributes:attribute range:range];
     label.attributedText = attributedText;
 }
 

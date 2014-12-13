@@ -6,30 +6,52 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="UserDrinkLikeTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="77" id="KGk-i7-Jjw" customClass="UserDrinkLikeTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="g3E-M8-czZ">
-                        <rect key="frame" x="20" y="10" width="80" height="80"/>
+                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzf-AI-ihR">
+                        <rect key="frame" x="8" y="1" width="73" height="73"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="5aF-7N-kxc">
-                        <rect key="frame" x="120" y="10" width="80" height="80"/>
+                        <state key="normal" backgroundImage="Icon-29.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkD-dG-6oE">
+                        <rect key="frame" x="85" y="1" width="73" height="73"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="0gl-SU-MVa">
-                        <rect key="frame" x="220" y="10" width="80" height="80"/>
+                        <state key="normal" backgroundImage="Icon-29.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SoN-DE-q0J">
+                        <rect key="frame" x="162" y="1" width="73" height="73"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <state key="normal" backgroundImage="Icon-29.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maL-G3-Y5d">
+                        <rect key="frame" x="239" y="1" width="73" height="73"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" backgroundImage="Icon-29.png">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="wine1" destination="Hzf-AI-ihR" id="VLC-lu-ISU"/>
+                <outlet property="wine2" destination="BkD-dG-6oE" id="86v-Ed-N2J"/>
+                <outlet property="wine3" destination="SoN-DE-q0J" id="ZsO-p6-XWn"/>
+                <outlet property="wine4" destination="maL-G3-Y5d" id="Y7N-GQ-gmi"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon.png" width="57" height="57"/>
+        <image name="Icon-29.png" width="29" height="29"/>
     </resources>
 </document>

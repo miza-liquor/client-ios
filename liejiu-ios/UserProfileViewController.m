@@ -18,7 +18,6 @@
 
 @implementation UserProfileViewController
 {
-    NSDictionary *userProfile;
     NSArray *dataList;
     NSString *tabType;
 }
@@ -38,16 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    userProfile = @{
-                    @"nickName": @"zhangge",
-                    @"relationShip":@"1",
-                    @"followNum": @"22",
-                    @"followerNum": @"444",
-                    @"likeNum": @"111",
-                    @"level": @"2332"
-                };
-    dataList = @[@"1",@"2",@"3",@"4",@"5"];
+
+    dataList = @[];
     tabType = @"drinked";
     
     // check if open from drawer
@@ -63,6 +54,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting:self];
+    
+    // load tab data
+    [self loadTabContent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,32 +82,34 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
             cell = [nib objectAtIndex:0];
 
-            [cell setBasicUserInfo: self.userBasicInfo];
+            [cell setBasicUserInfo: self.userBasicInfo withTab:tabType];
         }
 
         cell.delegate = self;
         return cell;
     } else {
-        if ([tabType isEqualToString:@"menu"])
+        if ([tabType isEqualToString:@"mymenu"])
         {
             static NSString *menuTableIdentifier = @"UserMenuTableViewCell";
-            UserProfileInfoTableViewCell *menuCell = (UserProfileInfoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:menuTableIdentifier];
+            UserMenuTableViewCell *menuCell = (UserMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:menuTableIdentifier];
             if (menuCell == nil)
             {
                 NSArray *menuNib = [[NSBundle mainBundle] loadNibNamed:menuTableIdentifier owner:self options:nil];
                 menuCell = [menuNib objectAtIndex:0];
             }
 
+            [menuCell setUserMenu:[dataList objectAtIndex:indexPath.row - 1]];
             return menuCell;
         } else {
             static NSString *collectionTableIdentifier = @"UserDrinkLikeTableViewCell";
-            UserProfileInfoTableViewCell *collectionCell = (UserProfileInfoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:collectionTableIdentifier];
+            UserDrinkLikeTableViewCell *collectionCell = (UserDrinkLikeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:collectionTableIdentifier];
             if (collectionCell == nil)
             {
                 NSArray *collectionNib = [[NSBundle mainBundle] loadNibNamed:collectionTableIdentifier owner:self options:nil];
                 collectionCell = [collectionNib objectAtIndex:0];
             }
 
+            [collectionCell setGroupData:[dataList objectAtIndex:indexPath.row - 1]];
             return collectionCell;
         }
     }
@@ -123,31 +119,81 @@
 {
     if (indexPath.row == 0)
     {
-        return 305;
+        return 300;
     } else {
-        if ([tabType isEqualToString:@"menu"])
-        {
-            return 84;
-        } else {
-            return 100;
-        }
+        return 77;
+//        
+//        if ([tabType isEqualToString:@"mymenu"])
+//        {
+//            return 80;
+//        } else {
+//            return 77;
+//        }
     }
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([tabType isEqualToString:@"menu"])
+    if ([tabType isEqualToString:@"mymenu"])
     {
         [self performSegueWithIdentifier:@"menuDetail" sender:self];
     }
 //    [self performSegueWithIdentifier:@"storyDetail" sender:self];
 }
 
+- (void) loadTabContent
+{
+    NSString *cacheName = [NSString stringWithFormat:@"user-%@-%@", (NSString *)[self.userBasicInfo objectForKey:@"id"], tabType];
+    dataList = (NSArray *)[AppSetting getCache:cacheName];
+    
+    if (dataList != nil || [dataList count] > 0)
+    {
+        [self.tableView reloadData];
+        return;
+    }
+    
+    [AppSetting httpGet:tabType parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success == YES)
+        {
+            // after check login, go to explore page
+            NSArray *data = (NSArray *)[response objectForKey:@"data"];
+            if ([tabType isEqualToString:@"mymenu"])
+            {
+                dataList = data;
+                [AppSetting setCache:cacheName value: dataList];
+                [self.tableView reloadData];
+                return;
+            }
+            int i = 0;
+            int step =  4;
+            int groupIdx = -1;
+            NSMutableArray *renderData = [[NSMutableArray alloc] initWithCapacity:(int)ceilf([data count]/step)];
+            
+            for (NSArray *wine in data) {
+                NSMutableArray *groupData;
+                if (i % step == 0)
+                {
+                    groupData = [[NSMutableArray alloc] initWithCapacity:step];
+                    [renderData addObject:groupData];
+                    groupIdx++;
+                }
+                [(NSMutableArray *)[renderData objectAtIndex:groupIdx] addObject:wine];
+                i++;
+            }
+            dataList = [NSArray arrayWithArray: renderData];
+            [AppSetting setCache:cacheName value: dataList];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"error with fetching data");
+        }
+    }];
+}
+
 #pragma mark - user profile header delegate
 - (void) onTagChanged:(NSString *)tabName
 {
     tabType = tabName;
-    [self.tableView reloadData];
+    [self loadTabContent];
 }
 
 - (void) onClickFollowBtn:(NSString *)followType
@@ -156,7 +202,8 @@
 }
 
 #pragma mark - Button Handlers
--(void)leftDrawerButtonPress:(id)sender{
+-(void)leftDrawerButtonPress:(id)sender
+{
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
