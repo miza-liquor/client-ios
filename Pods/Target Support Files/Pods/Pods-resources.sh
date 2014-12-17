@@ -43,7 +43,13 @@ install_resource()
       ;;
   esac
 }
-          install_resource "Baidu-Maps-iOS-SDK/mapapi.bundle"
+          install_resource "VKInputToolbar/UIInputToolbarSample/Resources/buttonbg.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/buttonbg@2x.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/textbg.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/textbg@2x.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/textbg_7@2x.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/toolbarbg.png"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/toolbarbg@2x.png"
           
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then

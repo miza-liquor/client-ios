@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BarDetailViewController : UIViewController
+@interface BarDetailViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @end

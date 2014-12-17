@@ -48,12 +48,6 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
-// Baidu-Maps-iOS-SDK
-#define COCOAPODS_POD_AVAILABLE_Baidu_Maps_iOS_SDK
-#define COCOAPODS_VERSION_MAJOR_Baidu_Maps_iOS_SDK 2
-#define COCOAPODS_VERSION_MINOR_Baidu_Maps_iOS_SDK 5
-#define COCOAPODS_VERSION_PATCH_Baidu_Maps_iOS_SDK 0
-
 // KDCycleBannerView
 #define COCOAPODS_POD_AVAILABLE_KDCycleBannerView
 #define COCOAPODS_VERSION_MAJOR_KDCycleBannerView 1
@@ -101,4 +95,10 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// VKInputToolbar
+#define COCOAPODS_POD_AVAILABLE_VKInputToolbar
+#define COCOAPODS_VERSION_MAJOR_VKInputToolbar 0
+#define COCOAPODS_VERSION_MINOR_VKInputToolbar 3
+#define COCOAPODS_VERSION_PATCH_VKInputToolbar 3
 

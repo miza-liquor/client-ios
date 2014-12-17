@@ -746,7 +746,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="酒吧" id="1u6-dR-G05">
-                        <barButtonItem key="rightBarButtonItem" title="分享" id="avj-8d-4fb"/>
+                        <barButtonItem key="rightBarButtonItem" image="btn_share.png" id="avj-8d-4fb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsU-rl-eUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1895,6 +1897,7 @@
         <image name="btn_drawer.png" width="40" height="40"/>
         <image name="btn_more.png" width="40" height="40"/>
         <image name="btn_search.png" width="40" height="40"/>
+        <image name="btn_share.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1904,10 +1907,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="lWQ-mV-hli"/>
         <segue reference="Hh5-PE-MFt"/>
-        <segue reference="6fd-hb-gWJ"/>
+        <segue reference="Gej-oV-mS2"/>
         <segue reference="i7h-g2-if1"/>
+        <segue reference="o7G-Ex-V1u"/>
         <segue reference="ZeE-Jf-56d"/>
-        <segue reference="7rA-qI-T4L"/>
         <segue reference="krQ-if-Ocv"/>
     </inferredMetricsTieBreakers>
 </document>

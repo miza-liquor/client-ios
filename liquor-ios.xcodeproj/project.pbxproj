@@ -93,6 +93,10 @@
 		B646460F1A1B87120035F208 /* TopWineCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B646460E1A1B87120035F208 /* TopWineCategoryViewController.m */; };
 		B64646131A1B87760035F208 /* TopWineCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B64646111A1B87760035F208 /* TopWineCategoryTableViewCell.m */; };
 		B64646141A1B87760035F208 /* TopWineCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64646121A1B87760035F208 /* TopWineCategoryTableViewCell.xib */; };
+		B658D5BF1A41AE2C0069519A /* btn_send@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B658D5BD1A41AE2C0069519A /* btn_send@2x.png */; };
+		B658D5C01A41AE2C0069519A /* btn_send@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B658D5BE1A41AE2C0069519A /* btn_send@3x.png */; };
+		B658D5C31A41AE370069519A /* btn_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B658D5C11A41AE370069519A /* btn_share@2x.png */; };
+		B658D5C41A41AE370069519A /* btn_share@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B658D5C21A41AE370069519A /* btn_share@3x.png */; };
 		B65D1D0D1A1B124D0000F6F1 /* TopMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B65D1D0B1A1B124D0000F6F1 /* TopMenuTableViewCell.m */; };
 		B65D1D0E1A1B124D0000F6F1 /* TopMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B65D1D0C1A1B124D0000F6F1 /* TopMenuTableViewCell.xib */; };
 		B6666CA61A2211E700F446A7 /* WineCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6666CA51A2211E700F446A7 /* WineCenterViewController.m */; };
@@ -295,6 +299,10 @@
 		B64646101A1B87760035F208 /* TopWineCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopWineCategoryTableViewCell.h; sourceTree = "<group>"; };
 		B64646111A1B87760035F208 /* TopWineCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopWineCategoryTableViewCell.m; sourceTree = "<group>"; };
 		B64646121A1B87760035F208 /* TopWineCategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopWineCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		B658D5BD1A41AE2C0069519A /* btn_send@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_send@2x.png"; path = "resource/btn_send@2x.png"; sourceTree = "<group>"; };
+		B658D5BE1A41AE2C0069519A /* btn_send@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_send@3x.png"; path = "resource/btn_send@3x.png"; sourceTree = "<group>"; };
+		B658D5C11A41AE370069519A /* btn_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share@2x.png"; path = "resource/btn_share@2x.png"; sourceTree = "<group>"; };
+		B658D5C21A41AE370069519A /* btn_share@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share@3x.png"; path = "resource/btn_share@3x.png"; sourceTree = "<group>"; };
 		B65D1D0A1A1B124D0000F6F1 /* TopMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopMenuTableViewCell.h; sourceTree = "<group>"; };
 		B65D1D0B1A1B124D0000F6F1 /* TopMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopMenuTableViewCell.m; sourceTree = "<group>"; };
 		B65D1D0C1A1B124D0000F6F1 /* TopMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -621,6 +629,10 @@
 				B6F286E81A2DF9D5009873B3 /* btn_explore@3x.png */,
 				B6F286E91A2DF9D5009873B3 /* btn_new_record@2x.png */,
 				B6F286EA1A2DF9D5009873B3 /* btn_new_record@3x.png */,
+				B658D5BD1A41AE2C0069519A /* btn_send@2x.png */,
+				B658D5BE1A41AE2C0069519A /* btn_send@3x.png */,
+				B658D5C11A41AE370069519A /* btn_share@2x.png */,
+				B658D5C21A41AE370069519A /* btn_share@3x.png */,
 				B6F286EB1A2DF9D5009873B3 /* btn_search@2x.png */,
 				B6F286EC1A2DF9D5009873B3 /* btn_search@3x.png */,
 				B6F286ED1A2DF9D5009873B3 /* btn_winelist@2x.png */,
@@ -796,11 +808,14 @@
 				B6F286E41A2DEC0E009873B3 /* icon_login_username@3x.png in Resources */,
 				B6F287001A2DF9D5009873B3 /* icon_liked@3x.png in Resources */,
 				B61DAD271A3859250065D09C /* icon_my_like@2x.png in Resources */,
+				B658D5C41A41AE370069519A /* btn_share@3x.png in Resources */,
+				B658D5C31A41AE370069519A /* btn_share@2x.png in Resources */,
 				B63D5FE11A205546003A2600 /* UserMenuTableViewCell.xib in Resources */,
 				B6F286F81A2DF9D5009873B3 /* btn_new_record@3x.png in Resources */,
 				B6223ACC1A1CB149009BAC53 /* UserFromContactTableViewCell.xib in Resources */,
 				B6ABB3351A19F2CD0007B51C /* Default@2x.png in Resources */,
 				B623EC3D1A27610800AAF5BF /* btn_top_user@3x.png in Resources */,
+				B658D5BF1A41AE2C0069519A /* btn_send@2x.png in Resources */,
 				B6F286E11A2DEC0E009873B3 /* icon_login_pwd@2x.png in Resources */,
 				B623EC361A27610800AAF5BF /* btn_top_bar@2x.png in Resources */,
 				B6F32F611A2F146000FB4D53 /* icon_date@3x.png in Resources */,
@@ -811,6 +826,7 @@
 				B6F286F71A2DF9D5009873B3 /* btn_new_record@2x.png in Resources */,
 				B61DAD281A3859250065D09C /* icon_my_like@3x.png in Resources */,
 				B6F286C71A2DAA36009873B3 /* Icon-29@2x.png in Resources */,
+				B658D5C01A41AE2C0069519A /* btn_send@3x.png in Resources */,
 				B6DD36811A305AA200C6FBE9 /* btn_back@3x.png in Resources */,
 				B623EC3C1A27610800AAF5BF /* btn_top_user@2x.png in Resources */,
 				B61DACFD1A37F9450065D09C /* icon_story@3x.png in Resources */,
@@ -1059,9 +1075,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1092,8 +1107,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = "-ObjC";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
