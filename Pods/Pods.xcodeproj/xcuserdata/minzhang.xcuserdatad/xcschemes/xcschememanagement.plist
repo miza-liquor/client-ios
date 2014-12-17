@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Baidu-Maps-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-KDCycleBannerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>39DACD512D013FEE4D0E4513</key>
+		<key>4EA540F4146617827110C7EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56CAA5F6211E24FE7766275F</key>
+		<key>5D6C814BB28FDFD6BA62A10E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F41D9F708EF8B518070C80B</key>
+		<key>811E0F8E1C2260A5CB1BD1FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F3F54567918C62878D6CADA</key>
+		<key>8DC9FB74CDD8155EF7933F29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BFD4B96F78AA3F7107EACA94</key>
+		<key>AA47EF207AAF8362DBDF67A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F374AB20AEF58505C30049DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
