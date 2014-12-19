@@ -8,6 +8,7 @@
 
 #import "RecommendBarListViewController.h"
 #import "RecommendBarTableViewCell.h"
+#import "BarDetailViewController.h"
 #import "AppSetting.h"
 
 @interface RecommendBarListViewController ()
@@ -17,6 +18,7 @@
 @implementation RecommendBarListViewController
 {
     NSArray *bars;
+    NSInteger selectedRow;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -86,7 +88,17 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    selectedRow = indexPath.row;
     [self performSegueWithIdentifier:@"barDetail" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"barDetail"])
+    {
+        BarDetailViewController *detailViewController = (BarDetailViewController *) segue.destinationViewController;
+        detailViewController.barBasicInfo = (NSDictionary *)[bars objectAtIndex:selectedRow];
+    }
 }
 
 @end

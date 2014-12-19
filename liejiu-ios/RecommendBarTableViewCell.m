@@ -47,9 +47,10 @@
 {
 //    self.menuName.text = (NSString *)[data objectForKey:@"menu_name"];
     NSLog(@"xxxxxxxx::%@", [data objectForKey:@"image"]);
+
     [self.barImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     self.location.text =(NSString *)[data objectForKey:@"city"];
-    self.checkinNum.text =(NSString *)[data objectForKey:@"checkin_num"];
+    self.checkinNum.text =[[data objectForKey:@"checkin_num"] stringValue];
 
     NSString *barName = [NSString stringWithFormat:@"%@(%@)", (NSString *)[data objectForKey:@"name"], (NSString *)[data objectForKey:@"address"]];
     NSString *address = (NSString *)[data objectForKey:@"address"];
@@ -64,8 +65,8 @@
     self.barName.text = barName;
     
     NSArray *users = (NSArray *)[data objectForKey:@"top_users"];
-    int totalNum = [userList count];
-    int currNum = [users count];
+    int totalNum = (int)[userList count];
+    int currNum = (int)[users count];
     
     for (int i = 0; i < totalNum; i++) {
         UIImageView *userImage = (UIImageView *)[userList objectAtIndex:i];

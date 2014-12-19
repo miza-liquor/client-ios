@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BarDetailViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface BarDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSDictionary *barBasicInfo;
 
 @end
