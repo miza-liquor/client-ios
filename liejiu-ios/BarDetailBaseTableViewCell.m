@@ -8,6 +8,7 @@
 
 #import "BarDetailBaseTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
 
 @implementation BarDetailBaseTableViewCell
 
@@ -17,17 +18,6 @@
     self.barImage.layer.masksToBounds = YES;
     self.infoBg.layer.borderColor = [UIColor colorWithRed:163.0/255.0 green:213.0/255.0 blue:213.0/255.0 alpha:1].CGColor;
     self.infoBg.layer.borderWidth = 1;
-    self.mapView.layer.borderWidth = 1;
-    self.mapView.layer.borderColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1].CGColor;
-    
-    [self checkMap];
-}
-
-- (void) checkMap
-{
-    CGSize size = self.mapView.frame.size;
-    BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    [self.mapView addSubview:mapView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -53,6 +43,14 @@
     [self.barImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[barBasicInfo objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     self.barLocation.text =(NSString *)[barBasicInfo objectForKey:@"city"];
     self.checkinNum.text =[[barBasicInfo objectForKey:@"checkin_num"] stringValue];
+    
+    NSString *mapUrl = [NSString stringWithFormat:@"http://api.map.baidu.com/staticimage?width=320&height=180&center=116.344442,39.998499&zoom=17&markers=%@,%@&markerStyles=m,x", (NSString *)[barBasicInfo objectForKey:@"lon"],(NSString *)[barBasicInfo objectForKey:@"lat"]];
+    [self.barLocationImage sd_setBackgroundImageWithURL:[NSURL URLWithString:mapUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Icon-29"]];
+}
+
+- (IBAction)clickOnMap:(id)sender
+{
+    [self.delegate gotoMapDetail];
 }
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Minzhang Wei. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DBDynamicHeightTableCell.h"
 
-@interface CommentTableViewCell : UITableViewCell
+@interface CommentTableViewCell : DBDynamicHeightTableCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *comment;

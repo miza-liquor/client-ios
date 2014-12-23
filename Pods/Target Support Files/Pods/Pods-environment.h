@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// DBDynamicHeightTableCell
+#define COCOAPODS_POD_AVAILABLE_DBDynamicHeightTableCell
+#define COCOAPODS_VERSION_MAJOR_DBDynamicHeightTableCell 0
+#define COCOAPODS_VERSION_MINOR_DBDynamicHeightTableCell 1
+#define COCOAPODS_VERSION_PATCH_DBDynamicHeightTableCell 0
+
 // KDCycleBannerView
 #define COCOAPODS_POD_AVAILABLE_KDCycleBannerView
 #define COCOAPODS_VERSION_MAJOR_KDCycleBannerView 1

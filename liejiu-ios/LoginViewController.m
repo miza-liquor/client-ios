@@ -131,7 +131,7 @@
         
         // drawer setting
         [destinationViewController setShowsShadow:YES];
-        [destinationViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+        [destinationViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
         [destinationViewController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
         [destinationViewController setMaximumLeftDrawerWidth:260];
         [destinationViewController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];

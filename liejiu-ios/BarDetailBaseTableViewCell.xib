@@ -13,11 +13,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="334"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vsy-Na-qLN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVs-Lr-FLj">
                         <rect key="frame" x="5" y="186" width="310" height="152"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -78,17 +73,27 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97254901960784312" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbK-1Q-eYO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="clickOnMap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5oJ-ua-P1R"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="barImage" destination="Nbm-5d-9vD" id="ZpU-zb-Rjg"/>
-                <outlet property="barLocation" destination="qDy-ze-JPI" id="KDa-pF-rRI"/>
+                <outlet property="barLocation" destination="qDy-ze-JPI" id="p8E-hv-1ON"/>
+                <outlet property="barLocationImage" destination="GbK-1Q-eYO" id="ilz-NG-lo8"/>
                 <outlet property="barName" destination="QLi-Db-G7U" id="I80-hS-8Is"/>
                 <outlet property="checkinNum" destination="3fK-jx-mnd" id="R1I-6O-1gi"/>
                 <outlet property="infoBg" destination="AVs-Lr-FLj" id="Y4X-4G-WZo"/>
                 <outlet property="likeNum" destination="67H-VG-Zkt" id="6Vc-ZQ-jzM"/>
                 <outlet property="likeUserList" destination="OQk-oY-YMg" id="Fbj-7D-WK1"/>
-                <outlet property="mapView" destination="Vsy-Na-qLN" id="w38-GH-kYa"/>
             </connections>
         </tableViewCell>
     </objects>

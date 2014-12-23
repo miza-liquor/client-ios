@@ -1327,27 +1327,6 @@
 				GCC_PREFIX_HEADER = "liejiu-ios/liquor-ios-Prefix.pch";
 				INFOPLIST_FILE = "liejiu-ios/liquor-ios-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/baidumap/Release$(EFFECTIVE_PLATFORM_NAME)";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
-					"-l\"Pods-KDCycleBannerView\"",
-					"-l\"Pods-MMDrawerController\"",
-					"-l\"Pods-SDWebImage\"",
-					"-l\"Pods-VKInputToolbar\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-all_load",
-				);
 				PRODUCT_NAME = "liquor-ios";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1367,27 +1346,6 @@
 				GCC_PREFIX_HEADER = "liejiu-ios/liquor-ios-Prefix.pch";
 				INFOPLIST_FILE = "liejiu-ios/liquor-ios-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/baidumap/Release$(EFFECTIVE_PLATFORM_NAME)";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-AFNetworking\"",
-					"-l\"Pods-KDCycleBannerView\"",
-					"-l\"Pods-MMDrawerController\"",
-					"-l\"Pods-SDWebImage\"",
-					"-l\"Pods-VKInputToolbar\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-all_load",
-				);
 				PRODUCT_NAME = "liquor-ios";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

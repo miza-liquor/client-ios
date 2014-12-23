@@ -130,24 +130,33 @@ static UIViewController *_currView = nil;
 + (void) drawToolBar:(UIViewController *)view
 {
     _currView = view;
-    UIBarButtonItem *exploreBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_explore"] style:UIBarButtonItemStylePlain target:self action:@selector(barButtonCustomPressed:)];
-    UIBarButtonItem *winelistBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_winelist"] style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *exploreBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_explore"] style:UIBarButtonItemStylePlain target:self action:@selector(navToNewExplorePage:)];
+    UIBarButtonItem *winelistBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_winelist"] style:UIBarButtonItemStylePlain target:self action:@selector(navToWineListPage:)];
     UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     // record btn setting
     UIButton *addRecordView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
     [addRecordView setImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
+    [addRecordView addTarget:self action:@selector(navToNewRecordPage:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *newRecordBtn = [[UIBarButtonItem alloc] initWithCustomView:addRecordView];
 
     [view setToolbarItems:[NSArray arrayWithObjects:exploreBtn, flexibleBtn, newRecordBtn, flexibleBtn, winelistBtn, nil]];
 }
 
-+ (void)barButtonCustomPressed:(UIBarButtonItem*)btn
++ (void)navToNewExplorePage:(UIBarButtonItem*)btn
 {
     ExploreViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"explore"];
     [_currView.navigationController pushViewController:controller animated:YES];
     controller = nil;
     _currView = nil;
+}
+
++ (void)navToNewRecordPage:(UIBarButtonItem*)btn
+{
+}
+
++ (void)navToWineListPage:(UIBarButtonItem*)btn
+{
 }
 
 + (void) topBarStyleSetting:(UIViewController *)view

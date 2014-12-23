@@ -42,7 +42,7 @@
 #pragma mark - KDCycleBannerViewDataource
 
 - (NSArray *)numberOfKDCycleBannerView:(KDCycleBannerView *)bannerView {
-    int num = [imageList count];
+    NSInteger num = [imageList count];
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:num];
     
     for (int i=0; i < num; i++) {

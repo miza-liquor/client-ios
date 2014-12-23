@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DBDynamicHeightTableCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-KDCycleBannerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,32 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26BA17B0BAB27463B2905599</key>
+		<key>1BCB3C211D799F6D6CF9AB4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B8D8C5A5530430A11C82EA1</key>
+		<key>469288AADF77752C675FBA90</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A5AA692F9DE92866CE12AB74</key>
+		<key>7F47E140C77B31B09E174B13</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ADD1F235D51092EEDDF8A81F</key>
+		<key>82C3670E16931EBC2C8B6BD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B919A2F12FBB10D1B003A6AA</key>
+		<key>9468029103B95C99AF005FAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CACD0F3981E7196B81448E5E</key>
+		<key>DF8BD38D510731676949A1AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE7DE42A9F10C562E276C813</key>
 		<dict>
 			<key>primary</key>
 			<true/>

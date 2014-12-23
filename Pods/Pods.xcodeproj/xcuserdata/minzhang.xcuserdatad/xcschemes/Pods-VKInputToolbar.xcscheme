@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "26BA17B0BAB27463B2905599"
+               BlueprintIdentifier = "469288AADF77752C675FBA90"
                BuildableName = "libPods-VKInputToolbar.a"
                BlueprintName = "Pods-VKInputToolbar"
                ReferencedContainer = "container:Pods.xcodeproj">

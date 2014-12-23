@@ -48,9 +48,13 @@
     inputView.layer.cornerRadius = 2;
     inputView.layer.masksToBounds = YES;
     
-//    UIBarButtonItem *barSendBtnBtn = [[UIBarButtonItem alloc] initWithCustomView:sendBtn];
-    UIBarButtonItem *barSendBtnBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_send"] style:UIBarButtonItemStylePlain target:self action:@selector(sendComment:)];
+    UIButton *sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [sendBtn setImage:[UIImage imageNamed:@"btn_send"] forState:UIControlStateNormal];
+    UIBarButtonItem *barSendBtnBtn = [[UIBarButtonItem alloc] initWithCustomView:sendBtn];
     UIBarButtonItem *barInput = [[UIBarButtonItem alloc] initWithCustomView:inputView];
+//    [barSendBtnBtn setTarget:self];
+//    [barSendBtnBtn setAction:@selector(sendComment:)];
+    [sendBtn addTarget:self action:@selector(sendComment:) forControlEvents:UIControlEventTouchUpInside];
     
     [self setToolbarItems:[NSArray arrayWithObjects:barInput, flexibleBtn, barSendBtnBtn, nil]];
 
@@ -64,6 +68,7 @@
 {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailBaseTableViewCell" owner:self options:nil];
     barDetailCell = [nib objectAtIndex:0];
+    barDetailCell.delegate = self;
     [barDetailCell setBarBasicInfo:self.barBasicInfo];
 }
 
@@ -72,7 +77,7 @@
     [inputView resignFirstResponder];
 }
 
-- (void)sendComment:(UIBarButtonItem*)btn
+- (void)sendComment:(id)sender
 {
     NSString *commentContent = inputView.text;
     commentContent = [commentContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -191,7 +196,9 @@
             cell = [collectionNib objectAtIndex:0];
         }
         
-        [cell setCommentData:[dataList objectAtIndex:indexPath.row - 1]];
+        NSDictionary *comment = (NSDictionary *)[dataList objectAtIndex:indexPath.row - 1];
+        [cell populateWithObject:comment];
+//        [cell setCommentData:[dataList objectAtIndex:indexPath.row - 1]];
         return cell;
     }
 }
@@ -203,6 +210,8 @@
         return 335;
     } else {
         return 44;
+        NSDictionary *comment = (NSDictionary *)[dataList objectAtIndex:indexPath.row - 1];
+        return [[CommentTableViewCell prototypeCell] heightForObject:comment];
     }
 }
 
@@ -233,6 +242,11 @@
         }
     }];
     
+}
+
+- (void) gotoMapDetail
+{
+    NSLog(@"map detail");
 }
 
 @end
