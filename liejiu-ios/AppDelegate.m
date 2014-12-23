@@ -15,7 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"Dk8k8S1sm0X63Ia4n4ZE3pEs"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
     return YES;
 }
 							

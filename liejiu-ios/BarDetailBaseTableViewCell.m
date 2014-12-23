@@ -15,6 +15,19 @@
 {
     // Initialization code
     self.barImage.layer.masksToBounds = YES;
+    self.infoBg.layer.borderColor = [UIColor colorWithRed:163.0/255.0 green:213.0/255.0 blue:213.0/255.0 alpha:1].CGColor;
+    self.infoBg.layer.borderWidth = 1;
+    self.mapView.layer.borderWidth = 1;
+    self.mapView.layer.borderColor = [UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1].CGColor;
+    
+    [self checkMap];
+}
+
+- (void) checkMap
+{
+    CGSize size = self.mapView.frame.size;
+    BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    [self.mapView addSubview:mapView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

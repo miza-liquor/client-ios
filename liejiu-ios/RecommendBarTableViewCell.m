@@ -45,9 +45,6 @@
 
 - (void) setTopBarData:(NSDictionary *)data
 {
-//    self.menuName.text = (NSString *)[data objectForKey:@"menu_name"];
-    NSLog(@"xxxxxxxx::%@", [data objectForKey:@"image"]);
-
     [self.barImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     self.location.text =(NSString *)[data objectForKey:@"city"];
     self.checkinNum.text =[[data objectForKey:@"checkin_num"] stringValue];

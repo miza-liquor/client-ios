@@ -16,6 +16,19 @@
     // Initialization code
     self.userImage.layer.cornerRadius = self.userImage.frame.size.height/2;
     self.userImage.layer.masksToBounds = YES;
+    
+    self.contentView.layer.borderColor = [UIColor colorWithRed:163.0/255.0 green:213.0/255.0 blue:213.0/255.0 alpha:1].CGColor;
+    self.contentView.layer.borderWidth = 1;
+}
+
+- (void) setFrame:(CGRect)frame
+{
+    frame.origin.x += 5;
+//    frame.origin.y -= 1;
+    
+    frame.size.width -= 10;
+    frame.size.height += 1;
+    [super setFrame:frame];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

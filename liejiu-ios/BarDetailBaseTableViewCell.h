@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BMapKit.h"
 
 @interface BarDetailBaseTableViewCell : UITableViewCell
 
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *checkinNum;
 @property (weak, nonatomic) IBOutlet UILabel *likeNum;
 @property (weak, nonatomic) IBOutlet UILabel *likeUserList;
+@property (weak, nonatomic) IBOutlet UIView *mapView;
+@property (weak, nonatomic) IBOutlet UIView *infoBg;
 
 - (void) setBarBasicInfo:(NSDictionary *)barBasicInfo;
 

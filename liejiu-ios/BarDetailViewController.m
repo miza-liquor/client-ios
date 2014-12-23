@@ -7,7 +7,6 @@
 //
 
 #import "BarDetailViewController.h"
-#import "BarMapTableViewCell.h"
 #import "BarDetailBaseTableViewCell.h"
 #import "CommentTableViewCell.h"
 #import "AppSetting.h"
@@ -20,6 +19,7 @@
 {
     UITextView *inputView;
     NSArray *dataList;
+    BarDetailBaseTableViewCell *barDetailCell;
 }
 
 @synthesize barBasicInfo;
@@ -37,6 +37,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+    [self initBarMap];
     
     UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -56,6 +58,13 @@
     [self loadComment];
 
     [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnTableView)]];
+}
+
+- (void) initBarMap
+{
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailBaseTableViewCell" owner:self options:nil];
+    barDetailCell = [nib objectAtIndex:0];
+    [barDetailCell setBarBasicInfo:self.barBasicInfo];
 }
 
 - (void) tapOnTableView
@@ -165,36 +174,14 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataList count] + 2;
+    return [dataList count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0)
     {
-        static NSString *barMapCell = @"BarMapTableViewCell";
-        BarMapTableViewCell *mapCell = (BarMapTableViewCell *)[tableView dequeueReusableCellWithIdentifier:barMapCell];
-        if (mapCell == nil)
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:barMapCell owner:self options:nil];
-            mapCell = [nib objectAtIndex:0];
-            
-            [mapCell setBarBasicInfo:self.barBasicInfo];
-        }
-
-        return mapCell;
-    } else if (indexPath.row == 1){
-        static NSString *barInfoCell = @"BarDetailBaseTableViewCell";
-        BarDetailBaseTableViewCell *infoCell = (BarDetailBaseTableViewCell *)[tableView dequeueReusableCellWithIdentifier:barInfoCell];
-        if (infoCell == nil)
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:barInfoCell owner:self options:nil];
-            infoCell = [nib objectAtIndex:0];
-            
-            [infoCell setBarBasicInfo:self.barBasicInfo];
-        }
-        
-        return infoCell;
+        return barDetailCell;
     } else {
         static NSString *commentCell = @"CommentTableViewCell";
         CommentTableViewCell *cell = (CommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:commentCell];
@@ -204,7 +191,7 @@
             cell = [collectionNib objectAtIndex:0];
         }
         
-        [cell setCommentData:[dataList objectAtIndex:indexPath.row - 2]];
+        [cell setCommentData:[dataList objectAtIndex:indexPath.row - 1]];
         return cell;
     }
 }
@@ -213,10 +200,7 @@
 {
     if (indexPath.row == 0)
     {
-        return 180;
-    } else if (indexPath.row == 1)
-    {
-        return  130;
+        return 335;
     } else {
         return 44;
     }
