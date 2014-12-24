@@ -15,6 +15,10 @@
 @end
 
 @implementation NewRecordViewController
+{
+    UIBarButtonItem *barItemSelectPhoto;
+    UIBarButtonItem *barItemConfirm;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +35,11 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.title = @"新增记录";
+    
+    barItemSelectPhoto = [[UIBarButtonItem alloc] initWithTitle:@"获取照片" style:UIBarButtonItemStylePlain target:self action:@selector(selectPhoto:)];
+    barItemConfirm = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(confirmSelect:)];
+    UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [self setToolbarItems:[NSArray arrayWithObjects:barItemSelectPhoto, flexibleBtn, barItemConfirm, nil]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,14 +58,12 @@
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
-    self.previewImageBtn.imageView.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setPhoto:image];
 }
 
 - (void)cameraDidSelectAlbumPhoto:(UIImage *)image
 {
-    self.previewImageBtn.imageView.image = image;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setPhoto:image];
 }
 
 #pragma mark -
@@ -79,6 +86,32 @@
 
 #pragma mark -
 #pragma mark - Actions
-- (IBAction)clickOnPreviewBtn:(id)sender {
+- (IBAction)clickOnPreviewBtn:(id)sender
+{
+    [self openCamera];
+}
+
+- (void) selectPhoto:(id) sender
+{
+    [self openCamera];
+}
+
+- (void) confirmSelect:(id) sender
+{
+}
+
+- (void) setPhoto:(UIImage *)image
+{
+    [self.previewImageBtn setTitle:@"" forState:UIControlStateNormal];
+    [self.previewImageBtn setBackgroundImage:image forState:UIControlStateNormal];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    barItemSelectPhoto.title = @"重新选择照片";
+    barItemConfirm.title = @"确认，下一步";
+}
+
+- (void) openCamera
+{
+    TGCameraNavigationController *navigationController = [TGCameraNavigationController newWithCameraDelegate:self];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 @end
