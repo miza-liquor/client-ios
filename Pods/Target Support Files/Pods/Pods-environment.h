@@ -102,6 +102,12 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
 
+// TGCameraViewController
+#define COCOAPODS_POD_AVAILABLE_TGCameraViewController
+#define COCOAPODS_VERSION_MAJOR_TGCameraViewController 2
+#define COCOAPODS_VERSION_MINOR_TGCameraViewController 0
+#define COCOAPODS_VERSION_PATCH_TGCameraViewController 0
+
 // VKInputToolbar
 #define COCOAPODS_POD_AVAILABLE_VKInputToolbar
 #define COCOAPODS_VERSION_MAJOR_VKInputToolbar 0

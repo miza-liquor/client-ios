@@ -10,7 +10,8 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "ExploreViewController.h"
-#import "WineCenterListTableViewCell.h"
+#import "NewRecordViewController.h"
+#import "WineCenterViewController.h"
 #import "MMDrawerVisualState.h"
 
 // api link
@@ -153,10 +154,18 @@ static UIViewController *_currView = nil;
 
 + (void)navToNewRecordPage:(UIBarButtonItem*)btn
 {
+    NewRecordViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"newRecord"];
+    [_currView.navigationController pushViewController:controller animated:YES];
+    controller = nil;
+    _currView = nil;
 }
 
 + (void)navToWineListPage:(UIBarButtonItem*)btn
 {
+    WineCenterViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"wineCenter"];
+    [_currView.navigationController pushViewController:controller animated:YES];
+    controller = nil;
+    _currView = nil;
 }
 
 + (void) topBarStyleSetting:(UIViewController *)view

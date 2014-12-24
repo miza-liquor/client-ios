@@ -109,6 +109,11 @@
 		B6666CAE1A22184800F446A7 /* MenuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6666CAD1A22184800F446A7 /* MenuListViewController.m */; };
 		B6666CB11A221C9C00F446A7 /* NewMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6666CB01A221C9C00F446A7 /* NewMenuViewController.m */; };
 		B6666CB31A221E0F00F446A7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6666CB21A221E0F00F446A7 /* QuartzCore.framework */; };
+		B695A71E1A4AB286009B68EF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B695A71D1A4AB286009B68EF /* AssetsLibrary.framework */; };
+		B695A7201A4AB28F009B68EF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B695A71F1A4AB28F009B68EF /* AVFoundation.framework */; };
+		B695A7221A4AB296009B68EF /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B695A7211A4AB296009B68EF /* CoreImage.framework */; };
+		B695A7241A4AB2A2009B68EF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B695A7231A4AB2A2009B68EF /* MobileCoreServices.framework */; };
+		B695A7271A4AB2E9009B68EF /* NewRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B695A7261A4AB2E9009B68EF /* NewRecordViewController.m */; };
 		B6ABB3331A19F2CD0007B51C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32A1A19F2CD0007B51C /* Default-568h@2x.png */; };
 		B6ABB3341A19F2CD0007B51C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32B1A19F2CD0007B51C /* Default.png */; };
 		B6ABB3351A19F2CD0007B51C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32C1A19F2CD0007B51C /* Default@2x.png */; };
@@ -333,6 +338,12 @@
 		B6666CAF1A221C9C00F446A7 /* NewMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMenuViewController.h; sourceTree = "<group>"; };
 		B6666CB01A221C9C00F446A7 /* NewMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMenuViewController.m; sourceTree = "<group>"; };
 		B6666CB21A221E0F00F446A7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B695A71D1A4AB286009B68EF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B695A71F1A4AB28F009B68EF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B695A7211A4AB296009B68EF /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		B695A7231A4AB2A2009B68EF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B695A7251A4AB2E9009B68EF /* NewRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRecordViewController.h; sourceTree = "<group>"; };
+		B695A7261A4AB2E9009B68EF /* NewRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRecordViewController.m; sourceTree = "<group>"; };
 		B6ABB32A1A19F2CD0007B51C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "resource/Default-568h@2x.png"; sourceTree = "<group>"; };
 		B6ABB32B1A19F2CD0007B51C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = resource/Default.png; sourceTree = "<group>"; };
 		B6ABB32C1A19F2CD0007B51C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "resource/Default@2x.png"; sourceTree = "<group>"; };
@@ -481,6 +492,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B695A7241A4AB2A2009B68EF /* MobileCoreServices.framework in Frameworks */,
+				B695A7221A4AB296009B68EF /* CoreImage.framework in Frameworks */,
+				B695A7201A4AB28F009B68EF /* AVFoundation.framework in Frameworks */,
+				B695A71E1A4AB286009B68EF /* AssetsLibrary.framework in Frameworks */,
 				B6DA01CC1A49502A007E6088 /* Security.framework in Frameworks */,
 				B6DA01CA1A495023007E6088 /* SystemConfiguration.framework in Frameworks */,
 				B6DA01C81A49501C007E6088 /* OpenGLES.framework in Frameworks */,
@@ -730,6 +745,10 @@
 		B6DF26F91A1493F80046629F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B695A7231A4AB2A2009B68EF /* MobileCoreServices.framework */,
+				B695A7211A4AB296009B68EF /* CoreImage.framework */,
+				B695A71F1A4AB28F009B68EF /* AVFoundation.framework */,
+				B695A71D1A4AB286009B68EF /* AssetsLibrary.framework */,
 				B6DA01CB1A49502A007E6088 /* Security.framework */,
 				B6DA01C91A495023007E6088 /* SystemConfiguration.framework */,
 				B6DA01C71A49501C007E6088 /* OpenGLES.framework */,
@@ -769,6 +788,8 @@
 				B6DF27591A14EDF60046629F /* ExploreNoAuthViewController.m */,
 				B6DF27651A14F2F10046629F /* ExploreViewController.h */,
 				B6DF27661A14F2F10046629F /* ExploreViewController.m */,
+				B695A7251A4AB2E9009B68EF /* NewRecordViewController.h */,
+				B695A7261A4AB2E9009B68EF /* NewRecordViewController.m */,
 				B6666CA41A2211E700F446A7 /* WineCenterViewController.h */,
 				B6666CA51A2211E700F446A7 /* WineCenterViewController.m */,
 				B6223AD11A1CD729009BAC53 /* UserProfileViewController.h */,
@@ -1151,6 +1172,7 @@
 				B6666CA61A2211E700F446A7 /* WineCenterViewController.m in Sources */,
 				B64646061A1B7D820035F208 /* TopWineTableViewCell.m in Sources */,
 				B64645FE1A1B74660035F208 /* TopUserTableViewCell.m in Sources */,
+				B695A7271A4AB2E9009B68EF /* NewRecordViewController.m in Sources */,
 				B64645F71A1B724A0035F208 /* TopStoryDetailViewController.m in Sources */,
 				B6666CAA1A22126200F446A7 /* WineCenterListTableViewCell.m in Sources */,
 				B6223AD71A1CDD6D009BAC53 /* UserProfileInfoTableViewCell.m in Sources */,

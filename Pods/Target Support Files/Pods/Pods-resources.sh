@@ -43,7 +43,17 @@ install_resource()
       ;;
   esac
 }
-          install_resource "VKInputToolbar/UIInputToolbarSample/Resources/buttonbg.png"
+          install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGCameraAuthorizationViewController.xib"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGCameraViewController.xib"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGPhotoViewController.xib"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/de.lproj/TGCameraAuthorizationViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/de.lproj/TGCameraViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/de.lproj/TGPhotoViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/pt-BR.lproj/TGCameraAuthorizationViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/pt-BR.lproj/TGCameraViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/pt-BR.lproj/TGPhotoViewController.strings"
+                    install_resource "TGCameraViewController/TGCameraViewController/TGCameraViewController.xcassets"
+                    install_resource "VKInputToolbar/UIInputToolbarSample/Resources/buttonbg.png"
                     install_resource "VKInputToolbar/UIInputToolbarSample/Resources/buttonbg@2x.png"
                     install_resource "VKInputToolbar/UIInputToolbarSample/Resources/textbg.png"
                     install_resource "VKInputToolbar/UIInputToolbarSample/Resources/textbg@2x.png"

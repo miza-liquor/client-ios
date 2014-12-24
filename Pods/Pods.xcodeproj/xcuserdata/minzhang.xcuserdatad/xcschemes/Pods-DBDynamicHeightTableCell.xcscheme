@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F47E140C77B31B09E174B13"
+               BlueprintIdentifier = "80EE74B2DF9ACCC79F134F0A"
                BuildableName = "libPods-DBDynamicHeightTableCell.a"
                BlueprintName = "Pods-DBDynamicHeightTableCell"
                ReferencedContainer = "container:Pods.xcodeproj">

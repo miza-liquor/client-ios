@@ -1041,7 +1041,7 @@
         <!--Wine Center View Controller - 酒库-->
         <scene sceneID="s8f-iL-855">
             <objects>
-                <viewController id="NCI-WD-muE" customClass="WineCenterViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="wineCenter" storyboardIdentifier="wineCenter" id="NCI-WD-muE" customClass="WineCenterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T7f-is-B0m"/>
                         <viewControllerLayoutGuide type="bottom" id="UIe-aj-c8o"/>
@@ -1182,10 +1182,10 @@
             </objects>
             <point key="canvasLocation" x="5592" y="-1668"/>
         </scene>
-        <!--View Controller - 新增记录-->
+        <!--New Record View Controller-->
         <scene sceneID="6mB-q8-kvd">
             <objects>
-                <viewController id="gYE-vO-5HI" sceneMemberID="viewController">
+                <viewController restorationIdentifier="newRecord" storyboardIdentifier="newRecord" id="gYE-vO-5HI" customClass="NewRecordViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Swc-pw-haj"/>
                         <viewControllerLayoutGuide type="bottom" id="O8Y-RJ-xKr"/>
@@ -1194,20 +1194,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8UB-7S-V7n">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="相册" id="diO-PG-OqL"/>
-                                    <barButtonItem width="27" style="plain" systemItem="fixedSpace" id="qTf-sI-1um"/>
-                                    <barButtonItem systemItem="camera" id="LXU-b0-j6J"/>
-                                </items>
-                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-8k-CDA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="点击拍照选择照片">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickOnPreviewBtn:" destination="gYE-vO-5HI" eventType="touchUpInside" id="hHG-QK-Mse"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="P2f-8k-CDA" secondAttribute="trailing" id="3uN-iq-Ft0"/>
+                            <constraint firstItem="P2f-8k-CDA" firstAttribute="top" secondItem="ohf-ay-26b" secondAttribute="top" id="De9-K9-Ta5"/>
+                            <constraint firstItem="P2f-8k-CDA" firstAttribute="leading" secondItem="ohf-ay-26b" secondAttribute="leading" id="OJt-GC-9gM"/>
+                            <constraint firstItem="O8Y-RJ-xKr" firstAttribute="top" secondItem="P2f-8k-CDA" secondAttribute="bottom" id="YU0-FG-rZY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="新增记录" id="zwE-Kt-Vrk"/>
                     <connections>
+                        <outlet property="previewImageBtn" destination="P2f-8k-CDA" id="bGx-89-k3Y"/>
                         <segue destination="nWA-2j-FoM" kind="push" identifier="recordDesc" id="XfX-9A-BJ5"/>
                     </connections>
                 </viewController>
