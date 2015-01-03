@@ -9,6 +9,7 @@
 #import "TopUserListViewController.h"
 #import "TopUserTableViewCell.h"
 #import "UserProfileViewController.h"
+#import "AppSetting.h"
 
 @interface TopUserListViewController ()
 
@@ -16,8 +17,9 @@
 
 @implementation TopUserListViewController
 {
-    NSDictionary *users;
-    NSArray *userGroupTitles;
+    NSDictionary *userList;
+    NSArray *userListSectionTitle;
+    NSDictionary *selectedUser;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,11 +36,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    users = @{
-              @"本周最热top10" : @[@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg"],
-              @"历史top20" : @[@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", @"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger"]
-            };
-    userGroupTitles = [users allKeys];
+    // fetch top user data from cache or server
+    [AppSetting drawToolBar:self];
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,19 +52,38 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [userGroupTitles count];
+    return [userListSectionTitle count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    
+//    return [userGroupTitles objectAtIndex:section];
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [userGroupTitles objectAtIndex:section];
+    CGRect frame = CGRectMake(10, 12, tableView.frame.size.width, 28);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+    [label setFont:[UIFont boldSystemFontOfSize:16]];
+    [label setTextColor:[UIColor whiteColor]];
+    [label setText:(NSString *)[userListSectionTitle objectAtIndex:section]];
+    NSString *bgName = (section == 0) ? @"bg_top_user_week" :@"bg_top_user_all";
+    UIImage *image = [UIImage imageNamed:bgName];
+    UIImageView *bg = [[UIImageView alloc] initWithImage:image];
+    [bg setFrame:CGRectMake(0, 12, image.size.width, 28)];
+    [view addSubview:bg];
+    [view addSubview:label];
+//    [view setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    return view;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSString *sectionTitle = [userGroupTitles objectAtIndex:section];
-    NSArray *sectionAnimals = [users objectForKey:sectionTitle];
+    NSString *sectionTitle = [userListSectionTitle objectAtIndex:section];
+    NSArray *sectionAnimals = [userList objectForKey:sectionTitle];
     return [sectionAnimals count];
 }
 
@@ -76,23 +95,33 @@
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
         cell = [nib objectAtIndex:0];
+
     }
-    
-    NSString *sectionTitle = [userGroupTitles objectAtIndex:indexPath.section];
-    NSArray *userInfo = [users objectForKey:sectionTitle];
-    
-    cell.nickName.text = [userInfo objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    NSString *sectionTitle = [userListSectionTitle objectAtIndex:indexPath.section];
+    NSArray *rows = [userList objectForKey:sectionTitle];
+    NSDictionary *userInfo = (NSDictionary *)[rows objectAtIndex:indexPath.row];
+    [cell setUserData:userInfo];
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 48;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 126;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *sectionTitle = [userListSectionTitle objectAtIndex:indexPath.section];
+    NSArray *rows = [userList objectForKey:sectionTitle];
+    selectedUser = (NSDictionary *)[rows objectAtIndex:indexPath.row];
+    
     [self performSegueWithIdentifier:@"userDetail" sender:self];
 }
 
@@ -102,6 +131,38 @@
     {
         UserProfileViewController *userProfile = segue.destinationViewController;
         userProfile.fromSubView = YES;
+        userProfile.userBasicInfo = selectedUser;
+    }
+}
+
+- (void) followUser: (NSString *) userID
+{
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+- (void) getData
+{
+    NSString *cacheName = @"topuser";
+    NSDictionary *cache = (NSDictionary *)[AppSetting getCache:cacheName];
+
+    if (cache == Nil)
+    {
+        [AppSetting httpGet:cacheName parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            if (success == YES)
+            {
+                userList = (NSDictionary *)[response objectForKey:@"data"];
+                [AppSetting setCache:cacheName value:userList];
+                userListSectionTitle = [userList allKeys];
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        userList = cache;
+        userListSectionTitle = [userList allKeys];
     }
 }
 

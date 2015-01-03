@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TPKeyboardAvoidingScrollView;
 
 @interface RegisterViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *email;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *msgPwd;
 @property (weak, nonatomic) IBOutlet UILabel *msgPwdRepeat;
 @property (weak, nonatomic) IBOutlet UILabel *msgRigister;
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 
 - (IBAction)onClickRegisterBtn:(id)sender;
 

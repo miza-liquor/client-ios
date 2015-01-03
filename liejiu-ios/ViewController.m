@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppSetting.h"
 
 @interface ViewController ()
 
@@ -28,6 +29,8 @@
     UIColor *borderColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:0.5];
     self.btnLogin.layer.borderColor = borderColor.CGColor;
     self.btnRegister.layer.borderColor = borderColor.CGColor;
+    
+    [AppSetting topBarStyleSetting: self];
 }
 
 - (void) viewWillAppear:(BOOL)animated

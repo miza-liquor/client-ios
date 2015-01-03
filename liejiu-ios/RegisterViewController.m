@@ -8,6 +8,9 @@
 
 #import "RegisterViewController.h"
 #import "AppSetting.h"
+#import "TPKeyboardAvoidingScrollView.h"
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
 
 @interface RegisterViewController ()
 
@@ -28,6 +31,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.scrollView contentSizeToFit];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // disable the navbar
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +72,7 @@
     {
         self.msgMail.text = @"邮箱不能为空";
         passCheck = NO;
-    } else if ([AppSetting emailRegex:email]) {
+    } else if (![AppSetting emailRegex:email]) {
         self.msgMail.text = @"邮箱格式不正确";
         passCheck = NO;
     } else {
@@ -81,7 +92,7 @@
         self.msgUserName.text = @"用户名长度不能多于32个字符";
         passCheck = NO;
     } else {
-        [self.msgUserName setHidden:NO];
+        [self.msgUserName setHidden:YES];
     }
     
     if ([pwd length] == 0)
@@ -108,13 +119,76 @@
     
     if (!passCheck)
     {
+        self.msgRigister.text = @"输入有错误";
         return;
     }
     
     self.msgRigister.text = @"正在注册";
     NSDictionary *paramers = @{@"email": email, @"username": userName, @"pwd": pwd, @"cpwd": pwdRepeat};
     [AppSetting httpPost:@"register" parameters:paramers callback:^(BOOL success, NSDictionary *response, NSString *msg) {
-        
+        if (success == YES)
+        {
+            self.msgRigister.text = @"注册成功";
+            // after check login, go to explore page
+            NSDictionary *data = (NSDictionary *)[response objectForKey:@"data"];
+            [AppSetting setLoginStatus:YES];
+            [AppSetting setCache:@"userInfo" value:(NSDictionary *) [data objectForKey:@"user"]];
+            [AppSetting setCache:@"topImage" value:(NSDictionary *) [data objectForKey:@"top_image"]];
+            [AppSetting setCache:@"topMenu" value:(NSDictionary *) [data objectForKey:@"top_menu"]];
+            
+            self.navigationController.navigationBarHidden = YES;
+            [self performSegueWithIdentifier:@"drawer" sender:self];
+        } else {
+            self.msgRigister.text = msg;
+            
+            NSDictionary *errorMsg = (NSDictionary *)[response objectForKey:@"data"];
+            NSString *mailErr = (NSString *)[errorMsg objectForKey:@"email"];
+            NSString *userNameErr = (NSString *)[errorMsg objectForKey:@"username"];
+            NSString *pwdErr = (NSString *)[errorMsg objectForKey:@"password"];
+            
+            if ([mailErr length] > 0){
+                self.msgMail.text = mailErr;
+                [self.msgMail setHidden: NO];
+            } else {
+                [self.msgMail setHidden: YES];
+            }
+            
+            if ([userNameErr length] > 0){
+                self.msgUserName.text = mailErr;
+                [self.msgUserName setHidden: NO];
+            } else {
+                [self.msgUserName setHidden: YES];
+            }
+            
+            if ([pwdErr length] > 0){
+                self.msgPwd.text = mailErr;
+                [self.msgPwd setHidden: NO];
+            } else {
+                [self.msgPwd setHidden: YES];
+            }
+        }
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"drawer"]) {
+        MMDrawerController *destinationViewController = (MMDrawerController *) segue.destinationViewController;
+        
+        // Instantitate and set the center view controller.
+        UIViewController *centerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"homepage"];
+        [destinationViewController setCenterViewController:centerViewController];
+        
+        // Instantiate and set the left drawer controller.
+        UIViewController *leftDrawerViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"leftSidebar"];
+        [destinationViewController setLeftDrawerViewController:leftDrawerViewController];
+        
+        // drawer setting
+        [destinationViewController setShowsShadow:YES];
+        [destinationViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeBezelPanningCenterView];
+        [destinationViewController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+        [destinationViewController setMaximumLeftDrawerWidth:260];
+        [destinationViewController setDrawerVisualStateBlock: [MMDrawerVisualState slideAndScaleVisualStateBlock]];
+        
+    }
 }
 @end

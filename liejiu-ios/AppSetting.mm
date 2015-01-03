@@ -173,6 +173,15 @@ static UIViewController *_currView = nil;
     //setting navigation bar bg
     UIImage *image = [UIImage imageNamed:@"bg_navbar.png"];
     [view.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
+    if ([view.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
+        view.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+        view.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        [view.navigationController.navigationBar
+         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    } else {
+        /* Set background and foreground */
+    }
 }
 
 @end

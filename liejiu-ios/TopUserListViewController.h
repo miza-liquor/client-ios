@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopUserTableViewCell.h"
 
-@interface TopUserListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@interface TopUserListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, TopUserTableViewCellDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
