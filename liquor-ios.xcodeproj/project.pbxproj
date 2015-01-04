@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B61C2C731A5987D100742743 /* MailCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B61C2C721A5987D100742743 /* MailCheckViewController.m */; };
+		B61C2C761A5987F600742743 /* ResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B61C2C751A5987F600742743 /* ResetPwdViewController.m */; };
 		B61DACF61A37F9450065D09C /* icon_msg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61DACEA1A37F9450065D09C /* icon_msg@2x.png */; };
 		B61DACF71A37F9450065D09C /* icon_msg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61DACEB1A37F9450065D09C /* icon_msg@3x.png */; };
 		B61DACF81A37F9450065D09C /* icon_new_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B61DACEC1A37F9450065D09C /* icon_new_friend@2x.png */; };
@@ -200,6 +202,10 @@
 		14493ADE71A9F5AF71397402 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		33D7054DD067A4703B514991 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BD1DB9C32D6DCB54631F1CB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B61C2C711A5987D100742743 /* MailCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailCheckViewController.h; sourceTree = "<group>"; };
+		B61C2C721A5987D100742743 /* MailCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailCheckViewController.m; sourceTree = "<group>"; };
+		B61C2C741A5987F600742743 /* ResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdViewController.h; sourceTree = "<group>"; };
+		B61C2C751A5987F600742743 /* ResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdViewController.m; sourceTree = "<group>"; };
 		B61DACEA1A37F9450065D09C /* icon_msg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_msg@2x.png"; path = "resource/icon_msg@2x.png"; sourceTree = "<group>"; };
 		B61DACEB1A37F9450065D09C /* icon_msg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_msg@3x.png"; path = "resource/icon_msg@3x.png"; sourceTree = "<group>"; };
 		B61DACEC1A37F9450065D09C /* icon_new_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_new_friend@2x.png"; path = "resource/icon_new_friend@2x.png"; sourceTree = "<group>"; };
@@ -630,6 +636,10 @@
 				B6666CAD1A22184800F446A7 /* MenuListViewController.m */,
 				B6666CAF1A221C9C00F446A7 /* NewMenuViewController.h */,
 				B6666CB01A221C9C00F446A7 /* NewMenuViewController.m */,
+				B61C2C711A5987D100742743 /* MailCheckViewController.h */,
+				B61C2C721A5987D100742743 /* MailCheckViewController.m */,
+				B61C2C741A5987F600742743 /* ResetPwdViewController.h */,
+				B61C2C751A5987F600742743 /* ResetPwdViewController.m */,
 			);
 			name = subScreen;
 			sourceTree = "<group>";
@@ -1202,6 +1212,7 @@
 				B6DF275F1A14EDF60046629F /* ForgetPwdViewController.m in Sources */,
 				B63D5FE91A207FF5003A2600 /* UserSettingViewController.m in Sources */,
 				B6223AD31A1CD729009BAC53 /* UserProfileViewController.m in Sources */,
+				B61C2C731A5987D100742743 /* MailCheckViewController.m in Sources */,
 				B6223AC61A1CB134009BAC53 /* UserFromRecommandTableViewCell.m in Sources */,
 				B6DF275E1A14EDF60046629F /* ExploreNoAuthViewController.m in Sources */,
 				B6DF27631A14EE5F0046629F /* LoginViewController.m in Sources */,
@@ -1227,6 +1238,7 @@
 				B65D1D0D1A1B124D0000F6F1 /* TopMenuTableViewCell.m in Sources */,
 				B6223ABF1A1CAC67009BAC53 /* HelpViewController.m in Sources */,
 				B62EBD8E1A1A393600BFED0B /* TopImageTableViewCell.m in Sources */,
+				B61C2C761A5987F600742743 /* ResetPwdViewController.m in Sources */,
 				B6223ABC1A1C9733009BAC53 /* FeedbackViewController.m in Sources */,
 				B646460F1A1B87120035F208 /* TopWineCategoryViewController.m in Sources */,
 				B6DF276A1A14F3A60046629F /* DrawerLeftViewController.m in Sources */,

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ForgetPwdViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *mailBox;
+@property (weak, nonatomic) IBOutlet UILabel *msg;
+- (IBAction)clickOnBtn:(id)sender;
 
 @end

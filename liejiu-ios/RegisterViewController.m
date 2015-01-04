@@ -103,7 +103,7 @@
     {
         self.msgPwd.text = @"密码长度不能少于6个字符";
         passCheck = NO;
-    } else if ([pwd length] > 16)
+    } else if ([pwd length] > 32)
     {
         self.msgPwd.text = @"密码长度不能多于32个字符";
         passCheck = NO;
