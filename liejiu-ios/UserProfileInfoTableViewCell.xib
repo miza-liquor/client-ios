@@ -97,7 +97,7 @@
                             <action selector="clickOnTab:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="L2n-PI-azI"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB8-T4-cNx">
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="following" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OB8-T4-cNx">
                         <rect key="frame" x="15" y="222" width="90" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
@@ -105,6 +105,9 @@
                             <color key="titleColor" red="0.01176470588" green="0.45882352939999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="clickONFollowInfoBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9zD-b0-xQ5"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paB-Pg-O34">
                         <rect key="frame" x="113" y="86" width="94" height="94"/>

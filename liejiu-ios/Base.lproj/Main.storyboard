@@ -583,7 +583,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zyj-lp-SIg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zyj-lp-SIg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -597,6 +597,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="关注/粉丝" id="Q2b-qt-OdI"/>
                     <connections>
+                        <outlet property="tableView" destination="zyj-lp-SIg" id="JWD-kU-MNN"/>
                         <segue destination="AVg-BC-SC5" kind="push" identifier="userDetail" id="eWa-hP-MNi"/>
                     </connections>
                 </viewController>
@@ -2115,12 +2116,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Hh5-PE-MFt"/>
+        <segue reference="Gej-oV-mS2"/>
+        <segue reference="lWQ-mV-hli"/>
+        <segue reference="eWa-hP-MNi"/>
+        <segue reference="krQ-if-Ocv"/>
         <segue reference="i7h-g2-if1"/>
         <segue reference="o7G-Ex-V1u"/>
-        <segue reference="zAi-sK-z2Y"/>
-        <segue reference="Gej-oV-mS2"/>
-        <segue reference="Hh5-PE-MFt"/>
-        <segue reference="lWQ-mV-hli"/>
-        <segue reference="krQ-if-Ocv"/>
     </inferredMetricsTieBreakers>
 </document>

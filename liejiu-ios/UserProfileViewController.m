@@ -10,6 +10,7 @@
 #import "UserProfileInfoTableViewCell.h"
 #import "UserDrinkLikeTableViewCell.h"
 #import "UserMenuTableViewCell.h"
+#import "FollowListViewController.h"
 #import "AppSetting.h"
 
 @interface UserProfileViewController ()
@@ -20,6 +21,7 @@
 {
     NSArray *dataList;
     NSString *tabType;
+    NSString *followTypeName;
 }
 @synthesize fromSubView;
 @synthesize userBasicInfo;
@@ -198,6 +200,7 @@
 
 - (void) onClickFollowBtn:(NSString *)followType
 {
+    followTypeName = followType;
     [self performSegueWithIdentifier:@"follow" sender:self];
 }
 
@@ -206,5 +209,16 @@
 {
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"follow"])
+    {
+        FollowListViewController *vc = segue.destinationViewController;
+        vc.followType = followTypeName;
+        vc.userID = (NSString *)[self.userBasicInfo objectForKey:@"id"];
+    }
+}
+
 
 @end

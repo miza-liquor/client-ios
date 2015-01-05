@@ -12,8 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
-@property (weak, nonatomic) IBOutlet UILabel *relationShip;
 @property (weak, nonatomic) IBOutlet UILabel *level;
 @property (weak, nonatomic) IBOutlet UILabel *recordNum;
+@property (weak, nonatomic) IBOutlet UILabel *menuNum;
+
+- (void) setData:(NSDictionary*)data;
 
 @end

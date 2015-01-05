@@ -12,5 +12,6 @@
 
 @property (nonatomic) NSString *userID;
 @property (nonatomic) NSString *followType;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

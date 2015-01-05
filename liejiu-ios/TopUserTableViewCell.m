@@ -44,7 +44,7 @@
 }
 
 - (IBAction)clickOnFollowBtn:(id)sender
-{
+{    
     [self.delegate followUser: (NSString *)[userInfo objectForKey:@"id"]];
 }
 
