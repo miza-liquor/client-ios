@@ -38,6 +38,7 @@
         if (i < currNum)
         {
             NSURL *imageURL = [NSURL URLWithString:(NSString *)[(NSDictionary *)[data objectAtIndex:i] objectForKey:@"wine_image"]];
+
             [btn sd_setBackgroundImageWithURL:imageURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Icon-29"]];
             [btn setHidden:NO];
         } else {

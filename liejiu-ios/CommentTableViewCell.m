@@ -43,12 +43,6 @@
     // Configure the view for the selected state
 }
 
-- (void) setCommentData:(NSDictionary *)comment
-{
-    [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[comment objectForKey:@"user_image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
-    self.comment.text = (NSString *)[comment objectForKey:@"content"];
-}
-
 - (void) populateWithObject:(id)object
 {
     NSDictionary *comment = object;

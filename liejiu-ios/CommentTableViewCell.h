@@ -12,6 +12,5 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 @property (weak, nonatomic) IBOutlet UILabel *comment;
-- (void) setCommentData:(NSDictionary *)comment;
 
 @end

@@ -10,6 +10,8 @@
 #import "TopWineTableViewCell.h"
 #import "TopWineHeaderTableViewCell.h"
 #import "TopWineCategoryViewController.h"
+#import "WineDetailViewController.h"
+#import "AppSetting.h"
 
 @interface TopWineListViewController ()
 
@@ -18,6 +20,8 @@
 @implementation TopWineListViewController
 {
     NSArray *wines;
+    NSDictionary *category;
+    NSDictionary *selectedWineInfo;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,28 +38,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    wines = @[
-              @{@"name": @"酒名称 - 1", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 2", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 3", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 4", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 5", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 6", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 7", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 8", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 9", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 10", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 11", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 12", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 13", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 14", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 15", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 16", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 17", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 18", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 19", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"},
-              @{@"name": @"酒名称 - 19", @"category": @"啤酒", @"score": @"5/5", @"drinked": @"66666"}
-            ];
+    wines = @[];
+    [self getData];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -81,6 +70,8 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:headerTableIdentifier owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
+        
+        cell.headerTitle.text = category ? [NSString stringWithFormat:@"%@ 排名TOP10", (NSString *)[category objectForKey:@"name"]] : @"全站排名TOP10";
 
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -96,17 +87,14 @@
     }
     
     NSDictionary *info = (NSDictionary *)[wines objectAtIndex:indexPath.row];
-    cell.name.text = [info objectForKey:@"name"];
-    cell.category.text = [info objectForKey:@"category"];
-    cell.score.text = [info objectForKey:@"score"];
-    cell.drinked.text = [NSString stringWithFormat:@"喝过(%@)", [info objectForKey:@"drinked"]];
+    [cell setWineData:info];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 60 : 80;
+    return indexPath.row == 0 ? 54 : 88;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,6 +103,7 @@
     {
         return;
     }
+    selectedWineInfo = (NSDictionary *)[wines objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"wineDetail" sender:self];
 }
 
@@ -125,9 +114,38 @@
 }
 
 #pragma mark - top wine category delegate
-- (void) topWineCategoryChanged:(NSString *)category
+- (void) topWineCategoryChanged:(NSDictionary *)info
 {
-    NSLog([NSString stringWithFormat:@"topWineCategoryChanged::%@", category]);
+    category = info;
+    [self getData];
+}
+
+- (void) getData
+{
+    NSString *cacheName;
+    NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
+    NSString *url;
+    if (category) {
+        NSString *category_id = (NSString *)[category objectForKey:@"id"];
+        url =[NSString stringWithFormat:@"topwine/%@", category_id];
+        cacheName = [NSString stringWithFormat:@"topwine:%@", category_id];
+    } else {
+        url = @"topwine";
+        cacheName = @"topwine:all";
+    }
+    if (cache == Nil)
+    {
+        [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            if (success == YES)
+            {
+                wines = (NSArray *)[response objectForKey:@"data"];
+                [AppSetting setCache:cacheName value:wines];
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        wines = cache;
+    }
 }
 
 
@@ -137,6 +155,10 @@
     {
         TopWineCategoryViewController *categoryView = segue.destinationViewController;
         categoryView.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"wineDetail"])
+    {
+        WineDetailViewController *wine = segue.destinationViewController;
+        wine.basicInfo = selectedWineInfo;
     }
 }
 

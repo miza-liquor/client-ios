@@ -10,7 +10,7 @@
 
 @protocol TopWineCategoryViewControllerDelegate
 
-- (void) topWineCategoryChanged: (NSString *) category;
+- (void) topWineCategoryChanged: (NSDictionary *) category;
 
 @end
 

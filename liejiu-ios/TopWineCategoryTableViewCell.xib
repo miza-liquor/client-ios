@@ -26,6 +26,7 @@
                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="noH-Yi-Ol1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8zO-Yu-Q9Q"/>
                     <constraint firstAttribute="trailing" secondItem="noH-Yi-Ol1" secondAttribute="trailing" id="Cty-Tq-kHd"/>

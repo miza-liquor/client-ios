@@ -16,6 +16,7 @@
 
 @interface TopWineHeaderTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *headerTitle;
 - (IBAction) clickOnShareBtn:(id)sender;
 @property (nonatomic, weak) id <TopWineHeaderTableViewCellDelegate> delegate;
 

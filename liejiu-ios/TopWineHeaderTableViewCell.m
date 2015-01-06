@@ -10,6 +10,8 @@
 
 @implementation TopWineHeaderTableViewCell
 
+@synthesize headerTitle = _headerTitle;
+
 - (void)awakeFromNib
 {
     // Initialization code

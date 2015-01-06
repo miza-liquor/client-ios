@@ -90,8 +90,8 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* category = [NSString stringWithFormat:@"%d", indexPath.row];
-    [self.delegate topWineCategoryChanged: category];
+    NSDictionary *info = (NSDictionary *)[categories objectAtIndex:indexPath.row];
+    [self.delegate topWineCategoryChanged: info];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

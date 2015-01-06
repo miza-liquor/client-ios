@@ -617,7 +617,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9BI-3s-LY6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9BI-3s-LY6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -637,6 +637,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="9BI-3s-LY6" id="Qft-Fl-BHH"/>
                         <segue destination="nRB-dE-X7r" kind="push" identifier="wineDetail" id="3D5-vj-1T8"/>
                     </connections>
                 </viewController>
@@ -644,10 +645,10 @@
             </objects>
             <point key="canvasLocation" x="3848" y="-4485"/>
         </scene>
-        <!--View Controller - 酒品详情-->
+        <!--Wine Detail View Controller - 酒品详情-->
         <scene sceneID="MNn-Hz-aTm">
             <objects>
-                <viewController id="nRB-dE-X7r" sceneMemberID="viewController">
+                <viewController id="nRB-dE-X7r" customClass="WineDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3lT-wr-oep"/>
                         <viewControllerLayoutGuide type="bottom" id="hLe-JZ-c8q"/>
@@ -655,9 +656,24 @@
                     <view key="view" contentMode="scaleToFill" id="YlN-cZ-mvs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wyB-aD-iOu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nRB-dE-X7r" id="oXc-0R-cK0"/>
+                                    <outlet property="delegate" destination="nRB-dE-X7r" id="s6T-Ke-bKP"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="酒品详情" id="2Db-bm-Js3"/>
+                    <connections>
+                        <outlet property="tableView" destination="wyB-aD-iOu" id="7Zr-Yd-QYX"/>
+                        <segue destination="AVg-BC-SC5" kind="push" identifier="userDetail" id="rKM-p7-TRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3C8-j8-z17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2116,12 +2132,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="o7G-Ex-V1u"/>
+        <segue reference="i7h-g2-if1"/>
+        <segue reference="3D5-vj-1T8"/>
+        <segue reference="rKM-p7-TRC"/>
         <segue reference="Hh5-PE-MFt"/>
         <segue reference="Gej-oV-mS2"/>
         <segue reference="lWQ-mV-hli"/>
-        <segue reference="eWa-hP-MNi"/>
-        <segue reference="krQ-if-Ocv"/>
-        <segue reference="i7h-g2-if1"/>
-        <segue reference="o7G-Ex-V1u"/>
     </inferredMetricsTieBreakers>
 </document>

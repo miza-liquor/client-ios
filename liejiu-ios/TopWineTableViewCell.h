@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *drinked;
 
+- (void) setWineData:(NSDictionary *)data;
+
 @end

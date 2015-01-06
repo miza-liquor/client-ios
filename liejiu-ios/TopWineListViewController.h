@@ -12,4 +12,6 @@
 
 @interface TopWineListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TopWineHeaderTableViewCellDelegate, TopWineCategoryViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
