@@ -20,7 +20,6 @@
 @property (nonatomic, weak) id <WineCenterListTableViewCellDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *wineImage;
-@property (weak, nonatomic) IBOutlet UILabel *category;
 @property (weak, nonatomic) IBOutlet UILabel *wineName;
 @property (weak, nonatomic) IBOutlet UILabel *drinkedNum;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage1;
@@ -29,5 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImage4;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage5;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage6;
+@property (weak, nonatomic) IBOutlet UIButton *menuBtn;
+
+- (void) setData:(NSDictionary *)data;
 
 @end

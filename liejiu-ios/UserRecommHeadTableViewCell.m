@@ -21,6 +21,7 @@
     
     self.searchBox.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
     self.searchBox.layer.borderWidth= 1.0f;
+    [self.searchBox addTarget:self action:@selector(clickOnSearchBtn:) forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -34,6 +35,9 @@
 {
     NSString *keyword = self.searchBox.text;
     keyword = [keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    keyword = [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [self.delegate submitSearchBox:keyword];
     
     [self.delegate submitSearchBox:keyword];
 }

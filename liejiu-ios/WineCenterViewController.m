@@ -9,6 +9,7 @@
 #import "WineCenterViewController.h"
 #import "WineCenterHeadTableViewCell.h"
 #import "WineCenterListTableViewCell.h"
+#import "WineDetailViewController.h"
 #import "AppSetting.h"
 
 @interface WineCenterViewController ()
@@ -19,6 +20,9 @@
 {
     WineCenterHeadTableViewCell *headerCell;
     NSArray *wineList;
+    NSDictionary *selectedCategory;
+    NSString *keyword;
+    NSDictionary *selectedWine;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,7 +43,43 @@
     self.navigationItem.leftBarButtonItem = drawerBtn;
     [AppSetting drawToolBar:self];
     [self initStaticCell];
-    wineList = @[@"1",@"2",@"3",@"4",@"5"];
+    wineList = @[];
+    [self loadWineData];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
+
+- (void) loadWineData
+{
+    NSArray* defaultList = (NSArray *)[AppSetting getCache:@"wineSearchDefaultList"];
+    keyword = [keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+
+    if ([keyword length] == 0 && selectedCategory == nil && defaultList != nil)
+    {
+        wineList = defaultList;
+        [self.tableView reloadData];
+        return;
+        
+    }
+    
+    NSString *url = (keyword != nil) ? [NSString stringWithFormat:@"search/wine/%@", keyword] : @"search/wine";
+    NSDictionary *parameters = (selectedCategory != nil) ? @{@"category": (NSString *)[selectedCategory objectForKey:@"id"]} : nil;
+    
+    [AppSetting httpGet:url parameters:parameters callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success == YES)
+        {
+            wineList = (NSArray *)[response objectForKey:@"data"];
+            if (keyword == nil && selectedCategory == nil)
+            {
+                [AppSetting setCache:@"wineSearchDefaultList" value:wineList];
+            }
+
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void) initStaticCell
@@ -75,13 +115,23 @@
         cell = [nib objectAtIndex:0];
     }
     
+    NSDictionary* wineInfo = (NSDictionary *)[wineList objectAtIndex:indexPath.row - 1];
+    [cell setData:wineInfo];
     cell.delegate = self;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? [headerCell getRowHeight] : 168;
+    if (indexPath.row == 0)
+    {
+        return [headerCell getRowHeight];
+    } else {
+        NSDictionary* wineInfo = (NSDictionary *)[wineList objectAtIndex:indexPath.row - 1];
+        NSArray *users = (NSArray *)[wineInfo objectForKey:@"drink_user"];
+        return [users count] == 0 ? 90 : 140;
+    }
+
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,6 +140,7 @@
     {
         return;
     }
+    selectedWine = (NSDictionary *)[wineList objectAtIndex:indexPath.row-1];
     [self performSegueWithIdentifier:@"wineDetail" sender:self];
 }
 
@@ -98,8 +149,10 @@
     [self performSegueWithIdentifier:@"addToMenu" sender:self];
 }
 
-- (void) submitSearchBox:(NSString *)keywork
+- (void) submitSearchBox:(NSString *)kw
 {
+    keyword = kw;
+    [self loadWineData];
 }
 
 - (void) clickOnCategoryBtn:(NSDictionary *)category
@@ -110,6 +163,15 @@
 - (void) categoryDataReady
 {
     [self.tableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"wineDetail"])
+    {
+        WineDetailViewController *vc = segue.destinationViewController;
+        vc.basicInfo = selectedWine;
+    }
 }
 
 #pragma mark - Button Handlers

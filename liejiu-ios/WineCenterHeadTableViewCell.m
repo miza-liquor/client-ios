@@ -14,6 +14,7 @@
     CGFloat initHeight;
     CGFloat rowHeight;
     NSArray *categories;
+    NSMutableArray *btnList;
 }
 
 - (void)awakeFromNib
@@ -27,6 +28,8 @@
 
     self.searchBox.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
     self.searchBox.layer.borderWidth= 1.0f;
+    
+    [self.searchBox addTarget:self action:@selector(clickOnSearchBtn:) forControlEvents:UIControlEventEditingDidEndOnExit];
 
     initHeight = self.searchBtn.layer.frame.size.height + 20;
     rowHeight = initHeight + 30;
@@ -43,7 +46,10 @@
 
 - (IBAction)clickOnSearchBtn:(id)sender
 {
-    [self.delegate submitSearchBox:self.searchBox.text];
+    
+    NSString *keyword = self.searchBox.text;
+    keyword = [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [self.delegate submitSearchBox:keyword];
 }
 
 - (void) loadCategoryData
@@ -77,6 +83,8 @@
     CGFloat fontSize = 13;
     NSInteger maxLength = [data count] > 9 ? 9 : [data count];
     
+    btnList = [[NSMutableArray alloc] initWithCapacity:maxLength + 1];
+    
     [self.loadingLabel setHidden:YES];
     
     for (NSInteger i = 0, l = maxLength; i < l; i++)
@@ -103,6 +111,7 @@
         pX += with + gapX;
         
         [btn addTarget:self action:@selector(clickOnCategory:) forControlEvents: UIControlEventTouchUpInside];
+        [btnList addObject:btn];
         
         [self.categoryContainer addSubview:btn];
     }
@@ -120,6 +129,7 @@
     [self.categoryContainer addSubview:moreBtn];
     moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [moreBtn setTag:-1];
+    [btnList addObject:moreBtn];
     
     rowHeight = pY + 10 + lineHeight + initHeight;
     
