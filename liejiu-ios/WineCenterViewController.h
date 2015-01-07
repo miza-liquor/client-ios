@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPKeyboardAvoiding/TPKeyboardAvoidingTableView.h"
+#import "WineCenterHeadTableViewCell.h"
 #import "WineCenterListTableViewCell.h"
+#import "UIViewController+MMDrawerController.h"
 
-@interface WineCenterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WineCenterListTableViewCellDelegate>
+@interface WineCenterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WineCenterListTableViewCellDelegate, WineCenterHeadTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *tableView;
 
 @end

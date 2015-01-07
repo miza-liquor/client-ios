@@ -165,6 +165,10 @@
 		B6E95BB71A5BB3C800EE4B44 /* WineDetaiHeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6E95BB51A5BB3C800EE4B44 /* WineDetaiHeadTableViewCell.xib */; };
 		B6E95BBB1A5BC83500EE4B44 /* WineCreatorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E95BB91A5BC83500EE4B44 /* WineCreatorTableViewCell.m */; };
 		B6E95BBC1A5BC83500EE4B44 /* WineCreatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6E95BBA1A5BC83500EE4B44 /* WineCreatorTableViewCell.xib */; };
+		B6F0264A1A5CE1F300D05530 /* UserRecommHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F026481A5CE1F300D05530 /* UserRecommHeadTableViewCell.m */; };
+		B6F0264B1A5CE1F300D05530 /* UserRecommHeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F026491A5CE1F300D05530 /* UserRecommHeadTableViewCell.xib */; };
+		B6F0264F1A5D166100D05530 /* WineCenterHeadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F0264D1A5D166100D05530 /* WineCenterHeadTableViewCell.m */; };
+		B6F026501A5D166100D05530 /* WineCenterHeadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F0264E1A5D166100D05530 /* WineCenterHeadTableViewCell.xib */; };
 		B6F286C61A2DAA36009873B3 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C01A2DAA36009873B3 /* Icon-29.png */; };
 		B6F286C71A2DAA36009873B3 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C11A2DAA36009873B3 /* Icon-29@2x.png */; };
 		B6F286C81A2DAA36009873B3 /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F286C21A2DAA36009873B3 /* icon-57.png */; };
@@ -491,6 +495,12 @@
 		B6E95BB81A5BC83500EE4B44 /* WineCreatorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineCreatorTableViewCell.h; sourceTree = "<group>"; };
 		B6E95BB91A5BC83500EE4B44 /* WineCreatorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineCreatorTableViewCell.m; sourceTree = "<group>"; };
 		B6E95BBA1A5BC83500EE4B44 /* WineCreatorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WineCreatorTableViewCell.xib; sourceTree = "<group>"; };
+		B6F026471A5CE1F300D05530 /* UserRecommHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRecommHeadTableViewCell.h; sourceTree = "<group>"; };
+		B6F026481A5CE1F300D05530 /* UserRecommHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRecommHeadTableViewCell.m; sourceTree = "<group>"; };
+		B6F026491A5CE1F300D05530 /* UserRecommHeadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRecommHeadTableViewCell.xib; sourceTree = "<group>"; };
+		B6F0264C1A5D166100D05530 /* WineCenterHeadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineCenterHeadTableViewCell.h; sourceTree = "<group>"; };
+		B6F0264D1A5D166100D05530 /* WineCenterHeadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineCenterHeadTableViewCell.m; sourceTree = "<group>"; };
+		B6F0264E1A5D166100D05530 /* WineCenterHeadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WineCenterHeadTableViewCell.xib; sourceTree = "<group>"; };
 		B6F286C01A2DAA36009873B3 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-29.png"; path = "resource/Icon-29.png"; sourceTree = "<group>"; };
 		B6F286C11A2DAA36009873B3 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-29@2x.png"; path = "resource/Icon-29@2x.png"; sourceTree = "<group>"; };
 		B6F286C21A2DAA36009873B3 /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-57.png"; path = "resource/icon-57.png"; sourceTree = "<group>"; };
@@ -599,9 +609,18 @@
 				B64646101A1B87760035F208 /* TopWineCategoryTableViewCell.h */,
 				B64646111A1B87760035F208 /* TopWineCategoryTableViewCell.m */,
 				B64646121A1B87760035F208 /* TopWineCategoryTableViewCell.xib */,
+				B6F0264C1A5D166100D05530 /* WineCenterHeadTableViewCell.h */,
+				B6F0264D1A5D166100D05530 /* WineCenterHeadTableViewCell.m */,
+				B6F0264E1A5D166100D05530 /* WineCenterHeadTableViewCell.xib */,
+				B6666CA71A22126200F446A7 /* WineCenterListTableViewCell.h */,
+				B6666CA81A22126200F446A7 /* WineCenterListTableViewCell.m */,
+				B6666CA91A22126200F446A7 /* WineCenterListTableViewCell.xib */,
 				B6223AA61A1C4E33009BAC53 /* RecommendBarTableViewCell.h */,
 				B6223AA71A1C4E33009BAC53 /* RecommendBarTableViewCell.m */,
 				B6223AA81A1C4E33009BAC53 /* RecommendBarTableViewCell.xib */,
+				B6F026471A5CE1F300D05530 /* UserRecommHeadTableViewCell.h */,
+				B6F026481A5CE1F300D05530 /* UserRecommHeadTableViewCell.m */,
+				B6F026491A5CE1F300D05530 /* UserRecommHeadTableViewCell.xib */,
 				B6223AC31A1CB134009BAC53 /* UserFromRecommandTableViewCell.h */,
 				B6223AC41A1CB134009BAC53 /* UserFromRecommandTableViewCell.m */,
 				B6223AC51A1CB134009BAC53 /* UserFromRecommandTableViewCell.xib */,
@@ -620,9 +639,6 @@
 				B63D5FE21A20620A003A2600 /* FollowUserListTableViewCell.h */,
 				B63D5FE31A20620A003A2600 /* FollowUserListTableViewCell.m */,
 				B63D5FE41A20620A003A2600 /* FollowUserListTableViewCell.xib */,
-				B6666CA71A22126200F446A7 /* WineCenterListTableViewCell.h */,
-				B6666CA81A22126200F446A7 /* WineCenterListTableViewCell.m */,
-				B6666CA91A22126200F446A7 /* WineCenterListTableViewCell.xib */,
 				B61DAD0C1A383EC90065D09C /* DrawerTableViewCell.h */,
 				B61DAD0D1A383EC90065D09C /* DrawerTableViewCell.m */,
 				B61DAD0E1A383EC90065D09C /* DrawerTableViewCell.xib */,
@@ -1099,6 +1115,7 @@
 				B6ABB3351A19F2CD0007B51C /* Default@2x.png in Resources */,
 				B623EC3D1A27610800AAF5BF /* btn_top_user@3x.png in Resources */,
 				B658D5BF1A41AE2C0069519A /* btn_send@2x.png in Resources */,
+				B6F026501A5D166100D05530 /* WineCenterHeadTableViewCell.xib in Resources */,
 				B6F286E11A2DEC0E009873B3 /* icon_login_pwd@2x.png in Resources */,
 				B623EC361A27610800AAF5BF /* btn_top_bar@2x.png in Resources */,
 				B6F32F611A2F146000FB4D53 /* icon_date@3x.png in Resources */,
@@ -1188,6 +1205,7 @@
 				B6F286FA1A2DF9D5009873B3 /* btn_search@3x.png in Resources */,
 				B61DACFC1A37F9450065D09C /* icon_story@2x.png in Resources */,
 				B6153B501A5BFEC700E67B41 /* WineDrinkUserTableViewCell.xib in Resources */,
+				B6F0264B1A5CE1F300D05530 /* UserRecommHeadTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,9 +1272,11 @@
 				B6DF27671A14F2F10046629F /* ExploreViewController.m in Sources */,
 				B64268A91A43F1EE00DF8BB1 /* BarDetailBaseTableViewCell.m in Sources */,
 				B6DF27111A1493F80046629F /* ViewController.m in Sources */,
+				B6F0264A1A5CE1F300D05530 /* UserRecommHeadTableViewCell.m in Sources */,
 				B63D5FDB1A20549B003A2600 /* UserDrinkLikeTableViewCell.m in Sources */,
 				B6666CB11A221C9C00F446A7 /* NewMenuViewController.m in Sources */,
 				B6666CAE1A22184800F446A7 /* MenuListViewController.m in Sources */,
+				B6F0264F1A5D166100D05530 /* WineCenterHeadTableViewCell.m in Sources */,
 				B6DF27601A14EDF60046629F /* RegisterViewController.m in Sources */,
 				B6DF275F1A14EDF60046629F /* ForgetPwdViewController.m in Sources */,
 				B6153B4F1A5BFEC700E67B41 /* WineDrinkUserTableViewCell.m in Sources */,

@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol UserFromRecommandTableViewCellDelegate
+
+- (void) onFollowBtn: (NSDictionary *) userInfo;
+
+@end
 
 @interface UserFromRecommandTableViewCell : UITableViewCell
 
@@ -15,5 +20,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *level;
 @property (strong, nonatomic) IBOutlet UILabel *recordNum;
 @property (strong, nonatomic) IBOutlet UILabel *menuNum;
+@property (strong, nonatomic) IBOutlet UIButton *followBtn;
 
+- (IBAction)clickOnFollowBtn:(id)sender;
+
+- (void) setUserData:(NSDictionary *)userData;
+
+@property (nonatomic, weak) id <UserFromRecommandTableViewCellDelegate> delegate;
 @end

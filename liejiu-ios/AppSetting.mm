@@ -142,30 +142,32 @@ static UIViewController *_currView = nil;
     UIBarButtonItem *newRecordBtn = [[UIBarButtonItem alloc] initWithCustomView:addRecordView];
 
     [view setToolbarItems:[NSArray arrayWithObjects:exploreBtn, flexibleBtn, newRecordBtn, flexibleBtn, winelistBtn, nil]];
+
+    view.navigationController.toolbarHidden = NO;
 }
 
 + (void)navToNewExplorePage:(UIBarButtonItem*)btn
 {
     ExploreViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"explore"];
     [_currView.navigationController pushViewController:controller animated:YES];
-    controller = nil;
-    _currView = nil;
+//    controller = nil;
+//    _currView = nil;
 }
 
 + (void)navToNewRecordPage:(UIBarButtonItem*)btn
 {
     NewRecordViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"newRecord"];
     [_currView.navigationController pushViewController:controller animated:YES];
-    controller = nil;
-    _currView = nil;
+//    controller = nil;
+//    _currView = nil;
 }
 
 + (void)navToWineListPage:(UIBarButtonItem*)btn
 {
     WineCenterViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"wineCenter"];
     [_currView.navigationController pushViewController:controller animated:YES];
-    controller = nil;
-    _currView = nil;
+//    controller = nil;
+//    _currView = nil;
 }
 
 + (void) topBarStyleSetting:(UIViewController *)view

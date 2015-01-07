@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserRecommHeadTableViewCell.h"
+#import "UserFromRecommandTableViewCell.h"
+#import "TPKeyboardAvoidingTableView.h"
 #import "UIViewController+MMDrawerController.h"
 
-@interface AddFriendViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface AddFriendViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserRecommHeadTableViewCellDelegate, UserFromRecommandTableViewCellDelegate>
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingTableView *tableView;
+
 
 @end

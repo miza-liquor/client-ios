@@ -436,7 +436,7 @@
         <!--User Profile View Controller - 用户页面-->
         <scene sceneID="qLS-Rv-5hy">
             <objects>
-                <viewController id="AVg-BC-SC5" customClass="UserProfileViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="userProfilePage" storyboardIdentifier="userProfilePage" id="AVg-BC-SC5" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TUn-KM-T3q"/>
                         <viewControllerLayoutGuide type="bottom" id="euE-dS-aFI"/>
@@ -938,7 +938,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-E0-r20">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w9F-E0-r20" customClass="TPKeyboardAvoidingTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -953,6 +953,9 @@
                     <navigationItem key="navigationItem" title="查找好友" id="TjF-UZ-h2k">
                         <barButtonItem key="rightBarButtonItem" title="刷新" id="f24-xB-3lB"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="w9F-E0-r20" id="cRl-eL-fKC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHS-vJ-iYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1068,7 +1071,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iNY-Ej-Biq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iNY-Ej-Biq" customClass="TPKeyboardAvoidingTableView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1088,6 +1091,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="iNY-Ej-Biq" id="2Be-jW-D35"/>
                         <segue destination="Z6s-ca-tgI" kind="push" id="3R9-uK-YyV"/>
                         <segue destination="nRB-dE-X7r" kind="push" identifier="wineDetail" id="krQ-if-Ocv"/>
                         <segue destination="eFs-g9-mNc" kind="push" identifier="addToMenu" id="Xtl-Td-B1P"/>
@@ -1987,14 +1991,20 @@
         <!--Navigation Controller-->
         <scene sceneID="NNE-te-s47">
             <objects>
-                <navigationController restorationIdentifier="storyList" storyboardIdentifier="storyList" automaticallyAdjustsScrollViewInsets="NO" id="jla-fd-p3W" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="storyList" storyboardIdentifier="storyList" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="jla-fd-p3W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TMi-gj-Mfv"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hvO-WI-zdQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RiV-nF-mgf">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="uMJ-n7-RBO" kind="relationship" relationship="rootViewController" id="msi-vg-0GB"/>
                     </connections>
@@ -2132,10 +2142,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o7G-Ex-V1u"/>
-        <segue reference="i7h-g2-if1"/>
-        <segue reference="3D5-vj-1T8"/>
+        <segue reference="krQ-if-Ocv"/>
         <segue reference="rKM-p7-TRC"/>
+        <segue reference="7rA-qI-T4L"/>
+        <segue reference="msi-vg-0GB"/>
         <segue reference="Hh5-PE-MFt"/>
         <segue reference="Gej-oV-mS2"/>
         <segue reference="lWQ-mV-hli"/>
