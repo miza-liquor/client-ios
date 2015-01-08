@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TPKeyboardAvoidingScrollView;
 
 @protocol NewMenuViewControllerDelegate
 
@@ -19,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *menuDesc;
 - (IBAction) clickOnNewMenuBtn:(id)sender;
 @property (nonatomic, weak) id <NewMenuViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *msg;
+@property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 
 @end

@@ -18,6 +18,7 @@
 + (NSString *) getApiLink:(NSString *)routeName;
 
 + (id) getCache:(NSString *)cacheName;
++ (void) removeCache:(NSString *)cacheName;
 + (void) setCache:(NSString *)cacheName value:(id)value;
 
 

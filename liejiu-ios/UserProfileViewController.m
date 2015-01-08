@@ -145,8 +145,10 @@
 
 - (void) loadTabContent
 {
-    NSString *cacheName = [NSString stringWithFormat:@"user-%@-%@", (NSString *)[self.userBasicInfo objectForKey:@"id"], tabType];
+    NSString *userID = (NSString *)[self.userBasicInfo objectForKey:@"id"];
+    NSString *cacheName = [NSString stringWithFormat:@"user-%@-%@", userID, tabType];
     dataList = (NSArray *)[AppSetting getCache:cacheName];
+    NSString *url = [NSString stringWithFormat:@"%@/%@", tabType, userID];
     
     if (dataList != nil || [dataList count] > 0)
     {
@@ -154,7 +156,7 @@
         return;
     }
     
-    [AppSetting httpGet:tabType parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+    [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
         if (success == YES)
         {
             // after check login, go to explore page

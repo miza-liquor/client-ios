@@ -36,7 +36,6 @@ static UIViewController *_currView = nil;
 }
 
 
-
 + (void) setCache:(NSString *)cacheName value:(__autoreleasing id)value
 {
     _cacheData = _cacheData == Nil ? [[NSMutableDictionary alloc] init] : _cacheData;
@@ -51,6 +50,11 @@ static UIViewController *_currView = nil;
     }
     
     return [_cacheData objectForKey:cacheName];
+}
+
++ (void) removeCache:(NSString *)cacheName
+{
+    [_cacheData removeObjectForKey:cacheName];
 }
 
 + (NSString *) getHostName

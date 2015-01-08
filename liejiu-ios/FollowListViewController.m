@@ -93,10 +93,11 @@
 {
     NSString *cacheName = [NSString stringWithFormat:@"user:%@-type:%@", userID, followType];
     NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
+    NSString *url = [NSString stringWithFormat:@"%@/%@", followType, userID];
     
     if (cache == Nil)
     {
-        [AppSetting httpGet:followType parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
             if (success == YES)
             {
                 userList = (NSArray *)[response objectForKey:@"data"];

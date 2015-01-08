@@ -8,6 +8,8 @@
 
 #import "MenuListViewController.h"
 #import "NewMenuViewController.h"
+#import "UserMenuTableViewCell.h"
+#import "AppSetting.h"
 
 @interface MenuListViewController ()
 
@@ -32,28 +34,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    menuList = @[
-                 @{@"name": @"酒单1"},
-                 @{@"name": @"酒单2"},
-                 @{@"name": @"酒单3"},
-                 @{@"name": @"酒单4"},
-                 @{@"name": @"酒单5"},
-                 @{@"name": @"酒单6"},
-                 @{@"name": @"酒单7"},
-                 @{@"name": @"酒单8"},
-                 @{@"name": @"酒单9"},
-                 @{@"name": @"酒单10"},
-                 @{@"name": @"酒单11"},
-                 @{@"name": @"酒单12"},
-                 @{@"name": @"酒单13"},
-                 @{@"name": @"酒单14"},
-                 @{@"name": @"酒单15"},
-                 @{@"name": @"酒单16"},
-                 @{@"name": @"酒单17"},
-                 @{@"name": @"酒单18"},
-                 @{@"name": @"酒单19"},
-                 @{@"name": @"酒单20"}
-                ];
+    menuList = @[];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self getData];
+}
+
+- (void) getData
+{
+    NSDictionary *userInfo = (NSDictionary *)[AppSetting getCache:@"userInfo"];
+    NSString *userID = (NSString *)[userInfo objectForKey:@"id"];
+    NSString *cacheName = [NSString stringWithFormat:@"user-%@-mymenu", userID];
+    NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
+    NSString *url = [NSString stringWithFormat:@"mymenu/%@", userID];
+    
+    if (cache == Nil)
+    {
+        [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            if (success == YES)
+            {
+                menuList = (NSArray *)[response objectForKey:@"data"];
+                [AppSetting setCache:cacheName value:menuList];
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        menuList = cache;
+        [self.tableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,22 +81,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"Cell";
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil)
+    static NSString *menuTableIdentifier = @"UserMenuTableViewCell";
+    UserMenuTableViewCell *menuCell = (UserMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:menuTableIdentifier];
+    if (menuCell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        NSArray *menuNib = [[NSBundle mainBundle] loadNibNamed:menuTableIdentifier owner:self options:nil];
+        menuCell = [menuNib objectAtIndex:0];
     }
     
-    NSDictionary *info = (NSDictionary *) [menuList objectAtIndex:indexPath.row];
-    cell.textLabel.text = [info objectForKey:@"name"];
-    
-    return cell;
+    [menuCell setUserMenu:[menuList objectAtIndex:indexPath.row]];
+    return menuCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 77;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
