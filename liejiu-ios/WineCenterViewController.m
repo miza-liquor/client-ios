@@ -10,6 +10,7 @@
 #import "WineCenterHeadTableViewCell.h"
 #import "WineCenterListTableViewCell.h"
 #import "WineDetailViewController.h"
+#import "MenuListViewController.h"
 #import "AppSetting.h"
 
 @interface WineCenterViewController ()
@@ -171,6 +172,10 @@
     {
         WineDetailViewController *vc = segue.destinationViewController;
         vc.basicInfo = selectedWine;
+    } else if ([segue.identifier isEqualToString:@"addToMenu"])
+    {
+        MenuListViewController *menuVC = segue.destinationViewController;
+        menuVC.wineInfo = selectedWine;
     }
 }
 

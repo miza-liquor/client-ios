@@ -67,6 +67,11 @@ static UIViewController *_currView = nil;
     return [NSString stringWithFormat:@"%@%@", _hostName, routeName];
 }
 
++ (void) navigateLoginPage
+{
+    
+}
+
 + (void) httpPost:(NSString *)route parameters:(NSDictionary *)parameters callback:(void (^)(BOOL, NSDictionary *, NSString *))callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -83,6 +88,10 @@ static UIViewController *_currView = nil;
         {
             callback(YES, response, msg);
         } else {
+            if (status == 412) {
+                [self navigateLoginPage];
+                return;
+            }
             callback(NO, response, msg);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -106,6 +115,10 @@ static UIViewController *_currView = nil;
         {
             callback(YES, response, msg);
         } else {
+            if (status == 412) {
+                [self navigateLoginPage];
+                return;
+            }
             callback(NO, response, msg);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -146,6 +159,10 @@ static UIViewController *_currView = nil;
     UIBarButtonItem *newRecordBtn = [[UIBarButtonItem alloc] initWithCustomView:addRecordView];
 
     [view setToolbarItems:[NSArray arrayWithObjects:exploreBtn, flexibleBtn, newRecordBtn, flexibleBtn, winelistBtn, nil]];
+    
+    [_currView.navigationController.toolbar setTintColor:[UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1]];
+    [_currView.navigationController.toolbar setBarTintColor:[UIColor whiteColor]];
+    [_currView.navigationController.toolbar setBarStyle:UIBarStyleBlackTranslucent];
 
     view.navigationController.toolbarHidden = NO;
 }

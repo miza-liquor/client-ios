@@ -12,6 +12,7 @@
 #import "UserProfileViewController.h"
 #import "WineTabBarTableViewCell.h"
 #import "WineDrinkUserTableViewCell.h"
+#import "MenuListViewController.h"
 #import "AppSetting.h"
 
 @interface WineDetailViewController ()
@@ -143,6 +144,13 @@
 - (void) onTagChanged: (NSString *) tabName
 {
     tabType = tabName;
+    if ([tabType isEqualToString: @"menu"])
+    {
+        MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
+        controller.wineInfo = self.basicInfo;
+        [self.navigationController pushViewController:controller animated:YES];
+        return;
+    }
     [self loadTabContent];
 }
 

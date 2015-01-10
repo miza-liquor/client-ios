@@ -37,21 +37,16 @@
     // Do any additional setup after loading the view.
     
     [AppSetting drawToolBar:self];
+    [AppSetting topBarStyleSetting: self];
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
     v.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:v];
-    
-    // record btn setting
-    UIButton *addRecordView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 68)];
-    [addRecordView setBackgroundImage:[UIImage imageNamed:@"btn_new_record"] forState:UIControlStateNormal];
-    [self.btnNewRecord setCustomView: addRecordView];
 
     if ([self.mm_drawerController.centerViewController.restorationIdentifier isEqualToString:@"storyList"])
     {
-        UIBarButtonItem *drawerBtn = [[UIBarButtonItem alloc] initWithTitle:@"抽屉" style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
+        UIBarButtonItem *drawerBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_drawer"] style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
         self.navigationItem.leftBarButtonItem = drawerBtn;
-
     }
     
     NSArray *cache = (NSArray *)[AppSetting getCache:@"topStory"];

@@ -18,7 +18,12 @@
 @implementation MenuListViewController
 {
     NSArray *menuList;
+    UIAlertView *addConfirmAlert;
+    NSDictionary *selectedMenuInfo;
+    BOOL addSuccess;
 }
+
+@synthesize wineInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,10 +40,18 @@
     // Do any additional setup after loading the view.
     
     menuList = @[];
+    
+    addSuccess = NO;
+    addConfirmAlert = [[UIAlertView alloc] initWithTitle:@"确认添加该酒到所选的酒单吗？"
+                                            message:nil
+                                           delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  otherButtonTitles:@"确认", nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    addSuccess = NO;
     [self getData];
 }
 
@@ -100,7 +113,8 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    selectedMenuInfo = (NSDictionary *)[menuList objectAtIndex:indexPath.row];
+    [addConfirmAlert show];
 }
 
 #pragma mark - new menu delegate
@@ -116,5 +130,39 @@
         NewMenuViewController *categoryView = segue.destinationViewController;
         categoryView.delegate = self;
     }
+}
+
+#pragma mark - Alert view delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        return;
+        
+    }
+    
+    if (addSuccess)
+    {
+        [addConfirmAlert setHidden:YES];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    NSDictionary *params = @{
+                             @"wine_id": (NSString *)[wineInfo objectForKey:@"id"],
+                             @"menu_id": (NSString *)[selectedMenuInfo objectForKey:@"id"]
+                            };
+    
+    [AppSetting httpPost:@"add/wine/menu" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success == YES)
+        {
+            addSuccess = YES;
+            [addConfirmAlert setTitle:@"添加成功"];
+        } else {
+            addSuccess = NO;
+            [addConfirmAlert setTitle:msg];
+        }
+        [addConfirmAlert show];
+    }];
 }
 @end

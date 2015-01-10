@@ -17,7 +17,6 @@
 @interface UserRecommHeadTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UITextField *searchBox;
 @property (weak, nonatomic) IBOutlet UIButton *searchBtn;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *switcher;
 - (IBAction)clickOnSearchBtn:(id)sender;
 
 @property (nonatomic, weak) id <UserRecommHeadTableViewCellDelegate> delegate;

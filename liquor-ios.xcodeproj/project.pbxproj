@@ -129,6 +129,7 @@
 		B6ABB3331A19F2CD0007B51C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32A1A19F2CD0007B51C /* Default-568h@2x.png */; };
 		B6ABB3341A19F2CD0007B51C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32B1A19F2CD0007B51C /* Default.png */; };
 		B6ABB3351A19F2CD0007B51C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6ABB32C1A19F2CD0007B51C /* Default@2x.png */; };
+		B6BA8ADD1A612BE2007DA1B9 /* UserMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BA8ADC1A612BE2007DA1B9 /* UserMsgViewController.m */; };
 		B6DA01C21A494F69007E6088 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B6DA01BD1A494F69007E6088 /* mapapi.bundle */; };
 		B6DA01C31A494F69007E6088 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DA01BF1A494F69007E6088 /* libbaidumapapi.a */; };
 		B6DA01C41A494F69007E6088 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DA01C11A494F69007E6088 /* libbaidumapapi.a */; };
@@ -384,6 +385,8 @@
 		B6ABB32A1A19F2CD0007B51C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "resource/Default-568h@2x.png"; sourceTree = "<group>"; };
 		B6ABB32B1A19F2CD0007B51C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = resource/Default.png; sourceTree = "<group>"; };
 		B6ABB32C1A19F2CD0007B51C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "resource/Default@2x.png"; sourceTree = "<group>"; };
+		B6BA8ADB1A612BE2007DA1B9 /* UserMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMsgViewController.h; sourceTree = "<group>"; };
+		B6BA8ADC1A612BE2007DA1B9 /* UserMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMsgViewController.m; sourceTree = "<group>"; };
 		B6DA01801A494F69007E6088 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		B6DA01811A494F69007E6088 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		B6DA01821A494F69007E6088 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -869,6 +872,8 @@
 				B6666CA51A2211E700F446A7 /* WineCenterViewController.m */,
 				B6223AD11A1CD729009BAC53 /* UserProfileViewController.h */,
 				B6223AD21A1CD729009BAC53 /* UserProfileViewController.m */,
+				B6BA8ADB1A612BE2007DA1B9 /* UserMsgViewController.h */,
+				B6BA8ADC1A612BE2007DA1B9 /* UserMsgViewController.m */,
 				B64645F21A1B6FC40035F208 /* TopStoryListViewController.h */,
 				B64645F31A1B6FC40035F208 /* TopStoryListViewController.m */,
 				B6223AC01A1CADFF009BAC53 /* AddFriendViewController.h */,
@@ -1312,6 +1317,7 @@
 				B65D1D0D1A1B124D0000F6F1 /* TopMenuTableViewCell.m in Sources */,
 				B6223ABF1A1CAC67009BAC53 /* HelpViewController.m in Sources */,
 				B62EBD8E1A1A393600BFED0B /* TopImageTableViewCell.m in Sources */,
+				B6BA8ADD1A612BE2007DA1B9 /* UserMsgViewController.m in Sources */,
 				B61C2C761A5987F600742743 /* ResetPwdViewController.m in Sources */,
 				B6223ABC1A1C9733009BAC53 /* FeedbackViewController.m in Sources */,
 				B646460F1A1B87120035F208 /* TopWineCategoryViewController.m in Sources */,

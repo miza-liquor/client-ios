@@ -56,7 +56,7 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [wines count];
+    return [wines count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -86,7 +86,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    NSDictionary *info = (NSDictionary *)[wines objectAtIndex:indexPath.row];
+    NSDictionary *info = (NSDictionary *)[wines objectAtIndex:indexPath.row - 1];
     [cell setWineData:info];
     
     return cell;
@@ -117,6 +117,8 @@
 - (void) topWineCategoryChanged:(NSDictionary *)info
 {
     category = info;
+    wines = @[];
+    [self.tableView reloadData];
     [self getData];
 }
 

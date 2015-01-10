@@ -630,7 +630,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="排行榜" id="h3f-O3-YvE">
-                        <barButtonItem key="rightBarButtonItem" title="其他排行榜" id="SXm-TR-GQf">
+                        <barButtonItem key="rightBarButtonItem" image="btn_more.png" id="SXm-TR-GQf">
                             <connections>
                                 <segue destination="AfU-wJ-POj" kind="push" identifier="allCategory" id="6f6-7t-43A"/>
                             </connections>
@@ -816,10 +816,10 @@
             </objects>
             <point key="canvasLocation" x="4455" y="-6694"/>
         </scene>
-        <!--View Controller - 消息-->
+        <!--User Msg View Controller - 消息-->
         <scene sceneID="htW-Zn-4KY">
             <objects>
-                <viewController id="Ltu-J6-ccn" sceneMemberID="viewController">
+                <viewController id="Ltu-J6-ccn" customClass="UserMsgViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zbD-eM-zJm"/>
                         <viewControllerLayoutGuide type="bottom" id="Caz-aO-ZzK"/>
@@ -895,7 +895,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0J-VP-qcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7356" y="-5293"/>
+            <point key="canvasLocation" x="8416" y="-5273"/>
         </scene>
         <!--Protocol View Controller - 平台协议-->
         <scene sceneID="ncL-bC-6Q2">
@@ -1104,7 +1104,7 @@
         <!--Menu List View Controller - 添加到酒单-->
         <scene sceneID="KIE-wn-93C">
             <objects>
-                <viewController id="eFs-g9-mNc" customClass="MenuListViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="myMenuList" storyboardIdentifier="myMenuList" id="eFs-g9-mNc" customClass="MenuListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tAy-rR-kov"/>
                         <viewControllerLayoutGuide type="bottom" id="CPL-S5-v1i"/>
@@ -1952,10 +1952,10 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="DFI-es-gY2">
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="DFI-es-gY2">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="NO"/>
@@ -2015,16 +2015,20 @@
                 <navigationController restorationIdentifier="storyList" storyboardIdentifier="storyList" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="jla-fd-p3W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TMi-gj-Mfv"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hvO-WI-zdQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="RiV-nF-mgf">
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="RiV-nF-mgf">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </toolbar>
                     <connections>
                         <segue destination="uMJ-n7-RBO" kind="relationship" relationship="rootViewController" id="msi-vg-0GB"/>
@@ -2164,11 +2168,11 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="krQ-if-Ocv"/>
-        <segue reference="rKM-p7-TRC"/>
+        <segue reference="ZeE-Jf-56d"/>
         <segue reference="7rA-qI-T4L"/>
-        <segue reference="msi-vg-0GB"/>
         <segue reference="Hh5-PE-MFt"/>
         <segue reference="Gej-oV-mS2"/>
         <segue reference="lWQ-mV-hli"/>
+        <segue reference="msi-vg-0GB"/>
     </inferredMetricsTieBreakers>
 </document>
