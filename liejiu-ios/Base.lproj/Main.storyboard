@@ -923,7 +923,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="AsD-9Q-LuH"/>
+                    <navigationItem key="navigationItem" id="AsD-9Q-LuH">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Els-oV-LLV">
+                            <connections>
+                                <action selector="onClickRefrehBtn:" destination="730-Ef-S8X" id="ki0-m9-hCC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZQ-9W-zwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

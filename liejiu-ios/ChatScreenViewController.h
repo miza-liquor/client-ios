@@ -12,5 +12,6 @@
 @interface ChatScreenViewController : BORChatRoom
 
 @property (nonatomic) NSDictionary *userInfo;
+- (IBAction)onClickRefrehBtn:(id)sender;
 
 @end

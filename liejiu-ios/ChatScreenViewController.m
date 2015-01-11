@@ -17,7 +17,8 @@
 @implementation ChatScreenViewController
 {
     NSDictionary *owner;
-    NSString *owner_id;
+    NSString *ownerID;
+    NSString *lastChatID;
 }
 
 
@@ -38,7 +39,8 @@
     // Do any additional setup after loading the view.
     
     owner = [AppSetting getCache:@"userInfo"];
-    owner_id = (NSString *)[owner objectForKey:@"id"];
+    ownerID = (NSString *)[owner objectForKey:@"id"];
+    lastChatID = @"0";
     
     self.title = (NSString *)[userInfo objectForKey:@"nickname"];
     [self loadMsgData];
@@ -46,7 +48,7 @@
 
 - (void) loadMsgData
 {
-    NSString *url = [NSString stringWithFormat:@"msg/list/%@", (NSString*)[userInfo objectForKey:@"id"]];
+    NSString *url = [NSString stringWithFormat:@"msg/list/%@?last_id=%@", (NSString*)[userInfo objectForKey:@"id"], lastChatID];
     NSDictionary* params = @{};
     [AppSetting httpGet:url parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
         if (success == YES)
@@ -61,16 +63,17 @@
 
 - (void) renderMsgBox: (NSArray *)data
 {
-    for (NSInteger i = 0, l = [data count]; i < l; i++) {
+    for (NSInteger i = [data count] - 1; i >= 0; i--) {
         NSDictionary *chat = (NSDictionary *)[data objectAtIndex:i];
         NSString *posterID = (NSString *)[chat objectForKey:@"poster_id"];
         id <BORChatMessage> message = [[BORChatMessage alloc] init];
         
         message.text = (NSString*)[chat objectForKey:@"content"];
-        message.sentByCurrentUser = [posterID isEqualToString:owner_id];
+        message.sentByCurrentUser = [posterID isEqualToString:ownerID];
         NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
         [dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSDate *date = [dateFormater dateFromString: (NSString *)[chat objectForKey:@"created_at"]];
+        lastChatID = (NSString *)[chat objectForKey:@"id"];
         
         message.date = date;
         [self addMessage:message scrollToMessage:YES];
@@ -84,11 +87,32 @@
 }
 
 - (void)sendMessage {
-    id <BORChatMessage> message = [[BORChatMessage alloc] init];
-    message.text = self.messageTextView.text;
-    message.sentByCurrentUser = YES;
-    message.date = [NSDate date];
-    [self addMessage:message scrollToMessage:YES];
+//    id <BORChatMessage> message = [[BORChatMessage alloc] init];
+//    message.text = self.messageTextView.text;
+//    message.sentByCurrentUser = YES;
+//    message.date = [NSDate date];
+//    [self addMessage:message scrollToMessage:YES];
+    
+    NSDictionary *params = @{
+                                @"recipient_id": (NSString *)[userInfo objectForKey:@"id"],
+                                @"content":self.messageTextView.text,
+                                @"last_id": lastChatID
+                            };
+    [AppSetting httpPost:@"post/msg" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success == YES)
+        {
+            NSArray *dataList = (NSArray *)[response objectForKey:@"data"];
+            [self renderMsgBox:dataList];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:msg
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
+    
     [super sendMessage];
 }
 /*
@@ -102,4 +126,8 @@
 }
 */
 
+- (IBAction)onClickRefrehBtn:(id)sender
+{
+    [self loadMsgData];
+}
 @end
