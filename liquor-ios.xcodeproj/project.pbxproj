@@ -74,6 +74,17 @@
 		B623EC491A284C0200AAF5BF /* AppSetting.mm in Sources */ = {isa = PBXBuildFile; fileRef = B623EC481A284C0200AAF5BF /* AppSetting.mm */; };
 		B62EBD8E1A1A393600BFED0B /* TopImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B62EBD8C1A1A393600BFED0B /* TopImageTableViewCell.m */; };
 		B62EBD8F1A1A393600BFED0B /* TopImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B62EBD8D1A1A393600BFED0B /* TopImageTableViewCell.xib */; };
+		B634C1A71A6253BF00A0AFB3 /* MsgTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B634C1A51A6253BF00A0AFB3 /* MsgTypeTableViewCell.m */; };
+		B634C1A81A6253BF00A0AFB3 /* MsgTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B634C1A61A6253BF00A0AFB3 /* MsgTypeTableViewCell.xib */; };
+		B634C1AF1A6256FD00A0AFB3 /* Icon_love_list@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1A91A6256FD00A0AFB3 /* Icon_love_list@3x.png */; };
+		B634C1B01A6256FD00A0AFB3 /* Icon_update@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1AA1A6256FD00A0AFB3 /* Icon_update@3x.png */; };
+		B634C1B11A6256FD00A0AFB3 /* Icon_update@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1AB1A6256FD00A0AFB3 /* Icon_update@2x.png */; };
+		B634C1B21A6256FD00A0AFB3 /* Icon_love_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1AC1A6256FD00A0AFB3 /* Icon_love_list@2x.png */; };
+		B634C1B31A6256FD00A0AFB3 /* Icon_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1AD1A6256FD00A0AFB3 /* Icon_comment@2x.png */; };
+		B634C1B41A6256FD00A0AFB3 /* Icon_comment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B634C1AE1A6256FD00A0AFB3 /* Icon_comment@3x.png */; };
+		B634C1B81A6257AC00A0AFB3 /* MsgChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B634C1B61A6257AC00A0AFB3 /* MsgChatTableViewCell.m */; };
+		B634C1B91A6257AC00A0AFB3 /* MsgChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B634C1B71A6257AC00A0AFB3 /* MsgChatTableViewCell.xib */; };
+		B634C1BC1A62750F00A0AFB3 /* ChatScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B634C1BB1A62750F00A0AFB3 /* ChatScreenViewController.m */; };
 		B63D5FD71A1F4B26003A2600 /* FollowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B63D5FD61A1F4B26003A2600 /* FollowListViewController.m */; };
 		B63D5FDB1A20549B003A2600 /* UserDrinkLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B63D5FD91A20549B003A2600 /* UserDrinkLikeTableViewCell.m */; };
 		B63D5FDC1A20549B003A2600 /* UserDrinkLikeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B63D5FDA1A20549B003A2600 /* UserDrinkLikeTableViewCell.xib */; };
@@ -305,6 +316,20 @@
 		B62EBD8B1A1A393600BFED0B /* TopImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopImageTableViewCell.h; sourceTree = "<group>"; };
 		B62EBD8C1A1A393600BFED0B /* TopImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopImageTableViewCell.m; sourceTree = "<group>"; };
 		B62EBD8D1A1A393600BFED0B /* TopImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopImageTableViewCell.xib; sourceTree = "<group>"; };
+		B634C1A41A6253BF00A0AFB3 /* MsgTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTypeTableViewCell.h; sourceTree = "<group>"; };
+		B634C1A51A6253BF00A0AFB3 /* MsgTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTypeTableViewCell.m; sourceTree = "<group>"; };
+		B634C1A61A6253BF00A0AFB3 /* MsgTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgTypeTableViewCell.xib; sourceTree = "<group>"; };
+		B634C1A91A6256FD00A0AFB3 /* Icon_love_list@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_love_list@3x.png"; path = "resource/Icon_love_list@3x.png"; sourceTree = "<group>"; };
+		B634C1AA1A6256FD00A0AFB3 /* Icon_update@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_update@3x.png"; path = "resource/Icon_update@3x.png"; sourceTree = "<group>"; };
+		B634C1AB1A6256FD00A0AFB3 /* Icon_update@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_update@2x.png"; path = "resource/Icon_update@2x.png"; sourceTree = "<group>"; };
+		B634C1AC1A6256FD00A0AFB3 /* Icon_love_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_love_list@2x.png"; path = "resource/Icon_love_list@2x.png"; sourceTree = "<group>"; };
+		B634C1AD1A6256FD00A0AFB3 /* Icon_comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_comment@2x.png"; path = "resource/Icon_comment@2x.png"; sourceTree = "<group>"; };
+		B634C1AE1A6256FD00A0AFB3 /* Icon_comment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon_comment@3x.png"; path = "resource/Icon_comment@3x.png"; sourceTree = "<group>"; };
+		B634C1B51A6257AC00A0AFB3 /* MsgChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatTableViewCell.h; sourceTree = "<group>"; };
+		B634C1B61A6257AC00A0AFB3 /* MsgChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatTableViewCell.m; sourceTree = "<group>"; };
+		B634C1B71A6257AC00A0AFB3 /* MsgChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatTableViewCell.xib; sourceTree = "<group>"; };
+		B634C1BA1A62750F00A0AFB3 /* ChatScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatScreenViewController.h; sourceTree = "<group>"; };
+		B634C1BB1A62750F00A0AFB3 /* ChatScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatScreenViewController.m; sourceTree = "<group>"; };
 		B63D5FD51A1F4B26003A2600 /* FollowListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowListViewController.h; sourceTree = "<group>"; };
 		B63D5FD61A1F4B26003A2600 /* FollowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowListViewController.m; sourceTree = "<group>"; };
 		B63D5FD81A20549B003A2600 /* UserDrinkLikeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDrinkLikeTableViewCell.h; sourceTree = "<group>"; };
@@ -591,6 +616,12 @@
 		B62EBD811A1A341D00BFED0B /* subview */ = {
 			isa = PBXGroup;
 			children = (
+				B634C1A41A6253BF00A0AFB3 /* MsgTypeTableViewCell.h */,
+				B634C1A51A6253BF00A0AFB3 /* MsgTypeTableViewCell.m */,
+				B634C1A61A6253BF00A0AFB3 /* MsgTypeTableViewCell.xib */,
+				B634C1B51A6257AC00A0AFB3 /* MsgChatTableViewCell.h */,
+				B634C1B61A6257AC00A0AFB3 /* MsgChatTableViewCell.m */,
+				B634C1B71A6257AC00A0AFB3 /* MsgChatTableViewCell.xib */,
 				B62EBD8B1A1A393600BFED0B /* TopImageTableViewCell.h */,
 				B62EBD8C1A1A393600BFED0B /* TopImageTableViewCell.m */,
 				B62EBD8D1A1A393600BFED0B /* TopImageTableViewCell.xib */,
@@ -700,6 +731,8 @@
 				B61C2C721A5987D100742743 /* MailCheckViewController.m */,
 				B61C2C741A5987F600742743 /* ResetPwdViewController.h */,
 				B61C2C751A5987F600742743 /* ResetPwdViewController.m */,
+				B634C1BA1A62750F00A0AFB3 /* ChatScreenViewController.h */,
+				B634C1BB1A62750F00A0AFB3 /* ChatScreenViewController.m */,
 			);
 			name = subScreen;
 			sourceTree = "<group>";
@@ -973,6 +1006,12 @@
 				B61DAD201A3859250065D09C /* icon_following@3x.png */,
 				B61DAD211A3859250065D09C /* icon_my_like@2x.png */,
 				B61DAD221A3859250065D09C /* icon_my_like@3x.png */,
+				B634C1A91A6256FD00A0AFB3 /* Icon_love_list@3x.png */,
+				B634C1AA1A6256FD00A0AFB3 /* Icon_update@3x.png */,
+				B634C1AB1A6256FD00A0AFB3 /* Icon_update@2x.png */,
+				B634C1AC1A6256FD00A0AFB3 /* Icon_love_list@2x.png */,
+				B634C1AD1A6256FD00A0AFB3 /* Icon_comment@2x.png */,
+				B634C1AE1A6256FD00A0AFB3 /* Icon_comment@3x.png */,
 				B623EC411A276BB800AAF5BF /* bg_navbar.png */,
 				B623EC421A276BB800AAF5BF /* bg_navbar@2x.png */,
 				B623EC431A276BB800AAF5BF /* bg_navbar@3x.png */,
@@ -1115,6 +1154,7 @@
 				B658D5C41A41AE370069519A /* btn_share@3x.png in Resources */,
 				B658D5C31A41AE370069519A /* btn_share@2x.png in Resources */,
 				B63D5FE11A205546003A2600 /* UserMenuTableViewCell.xib in Resources */,
+				B634C1B21A6256FD00A0AFB3 /* Icon_love_list@2x.png in Resources */,
 				B6F286F81A2DF9D5009873B3 /* btn_new_record@3x.png in Resources */,
 				B6223ACC1A1CB149009BAC53 /* UserFromContactTableViewCell.xib in Resources */,
 				B6ABB3351A19F2CD0007B51C /* Default@2x.png in Resources */,
@@ -1147,10 +1187,12 @@
 				B623EC3A1A27610800AAF5BF /* btn_top_story@3x.png in Resources */,
 				B6F286F91A2DF9D5009873B3 /* btn_search@2x.png in Resources */,
 				B64645EE1A1B6CBA0035F208 /* TopStoryTableViewCell.xib in Resources */,
+				B634C1B91A6257AC00A0AFB3 /* MsgChatTableViewCell.xib in Resources */,
 				B6223AD81A1CDD6D009BAC53 /* UserProfileInfoTableViewCell.xib in Resources */,
 				B6A034951A5823D900E606B3 /* bg_top_user_week@2x.png in Resources */,
 				B64646071A1B7D820035F208 /* TopWineTableViewCell.xib in Resources */,
 				B6F286FC1A2DF9D5009873B3 /* btn_winelist@3x.png in Resources */,
+				B634C1AF1A6256FD00A0AFB3 /* Icon_love_list@3x.png in Resources */,
 				B623EC441A276BB800AAF5BF /* bg_navbar.png in Resources */,
 				B61DAD131A3858D00065D09C /* bg_user_profile@2x.png in Resources */,
 				B63D5FE61A20620A003A2600 /* FollowUserListTableViewCell.xib in Resources */,
@@ -1160,8 +1202,10 @@
 				B61DAD0A1A382B020065D09C /* bg_top_drawer@2x.png in Resources */,
 				B61DAD141A3858D00065D09C /* bg_user_profile@3x.png in Resources */,
 				B61DACF91A37F9450065D09C /* icon_new_friend@3x.png in Resources */,
+				B634C1B01A6256FD00A0AFB3 /* Icon_update@3x.png in Resources */,
 				B6DF27131A1493F80046629F /* Images.xcassets in Resources */,
 				B623EC371A27610800AAF5BF /* btn_top_bar@3x.png in Resources */,
+				B634C1B31A6256FD00A0AFB3 /* Icon_comment@2x.png in Resources */,
 				B6666CAB1A22126200F446A7 /* WineCenterListTableViewCell.xib in Resources */,
 				B6F286F61A2DF9D5009873B3 /* btn_explore@3x.png in Resources */,
 				B6223AC71A1CB134009BAC53 /* UserFromRecommandTableViewCell.xib in Resources */,
@@ -1171,8 +1215,10 @@
 				B6ABB3331A19F2CD0007B51C /* Default-568h@2x.png in Resources */,
 				B6F286FE1A2DF9D5009873B3 /* icon_like@3x.png in Resources */,
 				B6A034941A5823D900E606B3 /* bg_top_user_all@3x.png in Resources */,
+				B634C1A81A6253BF00A0AFB3 /* MsgTypeTableViewCell.xib in Resources */,
 				B6DD367C1A305A9700C6FBE9 /* icon_location@2x.png in Resources */,
 				B61DACFE1A37F9450065D09C /* icon_user_home@2x.png in Resources */,
+				B634C1B41A6256FD00A0AFB3 /* Icon_comment@3x.png in Resources */,
 				B6F286CA1A2DAA36009873B3 /* Icon-60@2x.png in Resources */,
 				B61DAD0B1A382B020065D09C /* bg_top_drawer@3x.png in Resources */,
 				B6E95BBC1A5BC83500EE4B44 /* WineCreatorTableViewCell.xib in Resources */,
@@ -1185,6 +1231,7 @@
 				B6E95BB71A5BB3C800EE4B44 /* WineDetaiHeadTableViewCell.xib in Resources */,
 				B6DF270E1A1493F80046629F /* Main.storyboard in Resources */,
 				B6ABB3341A19F2CD0007B51C /* Default.png in Resources */,
+				B634C1B11A6256FD00A0AFB3 /* Icon_update@2x.png in Resources */,
 				B61DAD1B1A38590F0065D09C /* btn_user_setting@2x.png in Resources */,
 				B65D1D0E1A1B124D0000F6F1 /* TopMenuTableViewCell.xib in Resources */,
 				B6153B4B1A5BF2CE00E67B41 /* WineTabBarTableViewCell.xib in Resources */,
@@ -1290,6 +1337,8 @@
 				B61C2C731A5987D100742743 /* MailCheckViewController.m in Sources */,
 				B6223AC61A1CB134009BAC53 /* UserFromRecommandTableViewCell.m in Sources */,
 				B6DF275E1A14EDF60046629F /* ExploreNoAuthViewController.m in Sources */,
+				B634C1A71A6253BF00A0AFB3 /* MsgTypeTableViewCell.m in Sources */,
+				B634C1B81A6257AC00A0AFB3 /* MsgChatTableViewCell.m in Sources */,
 				B6DF27631A14EE5F0046629F /* LoginViewController.m in Sources */,
 				B6153B4A1A5BF2CE00E67B41 /* WineTabBarTableViewCell.m in Sources */,
 				B64645F41A1B6FC40035F208 /* TopStoryListViewController.m in Sources */,
@@ -1313,6 +1362,7 @@
 				B6F286DA1A2DCC87009873B3 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				B6F286DC1A2DCC87009873B3 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				B6DF27071A1493F80046629F /* main.m in Sources */,
+				B634C1BC1A62750F00A0AFB3 /* ChatScreenViewController.m in Sources */,
 				B64645FA1A1B73CA0035F208 /* TopUserListViewController.m in Sources */,
 				B65D1D0D1A1B124D0000F6F1 /* TopMenuTableViewCell.m in Sources */,
 				B6223ABF1A1CAC67009BAC53 /* HelpViewController.m in Sources */,

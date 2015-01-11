@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
 
-@interface UserMsgViewController : UIViewController
+@interface UserMsgViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

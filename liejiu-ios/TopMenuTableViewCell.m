@@ -51,7 +51,7 @@
     NSString *userNameText =(NSString *)[data objectForKey:@"creator_name"];
     self.userName.text = [NSString stringWithFormat:@"%@ 的酒单", userNameText];
     self.menuName.text = (NSString *)[data objectForKey:@"menu_name"];
-    [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"creator_image"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
+    [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"creator_image"]] placeholderImage:[UIImage imageNamed:@"Icon-60.png"]];
     self.likeNum.text = [NSString stringWithFormat:@"%d", [[data objectForKey:@"like_num"] intValue]];
     int liked = [[data objectForKey:@"liked"] intValue];
     NSString *likeImageName = liked == 0 ? @"icon_like" : @"icon_liked";

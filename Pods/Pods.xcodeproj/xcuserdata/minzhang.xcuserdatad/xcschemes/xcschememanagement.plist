@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-BORChat.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DBDynamicHeightTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>419F9BDD0BFD4E15F80719A2</key>
+		<key>3700DD9A93E74F03737FDB4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>457E372FB13106F3788FF7FA</key>
+		<key>42DE0502B2EC6848F3F05C42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67073D0F4B27720BC5BC46D5</key>
+		<key>4463A0D8825218F71E2CD0F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80EE74B2DF9ACCC79F134F0A</key>
+		<key>5BEDCD7966E472BC2EEB44DA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B07ED2023C5635827D563847</key>
+		<key>A53155981966EDE7284C4729</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C87D844E46117FB3BA81D603</key>
+		<key>CA77F1E5DA6AC6498E1C101C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C957FC99CDD4DC0147FA7807</key>
+		<key>D2A1CE76B05C010B65C46C8D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC835E7D345B65FCBF4BB58A</key>
+		<key>D78E5FF7370883AAB151A7B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDB4A5C36151EB450479932E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

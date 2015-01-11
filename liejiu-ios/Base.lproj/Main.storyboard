@@ -827,13 +827,26 @@
                     <view key="view" contentMode="scaleToFill" id="rfb-P9-xqd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kv7-jl-ZlJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ltu-J6-ccn" id="Dix-rh-l1U"/>
+                                    <outlet property="delegate" destination="Ltu-J6-ccn" id="DFM-3P-syb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="消息" id="Sag-lv-dEE"/>
                     <connections>
+                        <outlet property="tableView" destination="kv7-jl-ZlJ" id="QbP-RE-dRg"/>
                         <segue destination="DCm-4u-KLY" kind="push" id="tYn-LG-2Yw"/>
                         <segue destination="vTe-XG-rCm" kind="push" id="Z54-gP-qHo"/>
                         <segue destination="EI6-St-t23" kind="push" id="tYz-hB-kJB"/>
+                        <segue destination="730-Ef-S8X" kind="push" identifier="chat" id="tNd-oB-wB0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rny-ko-eSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -896,6 +909,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0J-VP-qcn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8416" y="-5273"/>
+        </scene>
+        <!--Chat Screen View Controller-->
+        <scene sceneID="Ywh-Vn-EQa">
+            <objects>
+                <viewController id="730-Ef-S8X" customClass="ChatScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jcl-Ye-boX"/>
+                        <viewControllerLayoutGuide type="bottom" id="j2Z-xO-5Rt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LUW-Q4-aRC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="AsD-9Q-LuH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZQ-9W-zwB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8416" y="-4574"/>
         </scene>
         <!--Protocol View Controller - 平台协议-->
         <scene sceneID="ncL-bC-6Q2">

@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BORChat (0.1.0)
   - DBDynamicHeightTableCell (0.1.0)
   - KDCycleBannerView (1.0):
     - SDWebImage
@@ -43,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 2.5.0)
+  - BORChat
   - DBDynamicHeightTableCell (~> 0.1)
   - KDCycleBannerView (= 1.0)
   - MMDrawerController (= 0.5.7)
@@ -52,6 +54,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  BORChat: af92df982e6e6d9b8fd27ec21aaf0a309f2e05a8
   DBDynamicHeightTableCell: 84be6d85b02e5d9b651b71db6bdbe157c61c0263
   KDCycleBannerView: 230e6c20f151276ed92e9233433a0c830c78cf91
   MMDrawerController: c3ab7a318ddc7e2bcd133139c3161af08c6e1197

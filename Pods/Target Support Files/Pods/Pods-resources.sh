@@ -43,7 +43,12 @@ install_resource()
       ;;
   esac
 }
-          install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGCameraAuthorizationViewController.xib"
+          install_resource "BORChat/Resources/othersLastMessageBubble@2x.png"
+                    install_resource "BORChat/Resources/othersMessageBubble@2x.png"
+                    install_resource "BORChat/Resources/usersLastMessageBubble@2x.png"
+                    install_resource "BORChat/Resources/usersMessageBubble@2x.png"
+                    install_resource "BORChat/Resources/Chat.xcassets"
+                    install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGCameraAuthorizationViewController.xib"
                     install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGCameraViewController.xib"
                     install_resource "TGCameraViewController/TGCameraViewController/View/Base.lproj/TGPhotoViewController.xib"
                     install_resource "TGCameraViewController/TGCameraViewController/View/de.lproj/TGCameraAuthorizationViewController.strings"
