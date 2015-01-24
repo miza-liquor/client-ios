@@ -9,6 +9,7 @@
 #import "TGCamera.h"
 #import "TGCameraViewController.h"
 #import "NewRecordViewController.h"
+#import "NewRecordDetailViewController.h"
 
 @interface NewRecordViewController () <TGCameraDelegate>
 
@@ -98,12 +99,21 @@
 
 - (void) confirmSelect:(id) sender
 {
+    [self performSegueWithIdentifier:@"recordDesc" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"recordDesc"])
+    {
+        NewRecordDetailViewController *vc = segue.destinationViewController;
+        vc.previewImage = self.previewImageView.image;
+    }
 }
 
 - (void) setPhoto:(UIImage *)image
 {
-    [self.previewImageBtn setTitle:@"" forState:UIControlStateNormal];
-    [self.previewImageBtn setBackgroundImage:image forState:UIControlStateNormal];
+    self.previewImageView.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
     barItemSelectPhoto.title = @"重新选择照片";
     barItemConfirm.title = @"确认，下一步";

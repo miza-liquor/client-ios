@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NewRecordViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *previewImageBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
 - (IBAction)clickOnPreviewBtn:(id)sender;
 
 

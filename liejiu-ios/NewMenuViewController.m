@@ -32,11 +32,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.menuName.layer.borderColor = UIColor.grayColor.CGColor;
+    struct CGColor *borderColor = [UIColor colorWithRed:194.0/255.0 green:194.0/255.0 blue:194.0/255.0 alpha:1].CGColor;
+    
+    self.menuName.layer.borderColor = borderColor;
     self.menuName.layer.borderWidth = 1;
     self.menuName.layer.cornerRadius = 1;
     
-    self.menuDesc.layer.borderColor = UIColor.grayColor.CGColor;
+    self.menuDesc.layer.borderColor = borderColor;
     self.menuDesc.layer.borderWidth = 1;
     self.menuDesc.layer.cornerRadius = 1;
     self.menuDesc.layer.masksToBounds = YES;
