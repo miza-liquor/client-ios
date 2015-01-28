@@ -1364,16 +1364,30 @@
             </objects>
             <point key="canvasLocation" x="4459" y="-994"/>
         </scene>
-        <!--View Controller - 搜索-->
+        <!--Search View Controller - 搜索-->
         <scene sceneID="A0h-de-CzG">
             <objects>
-                <viewController id="MZ4-e6-6Io" sceneMemberID="viewController">
+                <viewController id="MZ4-e6-6Io" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raJ-uj-d96">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lAl-kZ-T1p">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="MZ4-e6-6Io" id="HvO-eR-TIw"/>
+                                    <outlet property="delegate" destination="MZ4-e6-6Io" id="izh-IU-GnB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="搜索" id="4Dm-om-akt"/>
+                    <connections>
+                        <outlet property="tableView" destination="lAl-kZ-T1p" id="0BW-Jn-9ez"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtR-Q5-bHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

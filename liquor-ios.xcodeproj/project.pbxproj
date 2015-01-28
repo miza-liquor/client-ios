@@ -150,6 +150,9 @@
 		B6DA01C81A49501C007E6088 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DA01C71A49501C007E6088 /* OpenGLES.framework */; };
 		B6DA01CA1A495023007E6088 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DA01C91A495023007E6088 /* SystemConfiguration.framework */; };
 		B6DA01CC1A49502A007E6088 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6DA01CB1A49502A007E6088 /* Security.framework */; };
+		B6DBFDDE1A77AE7800F8DD32 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBFDDD1A77AE7800F8DD32 /* SearchViewController.m */; };
+		B6DBFDE21A77AEBC00F8DD32 /* SearchHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DBFDE01A77AEBC00F8DD32 /* SearchHeaderTableViewCell.m */; };
+		B6DBFDE31A77AEBC00F8DD32 /* SearchHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6DBFDE11A77AEBC00F8DD32 /* SearchHeaderTableViewCell.xib */; };
 		B6DD367C1A305A9700C6FBE9 /* icon_location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DD367A1A305A9700C6FBE9 /* icon_location@2x.png */; };
 		B6DD367D1A305A9700C6FBE9 /* icon_location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DD367B1A305A9700C6FBE9 /* icon_location@3x.png */; };
 		B6DD36801A305AA200C6FBE9 /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6DD367E1A305AA200C6FBE9 /* btn_back@2x.png */; };
@@ -486,6 +489,11 @@
 		B6DA01C71A49501C007E6088 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		B6DA01C91A495023007E6088 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B6DA01CB1A49502A007E6088 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B6DBFDDC1A77AE7800F8DD32 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		B6DBFDDD1A77AE7800F8DD32 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		B6DBFDDF1A77AEBC00F8DD32 /* SearchHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHeaderTableViewCell.h; sourceTree = "<group>"; };
+		B6DBFDE01A77AEBC00F8DD32 /* SearchHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHeaderTableViewCell.m; sourceTree = "<group>"; };
+		B6DBFDE11A77AEBC00F8DD32 /* SearchHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		B6DD367A1A305A9700C6FBE9 /* icon_location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_location@2x.png"; path = "resource/icon_location@2x.png"; sourceTree = "<group>"; };
 		B6DD367B1A305A9700C6FBE9 /* icon_location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_location@3x.png"; path = "resource/icon_location@3x.png"; sourceTree = "<group>"; };
 		B6DD367E1A305AA200C6FBE9 /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_back@2x.png"; path = "resource/btn_back@2x.png"; sourceTree = "<group>"; };
@@ -700,6 +708,9 @@
 				B6153B4C1A5BFEC700E67B41 /* WineDrinkUserTableViewCell.h */,
 				B6153B4D1A5BFEC700E67B41 /* WineDrinkUserTableViewCell.m */,
 				B6153B4E1A5BFEC700E67B41 /* WineDrinkUserTableViewCell.xib */,
+				B6DBFDDF1A77AEBC00F8DD32 /* SearchHeaderTableViewCell.h */,
+				B6DBFDE01A77AEBC00F8DD32 /* SearchHeaderTableViewCell.m */,
+				B6DBFDE11A77AEBC00F8DD32 /* SearchHeaderTableViewCell.xib */,
 			);
 			name = subview;
 			sourceTree = "<group>";
@@ -913,6 +924,8 @@
 				B695A7261A4AB2E9009B68EF /* NewRecordViewController.m */,
 				B6666CA41A2211E700F446A7 /* WineCenterViewController.h */,
 				B6666CA51A2211E700F446A7 /* WineCenterViewController.m */,
+				B6DBFDDC1A77AE7800F8DD32 /* SearchViewController.h */,
+				B6DBFDDD1A77AE7800F8DD32 /* SearchViewController.m */,
 				B6223AD11A1CD729009BAC53 /* UserProfileViewController.h */,
 				B6223AD21A1CD729009BAC53 /* UserProfileViewController.m */,
 				B6BA8ADB1A612BE2007DA1B9 /* UserMsgViewController.h */,
@@ -1179,6 +1192,7 @@
 				B61DAD101A383EC90065D09C /* DrawerTableViewCell.xib in Resources */,
 				B61DAD1A1A38590F0065D09C /* btn_more@3x.png in Resources */,
 				B6F286F71A2DF9D5009873B3 /* btn_new_record@2x.png in Resources */,
+				B6DBFDE31A77AEBC00F8DD32 /* SearchHeaderTableViewCell.xib in Resources */,
 				B61DAD281A3859250065D09C /* icon_my_like@3x.png in Resources */,
 				B6A034961A5823D900E606B3 /* bg_top_user_week@3x.png in Resources */,
 				B6F286C71A2DAA36009873B3 /* Icon-29@2x.png in Resources */,
@@ -1381,11 +1395,13 @@
 				B6BA8ADD1A612BE2007DA1B9 /* UserMsgViewController.m in Sources */,
 				B61C2C761A5987F600742743 /* ResetPwdViewController.m in Sources */,
 				B6223ABC1A1C9733009BAC53 /* FeedbackViewController.m in Sources */,
+				B6DBFDDE1A77AE7800F8DD32 /* SearchViewController.m in Sources */,
 				B646460F1A1B87120035F208 /* TopWineCategoryViewController.m in Sources */,
 				B62520461A73A48800230396 /* NewWineViewController.m in Sources */,
 				B6DF276A1A14F3A60046629F /* DrawerLeftViewController.m in Sources */,
 				B64646021A1B7B4C0035F208 /* TopWineListViewController.m in Sources */,
 				B63D5FD71A1F4B26003A2600 /* FollowListViewController.m in Sources */,
+				B6DBFDE21A77AEBC00F8DD32 /* SearchHeaderTableViewCell.m in Sources */,
 				B6223AAD1A1C6930009BAC53 /* BarDetailViewController.m in Sources */,
 				B6223AB61A1C9715009BAC53 /* AboutUsViewController.m in Sources */,
 			);
