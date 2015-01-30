@@ -10,6 +10,7 @@
 @protocol SearchHeaderTableViewCellDelegate
 
 - (void) submitSearchBox: (NSString *) keywork;
+- (void) onTabChanged: (NSString *) tabName;
 
 @end
 
@@ -19,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchBox;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeBtn;
 - (IBAction)clickOnSearchBtn:(id)sender;
+- (IBAction)onTabChanged:(id)sender;
+
+- (NSString *) getTabIndex;
 
 @property (nonatomic, weak) id <SearchHeaderTableViewCellDelegate> delegate;
 

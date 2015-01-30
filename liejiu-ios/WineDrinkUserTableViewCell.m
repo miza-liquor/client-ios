@@ -55,7 +55,6 @@
         if (i < currNum)
         {
             NSURL *imageURL = [NSURL URLWithString:(NSString *)[(NSDictionary *)[data objectAtIndex:i] objectForKey:@"cover"]];
-//btn sd_setBackgroundImageWithURL:<#(NSURL *)#> forState:<#(UIControlState)#>
             [btn sd_setImageWithURL:imageURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"Icon"]];
             [btn setHidden:NO];
         } else {

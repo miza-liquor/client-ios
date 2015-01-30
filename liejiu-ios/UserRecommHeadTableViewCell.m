@@ -38,7 +38,5 @@
     keyword = [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [self.delegate submitSearchBox:keyword];
-    
-    [self.delegate submitSearchBox:keyword];
 }
 @end

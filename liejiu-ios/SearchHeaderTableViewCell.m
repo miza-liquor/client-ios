@@ -9,10 +9,15 @@
 #import "SearchHeaderTableViewCell.h"
 
 @implementation SearchHeaderTableViewCell
+{
+    NSArray *searchTabsName;
+}
 
 - (void)awakeFromNib
 {
     // Initialization code
+    searchTabsName = @[@"record", @"user", @"menu"];
+    
     CGRect size = CGRectMake(0, 0, 24, 24);
     self.searchBtn.imageView.layer.cornerRadius = self.searchBtn.imageView.layer.frame.size.height/2;
     self.searchBtn.imageView.layer.masksToBounds = YES;
@@ -35,7 +40,21 @@
 - (IBAction)clickOnSearchBtn:(id)sender
 {
     NSString *keyword = self.searchBox.text;
+    keyword = [keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     keyword = [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [self.delegate submitSearchBox:keyword];
 }
+
+- (IBAction)onTabChanged:(id)sender
+{
+    UISegmentedControl *seg =  (UISegmentedControl *) sender;
+    NSString *tabName = (NSString *)[searchTabsName objectAtIndex:seg.selectedSegmentIndex];
+    [self.delegate onTabChanged:tabName];
+}
+
+- (NSString *) getTabIndex
+{
+    return (NSString *)[searchTabsName objectAtIndex:self.typeBtn.selectedSegmentIndex];
+}
+
 @end

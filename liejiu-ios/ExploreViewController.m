@@ -10,6 +10,7 @@
 #import "TopImageTableViewCell.h"
 #import "TopMenuTableViewCell.h"
 #import "TopImageViewController.h"
+#import "MenuDetailViewController.h"
 #import "AppSetting.h"
 
 @interface ExploreViewController ()
@@ -20,6 +21,7 @@
 {
     NSArray *topMenus;
     NSString *selectedTopImageUrl;
+    NSDictionary *selectedMenuInfo;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -122,6 +124,7 @@
 {
     if (indexPath.row != 0)
     {
+        selectedMenuInfo = (NSDictionary *)[topMenus objectAtIndex:indexPath.row - 1];
         [self performSegueWithIdentifier:@"menuDetail" sender:self];
     }
 }
@@ -147,6 +150,8 @@
     }
     else if ([segue.identifier isEqualToString:@"menuDetail"])
     {
+        MenuDetailViewController *menuDetail = segue.destinationViewController;
+        menuDetail.menuInfo = selectedMenuInfo;
     }
 }
 

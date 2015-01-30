@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuDetailViewController : UIViewController
+@interface MenuDetailViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) NSDictionary *menuInfo;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

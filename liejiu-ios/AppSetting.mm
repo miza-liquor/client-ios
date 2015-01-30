@@ -200,8 +200,7 @@ static UIViewController *_currView = nil;
     if ([view.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
         view.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
         view.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        [view.navigationController.navigationBar
-         setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [view.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     } else {
         /* Set background and foreground */
     }

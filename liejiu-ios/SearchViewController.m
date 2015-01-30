@@ -9,6 +9,9 @@
 #import "SearchViewController.h"
 #import "SearchHeaderTableViewCell.h"
 #import "UserFromRecommandTableViewCell.h"
+#import "TopMenuTableViewCell.h"
+#import "LoadingTableViewCell.h"
+#import "RecordTableViewCell.h"
 #import "AppSetting.h"
 
 @interface SearchViewController ()
@@ -18,7 +21,12 @@
 @implementation SearchViewController
 {
     SearchHeaderTableViewCell *headerCell;
+    LoadingTableViewCell *loadingCell;
+    NSString *keyword;
+    NSString* searchTabName;
     NSArray *dataList;
+    BOOL isLoading;
+    CGFloat contentRowHeight;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,13 +42,38 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    isLoading = true;
     [AppSetting drawToolBar:self];
     [self initStaticCell];
+    [self loadWineData];
 }
 
 - (void) loadWineData
 {
+
+    NSString *currentTab = searchTabName;
+    NSString *url = [NSString stringWithFormat:@"search/%@/%@", searchTabName, keyword];
+    dataList = @[];
+    isLoading = YES;
+    [self.tableView reloadData];
+    
+    [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success && [currentTab isEqualToString:searchTabName]) {
+            dataList = (NSArray *)[response objectForKey:@"data"];
+            isLoading = NO;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"error in fetching data");
+        }
+    }];
+    
+    if ([searchTabName isEqualToString:@"user"]) {
+        contentRowHeight = 70;
+    } else if ([searchTabName isEqualToString:@"record"]) {
+        contentRowHeight = 70;
+    } else {
+        contentRowHeight = 126;
+    }
 }
 
 - (void) initStaticCell
@@ -48,6 +81,11 @@
     NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"SearchHeaderTableViewCell" owner:self options:nil];
     headerCell = [nibTab objectAtIndex:0];
     headerCell.delegate = self;
+    keyword = @"";
+    searchTabName = [headerCell getTabIndex];
+    
+    NSArray *loadingNibTab = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+    loadingCell = [loadingNibTab objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +97,13 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataList count] + 1;
+    NSUInteger dataNum = [dataList count];
+    
+    if (dataNum == 0 && isLoading) {
+        return 2;
+    } else {
+        return [dataList count] + 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,18 +112,47 @@
     {
         return headerCell;
     }
-    static NSString *simpleTableIdentifier = @"UserFromRecommandTableViewCell";
-    UserFromRecommandTableViewCell *cell = (UserFromRecommandTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
     
+    if (isLoading) {
+        return loadingCell;
+    }
+
+    static NSString *simpleTableIdentifier;
     NSDictionary* dataInfo = (NSDictionary *)[dataList objectAtIndex:indexPath.row - 1];
-    [cell setUserData:dataInfo];
-//    cell.delegate = self;
-    return cell;
+    if ([searchTabName isEqualToString:@"user"]) {
+        simpleTableIdentifier = @"UserFromRecommandTableViewCell";
+        UserFromRecommandTableViewCell *cell = (UserFromRecommandTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (cell == nil)
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+
+        [cell setUserData:dataInfo];
+        return cell;
+    } else if ([searchTabName isEqualToString:@"menu"]) {
+        simpleTableIdentifier = @"TopMenuTableViewCell";
+        TopMenuTableViewCell *cell = (TopMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (cell == nil)
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        [cell setTopMenuData:dataInfo];
+        return cell;
+    } else {
+        simpleTableIdentifier = @"RecordTableViewCell";
+        RecordTableViewCell *cell = (RecordTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (cell == nil)
+        {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        [cell setData:dataInfo];
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -87,8 +160,10 @@
     if (indexPath.row == 0)
     {
         return 100;
+    } else if (isLoading){
+        return 50;
     } else {
-        return 60;
+        return contentRowHeight;
     }
     
 }
@@ -110,7 +185,13 @@
 
 - (void) submitSearchBox:(NSString *)kw
 {
-//    keyword = kw;
+    keyword = kw;
+    [self loadWineData];
+}
+
+- (void) onTabChanged:(NSString *)tabName
+{
+    searchTabName = tabName;
     [self loadWineData];
 }
 
