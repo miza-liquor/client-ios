@@ -9,6 +9,10 @@
 #import "ExploreNoAuthViewController.h"
 #import "TopImageTableViewCell.h"
 #import "TopMenuTableViewCell.h"
+#import "TopImageViewController.h"
+#import "MenuDetailViewController.h"
+#import "LoadingTableViewCell.h"
+#import "AppSetting.h"
 
 @interface ExploreNoAuthViewController ()
 
@@ -16,8 +20,13 @@
 
 @implementation ExploreNoAuthViewController
 {
-    NSArray *recipes;
     UIAlertView *loginAlert;
+    NSArray *topMenus;
+    NSString *selectedTopImageUrl;
+    NSDictionary *selectedMenuInfo;
+    TopImageTableViewCell *topImageCell;
+    LoadingTableViewCell *loadingCell;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,14 +44,51 @@
     // Do any additional setup after loading the view.
     self.navigationItem.hidesBackButton = YES;
     
-    recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-
+    topMenus = @[];
+    isLoading = YES;
+    [AppSetting topBarStyleSetting:self];
     loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录"
                                            message:@"详情内容需要用户登录"
                                            delegate:self
                                   cancelButtonTitle:@"取消"
                                   otherButtonTitles:@"登录", nil];
+    
+    NSArray *loadingNibTab = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+    loadingCell = [loadingNibTab objectAtIndex:0];
+    // loading on auth data
+    [self loadNotAuthData];
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
+- (void) loadNotAuthData
+{
+    [AppSetting httpGet:@"guest" parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success)
+        {
+            isLoading = NO;
+            NSDictionary *data = (NSDictionary *)[response objectForKey:@"data"];
+            topMenus = (NSArray *)[data objectForKey:@"top_menu"];
+            [self initHeader:(NSArray *)[data objectForKey:@"top_image"]];
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void) initHeader:(NSArray *) headerData
+{
+    // init static slide cell
+    NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"TopImageTableViewCell" owner:self options:nil];
+    topImageCell = [nibTab objectAtIndex:0];
+    topImageCell.delegate = self;
+    [topImageCell setSildeViewImages: headerData];
+    topImageCell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,24 +99,18 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [recipes count];
+    return [topMenus count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (isLoading)
+    {
+        return loadingCell;
+    }
     if (indexPath.row == 0)
     {
-        static NSString *simpleTableIdentifier = @"TopImageTableViewCell";
-        TopImageTableViewCell *cell = (TopImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-        if (cell == nil)
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TopImageTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-        }
-        
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
+        return topImageCell;
     }
     
     static NSString *simpleTableIdentifierList = @"TopMenuTableViewCell";
@@ -80,14 +120,17 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TopMenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-
+    
+    NSDictionary *info = (NSDictionary *)[topMenus objectAtIndex:indexPath.row - 1];
+    [cell setTopMenuData:info];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 320 : 140;
+    return indexPath.row == 0 ? 400 : 126;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

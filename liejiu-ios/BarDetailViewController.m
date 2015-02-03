@@ -64,6 +64,12 @@
     [self.tableView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnTableView)]];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void) initBarMap
 {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BarDetailBaseTableViewCell" owner:self options:nil];

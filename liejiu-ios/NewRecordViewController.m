@@ -10,6 +10,7 @@
 #import "TGCameraViewController.h"
 #import "NewRecordViewController.h"
 #import "NewRecordDetailViewController.h"
+#import "AppSetting.h"
 
 @interface NewRecordViewController () <TGCameraDelegate>
 
@@ -42,6 +43,12 @@
     UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self setToolbarItems:[NSArray arrayWithObjects:barItemSelectPhoto, flexibleBtn, barItemConfirm, nil]];
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

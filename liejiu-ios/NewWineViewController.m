@@ -9,6 +9,7 @@
 #import "NewWineViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "TGCameraViewController.h"
+#import "AppSetting.h"
 
 @interface NewWineViewController () <TGCameraDelegate>
 
@@ -49,6 +50,8 @@
 //    [self.scrollView addSubview:self.wineImageBtn];
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,6 +64,7 @@
 }
 -(void) viewDidAppear:(BOOL)animated
 {
+    [AppSetting setCurrViewController:self];
     self.navigationController.toolbarHidden = YES;
     [self.scrollView contentSizeToFit];
 }
@@ -76,14 +80,6 @@
 }
 */
 
-- (IBAction)selectWineCatetory:(id)sender {
-}
-
-- (IBAction)addWineCategory:(id)sender {
-}
-
-- (IBAction)submitNewWine:(id)sender {
-}
 - (IBAction)selectWineCategory:(id)sender {
 }
 
@@ -92,7 +88,18 @@
     [self openCamera];
 }
 
-- (IBAction)submit:(id)sender {
+- (IBAction)submit:(id)sender
+{
+    NSArray *allViews = [self.view subviews];
+    
+    for (NSInteger i =0, l = [allViews count]; i < l; i++)
+    {
+        UIView *view = (UIView *)[allViews objectAtIndex:i];
+        if ([view tag] == 9999)
+        {
+            UIImageView *image = (UIImageView *)view;
+        }
+    }
 }
 
 - (void) setPhoto:(UIImage *)image
@@ -106,6 +113,7 @@
     CGFloat x = frame.origin.x;
     
     UIImageView *newImageView = [[UIImageView alloc] initWithFrame:frame];
+    newImageView.tag = 9999;
     newImageView.image = image;
     [newImageView setContentMode:UIViewContentModeScaleAspectFill];
     

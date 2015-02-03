@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuListViewController.h"
 @class TPKeyboardAvoidingScrollView;
 
-@interface NewRecordDetailViewController : UIViewController
+@interface NewRecordDetailViewController : UIViewController <MenuListViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *recordName;
 @property (weak, nonatomic) IBOutlet UITextView *recordDesc;
 @property (weak, nonatomic) IBOutlet UIImageView *recordImage;

@@ -48,6 +48,12 @@
     [self getMenuWines];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void) initHeader
 {
     NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"MenuDetailHeaderTableViewCell" owner:self options:nil];

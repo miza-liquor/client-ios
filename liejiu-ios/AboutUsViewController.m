@@ -7,6 +7,7 @@
 //
 
 #import "AboutUsViewController.h"
+#import "AppSetting.h"
 
 @interface AboutUsViewController ()
 
@@ -32,6 +33,12 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:nsurl];
     [self.webView loadRequest:requestObj];
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

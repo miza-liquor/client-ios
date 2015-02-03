@@ -43,6 +43,12 @@
     [self getMsgData];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];

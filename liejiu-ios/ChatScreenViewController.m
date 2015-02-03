@@ -46,6 +46,12 @@
     [self loadMsgData];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void) loadMsgData
 {
     NSString *url = [NSString stringWithFormat:@"msg/list/%@?last_id=%@", (NSString*)[userInfo objectForKey:@"id"], lastChatID];

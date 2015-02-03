@@ -59,6 +59,11 @@
     [self.loginMsg setHidden:YES];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

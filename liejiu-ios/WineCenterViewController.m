@@ -83,6 +83,12 @@
     }];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void) initStaticCell
 {
     NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"WineCenterHeadTableViewCell" owner:self options:nil];

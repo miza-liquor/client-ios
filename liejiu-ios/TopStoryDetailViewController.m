@@ -7,6 +7,7 @@
 //
 
 #import "TopStoryDetailViewController.h"
+#import "AppSetting.h"
 
 @interface TopStoryDetailViewController ()
 
@@ -35,6 +36,12 @@
     [self.webView loadRequest:requestObj];
     self.navigationItem.title = title;
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

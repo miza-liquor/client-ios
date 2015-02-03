@@ -49,6 +49,12 @@
                                   otherButtonTitles:@"确认", nil];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     addSuccess = NO;
@@ -141,9 +147,9 @@
         
     }
     
-    if (addSuccess)
+    if (addSuccess || !wineInfo)
     {
-        [addConfirmAlert setHidden:YES];
+        [self.delegate selectedMenu:selectedMenuInfo];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }

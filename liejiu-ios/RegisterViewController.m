@@ -35,6 +35,11 @@
     [self.scrollView contentSizeToFit];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     // disable the navbar

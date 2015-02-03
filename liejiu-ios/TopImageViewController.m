@@ -7,6 +7,7 @@
 //
 
 #import "TopImageViewController.h"
+#import "AppSetting.h"
 
 @interface TopImageViewController ()
 
@@ -34,6 +35,12 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:nsurl];
     [self.webView loadRequest:requestObj];
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

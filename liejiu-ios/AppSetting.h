@@ -20,6 +20,7 @@
 + (id) getCache:(NSString *)cacheName;
 + (void) removeCache:(NSString *)cacheName;
 + (void) setCache:(NSString *)cacheName value:(id)value;
++ (void) setCurrViewController:(UIViewController *) view;
 
 
 // setting a http post request

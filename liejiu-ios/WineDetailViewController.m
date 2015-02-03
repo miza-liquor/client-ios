@@ -50,6 +50,12 @@
     [self loadTabContent];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -148,6 +154,7 @@
     {
         MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
         controller.wineInfo = self.basicInfo;
+        controller.delegate = self;
         [self.navigationController pushViewController:controller animated:YES];
         return;
     }
@@ -202,6 +209,11 @@
             NSLog(@"error with fetching data");
         }
     }];
+}
+
+-(void) selectedMenu:(NSDictionary *)menuInfo
+{
+    
 }
 
 @end

@@ -12,5 +12,6 @@
 @interface ExploreNoAuthViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, TopImageTableViewCellDelegate>
 
 - (IBAction)login:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

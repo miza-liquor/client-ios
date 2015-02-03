@@ -7,6 +7,7 @@
 //
 
 #import "UserSettingViewController.h"
+#import "AppSetting.h"
 
 @interface UserSettingViewController ()
 
@@ -28,6 +29,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

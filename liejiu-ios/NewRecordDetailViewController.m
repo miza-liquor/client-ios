@@ -8,12 +8,17 @@
 
 #import "NewRecordDetailViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
+#import "MenuListViewController.h"
+#import "AppSetting.h"
 
 @interface NewRecordDetailViewController ()
 
 @end
 
 @implementation NewRecordDetailViewController
+{
+    BOOL isUploading;
+}
 @synthesize previewImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +45,15 @@
     self.recordName.layer.masksToBounds = YES;
     
     self.recordImage.image = previewImage;
+    
+    isUploading = NO;
+    [self.msgLabel setHidden:YES];
 }
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -59,12 +72,71 @@
 }
 */
 
-- (IBAction)addAddress:(id)sender {
+#pragma mark - delegate menulist
+-(void) selectedMenu:(NSDictionary *)menuInfo
+{
+    self.recordMenu.titleLabel.text = (NSString *)[menuInfo objectForKey:@"menu_name"];
 }
 
-- (IBAction)addMenu:(id)sender {
+- (IBAction)addAddress:(id)sender
+{
 }
 
-- (IBAction)submitRecord:(id)sender {
+- (IBAction)addMenu:(id)sender
+{
+    MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)submitRecord:(id)sender
+{
+    if (isUploading)
+    {
+        return;
+    }
+
+    [self.msgLabel setHidden:NO];
+    
+    NSString *name = self.recordName.text;
+    NSString *desc = self.recordDesc.text;
+    NSString *address = self.recordAddress.titleLabel.text;
+    NSString *menuID = self.recordMenu.titleLabel.text;
+    
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    desc = [desc stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    if ([name length] == 0)
+    {
+        self.msgLabel.text = @"记录名称不能为空";
+        return;
+    }
+
+    self.msgLabel.text = @"正在提交";
+    isUploading = YES;
+
+    NSString *url = @"post/record";
+    NSDictionary *params = @{
+                                @"name": name,
+                                @"desc": desc,
+                                @"address": address,
+                                @"menu_id": menuID,
+                                @"uploadImages": @[@{
+                                                       @"name": @"record_image",
+                                                       @"image": self.recordImage.image
+                                                    }]
+                            };
+    [AppSetting httpPost:url parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (!success)
+        {
+            self.msgLabel.text = msg;
+        } else {
+            self.msgLabel.text = @"上传成功";
+        }
+        isUploading = NO;
+    }];
 }
 @end

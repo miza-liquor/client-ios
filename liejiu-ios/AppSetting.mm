@@ -72,13 +72,36 @@ static UIViewController *_currView = nil;
     
 }
 
++ (void) setCurrViewController:(UIViewController *) view
+{
+    _currView = view;
+}
+
 + (void) httpPost:(NSString *)route parameters:(NSDictionary *)parameters callback:(void (^)(BOOL, NSDictionary *, NSString *))callback
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *url = [AppSetting getApiLink:route];
     
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        // check if it's needed to upload image
+        if (parameters)
+        {
+            NSArray *images = (NSArray *)[parameters objectForKey:@"uploadImages"];
+            if (images && [images count] > 0)
+            {
+                for (int i =0, l = [images count]; i < l; i++)
+                {
+                    NSDictionary *imageInfo = (NSDictionary *)[images objectAtIndex:i];
+                    NSString *imageUploadName = (NSString *) [imageInfo objectForKey:@"name"];
+                    NSString *fileName = [NSString stringWithFormat:@"image-%d.jpg", i + 1];
+                    UIImage *image = (UIImage *) [imageInfo objectForKey:@"image"];
+                    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                    [formData appendPartWithFileData:imageData name:imageUploadName fileName:fileName mimeType:@"image/jpeg"];
+                }
+            }
+        }
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *response = (NSDictionary *) responseObject;
         int status = [[response objectForKey:@"status"] intValue];
         id responseData = [response objectForKey:@"data"];

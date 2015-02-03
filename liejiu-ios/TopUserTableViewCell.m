@@ -45,13 +45,26 @@
 
 - (IBAction)clickOnFollowBtn:(id)sender
 {    
-    [self.delegate followUser: (NSString *)[userInfo objectForKey:@"id"]];
+//    [self.delegate followUser: (NSString *)[userInfo objectForKey:@"id"]];
 }
 
 - (void) setUserData:(NSDictionary *)data
 {
     userInfo = data;
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"cover"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
+    
+    BOOL beFollowed = (BOOL)[[userInfo objectForKey:@"be_followed"] boolValue];
+    BOOL beFollower = (BOOL)[[userInfo objectForKey:@"be_follower"] boolValue];
+    
+    if (beFollowed && beFollower)
+    {
+        self.followBtn.titleLabel.text = @"× 相互关注";
+    } else if (beFollowed)
+    {
+        self.followBtn.titleLabel.text = @"  × 已关注";
+    } else {
+        self.followBtn.titleLabel.text = @"  + 加关注";
+    }
     
     self.nickName.text = (NSString *)[data objectForKey:@"nickname"];
     self.level.text = (NSString *)[data objectForKey:@"level"];

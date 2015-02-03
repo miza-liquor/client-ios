@@ -22,6 +22,7 @@
     NSArray *topMenus;
     NSString *selectedTopImageUrl;
     NSDictionary *selectedMenuInfo;
+    TopImageTableViewCell *topImageCell;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -58,6 +59,23 @@
     
     // init data
     topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];
+    [self initHeader:(NSArray *) [AppSetting getCache:@"topImage"]];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [AppSetting setCurrViewController:self];
+}
+
+
+- (void) initHeader:(NSArray *) headerData
+{
+    // init static slide cell
+    NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"TopImageTableViewCell" owner:self options:nil];
+    topImageCell = [nibTab objectAtIndex:0];
+    topImageCell.delegate = self;
+    [topImageCell setSildeViewImages: headerData];
+    topImageCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,18 +104,7 @@
 {
     if (indexPath.row == 0)
     {
-        static NSString *simpleTableIdentifier = @"TopImageTableViewCell";
-        TopImageTableViewCell *cell = (TopImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-        if (cell == nil)
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TopImageTableViewCell" owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-            [cell setSildeViewImages: (NSArray *) [AppSetting getCache:@"topImage"]];
-            cell.delegate = self;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-
-        return cell;
+        return topImageCell;
     }
     
     static NSString *simpleTableIdentifierList = @"TopMenuTableViewCell";

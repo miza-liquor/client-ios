@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "NewMenuViewController.h"
 
+@protocol MenuListViewControllerDelegate
+
+- (void) selectedMenu: (NSDictionary *)menuInfo;
+
+@end
+
 @interface MenuListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,NewMenuViewControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic) NSDictionary *wineInfo;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) id <MenuListViewControllerDelegate> delegate;
 
 @end
