@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NJKWebViewProgress.h>
 
-@interface FeedbackViewController : UIViewController
+@interface FeedbackViewController : UIViewController<NJKWebViewProgressDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 

@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NJKWebViewProgress.h>
 
-@interface TopStoryDetailViewController : UIViewController
+@interface TopStoryDetailViewController : UIViewController <NJKWebViewProgressDelegate>
 
 @property (nonatomic) NSString *url;
-@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *webTitle;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end

@@ -123,7 +123,7 @@
     {
         TopStoryDetailViewController *detailView = segue.destinationViewController;
         detailView.url = (NSString *)[selectStory objectForKey:@"link"];
-        detailView.title = (NSString *)[selectStory objectForKey:@"title"];
+        detailView.webTitle = (NSString *)[selectStory objectForKey:@"title"];
     }
     else if ([segue.identifier isEqualToString:@"menuDetail"])
     {

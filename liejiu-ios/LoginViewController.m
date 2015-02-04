@@ -17,6 +17,9 @@
 @end
 
 @implementation LoginViewController
+{
+    BOOL isLoading;
+}
 @synthesize scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +37,8 @@
     // Do any additional setup after loading the view.
     
     [self.scrollView contentSizeToFit];
+    
+    isLoading = NO;
 
     // setting bg
     UIImage *backgroundImage = [UIImage imageNamed:@"bg_login@2x"];
@@ -72,6 +77,11 @@
 
 - (IBAction) clickOnLoginBtn:(id)sender
 {
+    if (isLoading)
+    {
+        return;
+    }
+    
     // reset content & show msg label
     self.loginMsg.text = @"";
     [self.loginMsg setHidden:NO];
@@ -90,6 +100,7 @@
     }
     
     // try to login
+    isLoading = YES;
     self.loginMsg.text = @"正在登陆...";
     NSDictionary *parameters = @{@"uname": userName, @"pwd": pwd};
     

@@ -36,7 +36,6 @@
     
     // init drawer data
     drawerMenu = @[
-                   @{@"id": @"homepage", @"icon": @"icon_user_home", @"name": @"探索"},
                    @{@"id": @"userProfile", @"icon": @"icon_user_home", @"name": @"个人主页"},
                    @{@"id": @"storyList", @"icon": @"icon_story", @"name": @"日报"},
                    @{@"id": @"myMessage", @"icon": @"icon_msg", @"name": @"消息", @"num": @"12"},

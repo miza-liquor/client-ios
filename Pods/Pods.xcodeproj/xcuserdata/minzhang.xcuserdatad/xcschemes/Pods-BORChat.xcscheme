@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3700DD9A93E74F03737FDB4B"
+               BlueprintIdentifier = "09C5EB51ADBCE4F17EE8C30F"
                BuildableName = "libPods-BORChat.a"
                BlueprintName = "Pods-BORChat"
                ReferencedContainer = "container:Pods.xcodeproj">

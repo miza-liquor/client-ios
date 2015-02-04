@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
+#import <NJKWebViewProgress.h>
 
-@interface HelpViewController : UIViewController
+@interface HelpViewController : UIViewController<NJKWebViewProgressDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)clickOnDrawerBtn:(id)sender;

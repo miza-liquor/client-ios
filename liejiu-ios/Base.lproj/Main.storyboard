@@ -2384,12 +2384,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="msi-vg-0GB"/>
+        <segue reference="lWQ-mV-hli"/>
+        <segue reference="Hh5-PE-MFt"/>
+        <segue reference="Gej-oV-mS2"/>
         <segue reference="krQ-if-Ocv"/>
         <segue reference="rKM-p7-TRC"/>
         <segue reference="7rA-qI-T4L"/>
-        <segue reference="Hh5-PE-MFt"/>
-        <segue reference="dul-HC-UJO"/>
-        <segue reference="Gej-oV-mS2"/>
-        <segue reference="msi-vg-0GB"/>
     </inferredMetricsTieBreakers>
 </document>
