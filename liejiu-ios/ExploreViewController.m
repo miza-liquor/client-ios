@@ -40,6 +40,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = @"探索";
+    
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
      v.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:v];

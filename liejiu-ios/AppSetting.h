@@ -40,5 +40,4 @@
 + (void) drawToolBar:(UIViewController *)view;
 
 + (void) topBarStyleSetting:(UIViewController *)view;
-
 @end
