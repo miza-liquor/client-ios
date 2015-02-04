@@ -11,6 +11,7 @@
 #import "TopWineHeaderTableViewCell.h"
 #import "TopWineCategoryViewController.h"
 #import "WineDetailViewController.h"
+#import "LoadingTableViewCell.h"
 #import "AppSetting.h"
 
 @interface TopWineListViewController ()
@@ -22,6 +23,8 @@
     NSArray *wines;
     NSDictionary *category;
     NSDictionary *selectedWineInfo;
+    TopWineHeaderTableViewCell *headerCell;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,8 +41,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    isLoading = YES;
     wines = @[];
     [self getData];
+    [AppSetting drawToolBar:self];
+    
+    [self initStaticHeaderCell];
+}
+
+-(void) initStaticHeaderCell
+{
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TopWineHeaderTableViewCell" owner:self options:nil];
+    headerCell = [nib objectAtIndex:0];
+    headerCell.delegate = self;
+    headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self setHeaderTitle];
+}
+
+-(void) setHeaderTitle
+{
+    headerCell.headerTitle.text = category ? [NSString stringWithFormat:@"%@ 排名TOP10", (NSString *)[category objectForKey:@"name"]] : @"全站排名TOP10";
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -62,7 +84,7 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [wines count] + 1;
+    return isLoading ? 2 : [wines count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,6 +103,13 @@
 
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
+    if (isLoading)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+        LoadingTableViewCell *cell = [nib objectAtIndex:0];
         return cell;
     }
 
@@ -124,6 +153,7 @@
 {
     category = info;
     wines = @[];
+    [self setHeaderTitle];
     [self.tableView reloadData];
     [self getData];
 }
@@ -131,7 +161,6 @@
 - (void) getData
 {
     NSString *cacheName;
-    NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
     NSString *url;
     if (category) {
         NSString *category_id = (NSString *)[category objectForKey:@"id"];
@@ -141,9 +170,12 @@
         url = @"topwine";
         cacheName = @"topwine:all";
     }
+    NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
+    isLoading = YES;
     if (cache == Nil)
     {
         [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            isLoading = NO;
             if (success == YES)
             {
                 wines = (NSArray *)[response objectForKey:@"data"];
@@ -152,7 +184,9 @@
             }
         }];
     } else {
+        isLoading = NO;
         wines = cache;
+        [self.tableView reloadData];
     }
 }
 

@@ -8,10 +8,11 @@
 
 #import "TopUserTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppSetting.h"
 
 @implementation TopUserTableViewCell
 {
-    NSDictionary *userInfo;
+    NSMutableDictionary *userInfo;
 }
 
 - (void)awakeFromNib
@@ -44,28 +45,50 @@
 }
 
 - (IBAction)clickOnFollowBtn:(id)sender
-{    
-//    [self.delegate followUser: (NSString *)[userInfo objectForKey:@"id"]];
+{
+    
+    NSDictionary *params = @{@"userid": (NSString *)[userInfo objectForKey:@"id"]};
+    [self.followBtn setTitle:@"加载中" forState:UIControlStateNormal];
+    
+    [AppSetting httpPost:@"update/relation" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success)
+        {
+            NSDictionary *updateUserInfo = (NSDictionary *)[response objectForKey:@"data"];
+            BOOL beFollowed = (BOOL)[[updateUserInfo objectForKey:@"be_followed"] boolValue];
+            BOOL beFollower = (BOOL)[[updateUserInfo objectForKey:@"be_follower"] boolValue];
+            [userInfo setValue:[NSNumber numberWithBool:beFollowed] forKey:@"be_followed"];
+            [userInfo setValue:[NSNumber numberWithBool:beFollower] forKey:@"be_follower"];
+            [self setUserData:userInfo];
+            [self.delegate followUser: userInfo];
+            [self setUserData:userInfo];
+        } else {
+            [self setUserData:userInfo];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:msg message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
 }
 
-- (void) setUserData:(NSDictionary *)data
+- (void) setUserData:(NSMutableDictionary *)data
 {
     userInfo = data;
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"cover"]] placeholderImage:[UIImage imageNamed:@"icon.png"]];
     
     BOOL beFollowed = (BOOL)[[userInfo objectForKey:@"be_followed"] boolValue];
     BOOL beFollower = (BOOL)[[userInfo objectForKey:@"be_follower"] boolValue];
+    NSString *followTitle;
     
     if (beFollowed && beFollower)
     {
-        self.followBtn.titleLabel.text = @"× 相互关注";
-    } else if (beFollowed)
+        followTitle = @"×相互关注";
+    } else if (beFollower)
     {
-        self.followBtn.titleLabel.text = @"  × 已关注";
+        followTitle = @"  × 已关注";
     } else {
-        self.followBtn.titleLabel.text = @"  + 加关注";
+        followTitle = @"  + 加关注";
     }
-    
+
+    [self.followBtn setTitle:followTitle forState:UIControlStateNormal];
     self.nickName.text = (NSString *)[data objectForKey:@"nickname"];
     self.level.text = (NSString *)[data objectForKey:@"level"];
     self.recommand.text = [NSString stringWithFormat:@"推荐理由：%@", (NSString *)[data objectForKey:@"reasons"]];

@@ -11,6 +11,7 @@
 #import "WineCenterListTableViewCell.h"
 #import "WineDetailViewController.h"
 #import "MenuListViewController.h"
+#import "LoadingTableViewCell.h"
 #import "AppSetting.h"
 
 @interface WineCenterViewController ()
@@ -24,6 +25,7 @@
     NSDictionary *selectedCategory;
     NSString *keyword;
     NSDictionary *selectedWine;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,11 +57,15 @@
 
 - (void) loadWineData
 {
+    isLoading = YES;
+    wineList = @[];
+    [self.tableView reloadData];
     NSArray* defaultList = (NSArray *)[AppSetting getCache:@"wineSearchDefaultList"];
     keyword = [keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
     if ([keyword length] == 0 && selectedCategory == nil && defaultList != nil)
     {
+        isLoading = NO;
         wineList = defaultList;
         [self.tableView reloadData];
         return;
@@ -70,6 +76,7 @@
     NSDictionary *parameters = (selectedCategory != nil) ? @{@"category": (NSString *)[selectedCategory objectForKey:@"id"]} : nil;
     
     [AppSetting httpGet:url parameters:parameters callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        isLoading = NO;
         if (success == YES)
         {
             wineList = (NSArray *)[response objectForKey:@"data"];
@@ -105,7 +112,7 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [wineList count] + 1;
+    return isLoading ? 2 : [wineList count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,6 +121,14 @@
     {
         return headerCell;
     }
+    
+    if (isLoading)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+        LoadingTableViewCell *cell = [nib objectAtIndex:0];
+        return cell;
+    }
+    
     static NSString *simpleTableIdentifier = @"WineCenterListTableViewCell";
     WineCenterListTableViewCell *cell = (WineCenterListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
@@ -134,6 +149,7 @@
     {
         return [headerCell getRowHeight];
     } else {
+        if (isLoading) return 100;
         NSDictionary* wineInfo = (NSDictionary *)[wineList objectAtIndex:indexPath.row - 1];
         NSArray *users = (NSArray *)[wineInfo objectForKey:@"drink_user"];
         return [users count] == 0 ? 90 : 140;

@@ -18,8 +18,8 @@
 
 @implementation TopUserListViewController
 {
-    NSDictionary *userList;
-    NSArray *userListSectionTitle;
+    NSMutableDictionary *userList;
+    NSMutableArray *userListSectionTitle;
     NSDictionary *selectedUser;
     
     BOOL isLoading;
@@ -118,7 +118,7 @@
     cell.delegate = self;
     NSString *sectionTitle = [userListSectionTitle objectAtIndex:indexPath.section];
     NSArray *rows = [userList objectForKey:sectionTitle];
-    NSDictionary *userInfo = (NSDictionary *)[rows objectAtIndex:indexPath.row];
+    NSMutableDictionary *userInfo = [(NSDictionary *)[rows objectAtIndex:indexPath.row] mutableCopy];
     [cell setUserData:userInfo];
     
     return cell;
@@ -154,8 +154,26 @@
     }
 }
 
-- (void) followUser: (NSString *) userID
+- (void) followUser: (NSMutableDictionary *)userInfo;
 {
+    NSString *givenUid = (NSString *)[userInfo objectForKey:@"id"];
+    for (NSInteger i=0,l=[userListSectionTitle count]; i<l; i++) {
+        NSString *sectionTitle = [userListSectionTitle objectAtIndex:i];
+        NSMutableArray *rows = [(NSArray *)[userList objectForKey:sectionTitle] mutableCopy];
+        for (NSInteger k=0, m = [rows count]; k<m; k++) {
+            NSDictionary *row = [rows objectAtIndex:k];
+            NSString *uid = (NSString *)[row objectForKey:@"id"];
+            if ([uid isEqualToString:givenUid]) {
+                [rows replaceObjectAtIndex:k withObject:userInfo];
+                [userList removeObjectForKey:sectionTitle];
+                [userList setObject:rows forKey:sectionTitle];
+                break;
+            }
+        }
+    }
+
+    [AppSetting setCache:@"topuser" value:userList];
+    [self.tableView reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -166,7 +184,7 @@
 - (void) getData
 {
     NSString *cacheName = @"topuser";
-    NSDictionary *cache = (NSDictionary *)[AppSetting getCache:cacheName];
+    NSMutableDictionary *cache = [(NSDictionary *)[AppSetting getCache:cacheName] mutableCopy];
     isLoading = YES;
 
     if (cache == Nil)
@@ -175,16 +193,16 @@
             isLoading = NO;
             if (success == YES)
             {
-                userList = (NSDictionary *)[response objectForKey:@"data"];
+                userList = [(NSDictionary *)[response objectForKey:@"data"] mutableCopy];
                 [AppSetting setCache:cacheName value:userList];
-                userListSectionTitle = [userList allKeys];
+                userListSectionTitle = [[userList allKeys] mutableCopy];
                 [self.tableView reloadData];
             }
         }];
     } else {
         isLoading = NO;
         userList = cache;
-        userListSectionTitle = [userList allKeys];
+        userListSectionTitle = [[userList allKeys] mutableCopy];
     }
 }
 

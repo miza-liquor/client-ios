@@ -11,7 +11,7 @@
 
 @protocol TopUserTableViewCellDelegate
 
-- (void) followUser: (NSString *) userID;
+- (void) followUser: (NSMutableDictionary *) userInfo;
 
 @end
 
@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *recommand;
 - (IBAction)clickOnFollowBtn:(id)sender;
 
-- (void) setUserData:(NSDictionary *)data;
+- (void) setUserData:(NSMutableDictionary *)data;
 @property (nonatomic, strong) id <TopUserTableViewCellDelegate> delegate;
 
 @end

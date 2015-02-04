@@ -10,6 +10,7 @@
 #import "TopStoryTableViewCell.h"
 #import "AppSetting.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LoadingTableViewCell.h"
 #import "TopStoryDetailViewController.h"
 
 @interface TopStoryListViewController ()
@@ -20,6 +21,7 @@
 {
     NSArray *stories;
     NSDictionary *selectStory;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,7 +37,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting: self];
     
@@ -49,20 +50,7 @@
         self.navigationItem.leftBarButtonItem = drawerBtn;
     }
     
-    NSArray *cache = (NSArray *)[AppSetting getCache:@"topStory"];
-    if (cache == Nil)
-    {
-        [AppSetting httpGet:@"topstory" parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
-            if (success == YES)
-            {
-                stories = (NSArray *)[response objectForKey:@"data"];
-                [AppSetting setCache:@"topStory" value:stories];
-                [self.tableView reloadData];
-            }
-        }];
-    } else {
-        stories = cache;
-    }
+    [self getData];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -77,14 +65,42 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) getData
+{
+    NSArray *cache = (NSArray *)[AppSetting getCache:@"topStory"];
+    isLoading = YES;
+    if (cache == Nil)
+    {
+        [AppSetting httpGet:@"topstory" parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            isLoading = NO;
+            if (success == YES)
+            {
+                stories = (NSArray *)[response objectForKey:@"data"];
+                [AppSetting setCache:@"topStory" value:stories];
+                [self.tableView reloadData];
+            }
+        }];
+    } else {
+        isLoading = NO;
+        stories = cache;
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [stories count];
+    return isLoading ? 1 : [stories count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (isLoading)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+        LoadingTableViewCell *cell = [nib objectAtIndex:0];
+        return cell;
+    }
     static NSString *simpleTableIdentifier = @"TopStoryTableViewCell";
     TopStoryTableViewCell *cell = (TopStoryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
