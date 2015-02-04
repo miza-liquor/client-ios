@@ -14,7 +14,7 @@
     CGFloat initHeight;
     CGFloat rowHeight;
     NSArray *categories;
-    NSMutableArray *btnList;
+    BOOL showAll;
 }
 
 - (void)awakeFromNib
@@ -34,6 +34,7 @@
     initHeight = self.searchBtn.layer.frame.size.height + 20;
     rowHeight = initHeight + 30;
     
+    showAll = NO;
     [self loadCategoryData];
 }
 
@@ -81,13 +82,27 @@
     CGFloat lineHeight = 22;
     CGFloat maxWidth = 300;
     CGFloat fontSize = 13;
-    NSInteger maxLength = [data count] > 9 ? 9 : [data count];
+    NSInteger maxLine = 2;
+    NSInteger currLine = 1;
+    CGFloat moreBtnWidth = 40;
+
+    [self.loadingLabel removeFromSuperview];
+    NSArray *viewsToRemove = [self.categoryContainer subviews];
+    for (UIView *v in viewsToRemove) {
+        [v removeFromSuperview];
+    }
     
-    btnList = [[NSMutableArray alloc] initWithCapacity:maxLength + 1];
+    CGRect moreBtnSize = CGRectMake(pX, pY, moreBtnWidth, lineHeight);
+    UIButton *moreBtn = [[UIButton alloc] initWithFrame:moreBtnSize];
+    [moreBtn setTitle:@"  ...  " forState:UIControlStateNormal];
+    [moreBtn setBackgroundColor: backgroundColor];
+    [self.categoryContainer addSubview:moreBtn];
+    moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [moreBtn setTag:-1];
+    [moreBtn addTarget:self action:@selector(clickOnCategory:) forControlEvents: UIControlEventTouchUpInside];
+    [self.categoryContainer addSubview:moreBtn];
     
-    [self.loadingLabel setHidden:YES];
-    
-    for (NSInteger i = 0, l = maxLength; i < l; i++)
+    for (NSInteger i = 0, l = [data count]; i < l; i++)
     {
         NSDictionary *info = (NSDictionary *)[data objectAtIndex:i];
         NSString *title =  [NSString stringWithFormat:@"  %@  ", (NSString *)[info objectForKey:@"name"]];
@@ -99,37 +114,39 @@
         [btn setTag:i];
         
         CGFloat with = btn.layer.frame.size.width;
+        
+        if (!showAll && currLine == maxLine)
+        {
+            if ((pX + moreBtnWidth) > maxWidth || (pX + with) > maxWidth) {
+                [moreBtn setFrame: CGRectMake(pX, pY, moreBtnWidth, lineHeight)];
+                break;
+            }
+        }
+        
         if (pX + with > maxWidth)
         {
             pX = 0;
             pY += lineHeight + gapY;
+            currLine += 1;
         }
         
         [btn.layer setFrame:CGRectMake(pX, pY, btn.layer.frame.size.width, lineHeight)];
-        
-        
         pX += with + gapX;
         
         [btn addTarget:self action:@selector(clickOnCategory:) forControlEvents: UIControlEventTouchUpInside];
-        [btnList addObject:btn];
         
         [self.categoryContainer addSubview:btn];
     }
     
-    CGFloat moreBtnWidth = 40;
-    if (pX + moreBtnWidth > maxWidth)
-    {
-        pX = 0;
-        pY += lineHeight + gapY;
+    if (showAll) {
+        if (pX + moreBtnWidth > maxWidth)
+        {
+            pX = 0;
+            pY += lineHeight + gapY;
+        }
+        [moreBtn setFrame: CGRectMake(pX, pY, moreBtnWidth, lineHeight)];
     }
-    CGRect moreBtnSize = CGRectMake(pX, pY, moreBtnWidth, lineHeight);
-    UIButton *moreBtn = [[UIButton alloc] initWithFrame:moreBtnSize];
-    [moreBtn setTitle:@"  ...  " forState:UIControlStateNormal];
-    [moreBtn setBackgroundColor: backgroundColor];
-    [self.categoryContainer addSubview:moreBtn];
-    moreBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [moreBtn setTag:-1];
-    [btnList addObject:moreBtn];
+    
     
     rowHeight = pY + 10 + lineHeight + initHeight;
     
@@ -141,6 +158,8 @@
     NSInteger tag = [sender tag];
     if (tag < 0)
     {
+        showAll = !showAll;
+        [self loadCategoryData];
         [self.delegate clickOnCategoryBtn:nil];
     } else {
         [self.delegate clickOnCategoryBtn:(NSDictionary *)[categories objectAtIndex:tag]];
