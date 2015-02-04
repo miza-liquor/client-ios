@@ -32,6 +32,10 @@
     UIColor *color = [UIColor colorWithRed:248.0/255 green:255.0/255 blue:255.0/255 alpha:1];
     self.view.backgroundColor = color;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    NSString *currVersion = [AppSetting getCurrentVersion];
+    NSString *versionInfo = [NSString stringWithFormat:@"检查更新(目前版本 %@)", currVersion];
+    self.versionLabel.text = versionInfo;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -61,6 +65,9 @@
                 case 2:
                     identifier = @"protocol";
                     break;
+                case 3:
+                    [self checkVersion];
+                    break;
                 default:
                     break;
             }
@@ -77,19 +84,52 @@
     [self performSegueWithIdentifier:identifier sender:self];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void) checkVersion
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.versionLabel.text = @"正在检查版本";
+    [AppSetting httpGet:@"version/ios" parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success)
+        {
+            NSDictionary *versionInfo = (NSDictionary *)[response objectForKey:@"data"];
+            NSString *lastestVersion = (NSString *)[versionInfo objectForKey:@"version"];
+            NSString *currVersion = [AppSetting getCurrentVersion];
+            UIAlertView *alert;
+            
+            if ([currVersion isEqualToString:lastestVersion]) {
+                alert = [[UIAlertView alloc] initWithTitle:nil
+                                                   message:@"你的版本已经是最新版本"
+                                                  delegate:nil
+                                         cancelButtonTitle:@"确定"
+                                         otherButtonTitles:nil, nil];
+            } else {
+                alert = [[UIAlertView alloc] initWithTitle:nil
+                                                   message:[NSString stringWithFormat:@"请更新到最新版本：%@", lastestVersion]
+                                                  delegate:self
+                                         cancelButtonTitle:@"下次再更新"
+                                         otherButtonTitles:@"更新", nil];
+            }
+            [alert show];
+        } else {
+            self.versionLabel.text = @"系统错误，请重试";
+        }
+    }];
 }
-*/
 
 - (IBAction)clickOnDrawerBtn:(id)sender
 {
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+#pragma mark - Alert view delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        NSURL *url = [NSURL URLWithString:[AppSetting getApiLink:@"download/ios"]];
+        
+        if (![[UIApplication sharedApplication] openURL:url]) {
+            NSLog(@"%@%@",@"Failed to open url:",[url description]);
+        }
+    }
 }
 @end

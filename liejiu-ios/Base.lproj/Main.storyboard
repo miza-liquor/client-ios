@@ -252,26 +252,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell tag="4" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="54" id="KnO-oc-sK0">
-                                        <rect key="frame" x="0.0" y="238" width="320" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KnO-oc-sK0" id="KwO-kv-7v6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="清除缓存（12kb）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-Xn-qoh">
-                                                    <rect key="frame" x="0.0" y="16" width="320" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.01176470588" green="0.45882352939999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
                                     <tableViewCell tag="5" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="54" id="Qnu-R4-Oij">
-                                        <rect key="frame" x="0.0" y="292" width="320" height="54"/>
+                                        <rect key="frame" x="0.0" y="238" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qnu-R4-Oij" id="QPL-th-42D">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
@@ -304,6 +286,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="versionLabel" destination="peQ-VG-c8L" id="L6d-hv-ej6"/>
                         <segue destination="wPh-os-EI4" kind="push" identifier="protocol" id="0Pg-T1-PA0"/>
                         <segue destination="zjN-Z9-zys" kind="push" identifier="aboutus" id="ThE-oK-Med"/>
                         <segue destination="moV-UM-Gxn" kind="push" identifier="feedback" id="Cel-SB-2q1"/>

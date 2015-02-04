@@ -40,4 +40,6 @@
 + (void) drawToolBar:(UIViewController *)view;
 
 + (void) topBarStyleSetting:(UIViewController *)view;
+
++ (NSString *) getCurrentVersion;
 @end

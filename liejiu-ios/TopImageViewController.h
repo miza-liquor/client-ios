@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NJKWebViewProgress.h>
 
-@interface TopImageViewController : UIViewController
+@interface TopImageViewController : UIViewController<NJKWebViewProgressDelegate>
 
 @property (nonatomic) NSString *url;
 

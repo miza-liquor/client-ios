@@ -229,4 +229,9 @@ static UIViewController *_currView = nil;
     }
 }
 
++ (NSString *) getCurrentVersion
+{
+    return @"0.9";
+}
+
 @end

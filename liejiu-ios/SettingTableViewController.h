@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+MMDrawerController.h"
 
-@interface SettingTableViewController : UITableViewController
+@interface SettingTableViewController : UITableViewController<UIAlertViewDelegate>
 - (IBAction)clickOnDrawerBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
