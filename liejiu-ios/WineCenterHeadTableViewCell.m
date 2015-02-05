@@ -13,7 +13,7 @@
 {
     CGFloat initHeight;
     CGFloat rowHeight;
-    NSArray *categories;
+    NSMutableArray *categories;
     BOOL showAll;
 }
 
@@ -55,13 +55,13 @@
 
 - (void) loadCategoryData
 {
-    categories = (NSArray *)[AppSetting getCache:@"wineCategory"];
+    categories = [(NSArray *)[AppSetting getCache:@"wineCategory"] mutableCopy];
     if (categories == Nil)
     {
         [AppSetting httpGet:@"winecategory" parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
             if (success == YES)
             {
-                categories = (NSArray *)[response objectForKey:@"data"];
+                categories = [(NSArray *)[response objectForKey:@"data"] mutableCopy];
                 [AppSetting setCache:@"wineCategory" value:categories];
                 [self setData:categories];
             }
@@ -74,12 +74,13 @@
 - (void) setData:(NSArray *)data
 {
     UIColor *backgroundColor =[UIColor colorWithRed:69.0/255.0 green:153.0/255.0 blue:223.0/255.0 alpha:1];
+    UIColor *hlBackgroundColor =[UIColor colorWithRed:96.0/255.0 green:131.0/255.0 blue:244.0/255.0 alpha:1];
     CGRect initSize = CGRectMake(0, 0, 0, 0);
     CGFloat pX = 0.0;
     CGFloat pY = 0.0;
     CGFloat gapX = 5.0;
     CGFloat gapY = 5.0;
-    CGFloat lineHeight = 22;
+    CGFloat lineHeight = 30;
     CGFloat maxWidth = 300;
     CGFloat fontSize = 13;
     NSInteger maxLine = 2;
@@ -105,9 +106,15 @@
     for (NSInteger i = 0, l = [data count]; i < l; i++)
     {
         NSDictionary *info = (NSDictionary *)[data objectAtIndex:i];
+        NSString *selected = (NSString *)[info objectForKey:@"selected"];
         NSString *title =  [NSString stringWithFormat:@"  %@  ", (NSString *)[info objectForKey:@"name"]];
         UIButton *btn = [[UIButton alloc] initWithFrame:initSize];
-        [btn setBackgroundColor: backgroundColor];
+        if ([selected isEqualToString:@"selected"]) {
+            [btn setBackgroundColor:hlBackgroundColor];
+        } else {
+            [btn setBackgroundColor: backgroundColor];
+        }
+        
         [btn setTitle:title forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:fontSize];
         [btn sizeToFit];
@@ -155,14 +162,38 @@
 
 -(void)clickOnCategory:(id)sender
 {
+    
     NSInteger tag = [sender tag];
+    NSMutableArray *newCategories = [[NSMutableArray alloc] initWithCapacity:[categories count]];
+    
     if (tag < 0)
     {
         showAll = !showAll;
-        [self loadCategoryData];
+        [self setData:categories];
         [self.delegate clickOnCategoryBtn:nil];
     } else {
-        [self.delegate clickOnCategoryBtn:(NSDictionary *)[categories objectAtIndex:tag]];
+        NSString *selected = @"selected";
+        for (NSInteger i=0,l=[categories count]; i<l; i++) {
+            NSMutableDictionary *info = [(NSDictionary *)[categories objectAtIndex:i] mutableCopy];
+            if (i==tag){
+                NSString *isSelected = (NSString *)[info objectForKey:selected];
+                if ([isSelected isEqualToString:selected]) {
+                    [info removeObjectForKey:selected];
+                    [self.delegate clickOnCategoryBtn:nil];
+                } else {
+                    [info removeObjectForKey:selected];
+                    [info setObject:selected forKey:selected];
+                    [self.delegate clickOnCategoryBtn:(NSDictionary *)[categories objectAtIndex:tag]];
+                }
+            }else{
+                [info removeObjectForKey:selected];
+            }
+            [newCategories addObject:info];
+        }
+        
+        categories = newCategories;
+        // redraw button
+        [self setData:categories];
     }
 }
 

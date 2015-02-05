@@ -180,7 +180,8 @@
 
 - (void) clickOnCategoryBtn:(NSDictionary *)category
 {
-    
+    selectedCategory = category;
+    [self loadWineData];
 }
 
 - (void) categoryDataReady
