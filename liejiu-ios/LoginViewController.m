@@ -11,6 +11,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "MMDrawerController.h"
 #import "MMDrawerVisualState.h"
+#import "SSKeychain.h"
 
 @interface LoginViewController ()
 
@@ -105,8 +106,12 @@
     NSDictionary *parameters = @{@"uname": userName, @"pwd": pwd};
     
     [AppSetting httpPost:@"login" parameters:parameters callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        isLoading = NO;
         if (success == YES)
         {
+            // saving username & pwd in keychain
+            [SSKeychain setPassword:pwd forService:@"liquor-ios" account:userName];
+            
             // after check login, go to explore page
             NSDictionary *data = (NSDictionary *)[response objectForKey:@"data"];
             [AppSetting setLoginStatus:YES];
@@ -125,7 +130,18 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     // disable the navbar
-    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    // get username & pwd from keychain
+    NSString *serverName = @"liquor-ios";
+    NSArray *allAccounts = [SSKeychain accountsForService:serverName];
+    if (allAccounts && [allAccounts count] > 0) {
+        NSDictionary *accountInfo = (NSDictionary *)[allAccounts objectAtIndex:[allAccounts count] - 1];
+        NSString *accountName = (NSString *)[accountInfo objectForKey:@"acct"];
+        NSString *pwd = [[NSString alloc] initWithData:[SSKeychain passwordDataForService:serverName account:accountName] encoding:NSUTF8StringEncoding];
+        [self.userName setText:accountName];
+        [self.pwd setText:pwd];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

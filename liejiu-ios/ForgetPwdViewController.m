@@ -45,7 +45,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     // disable the navbar
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

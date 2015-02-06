@@ -60,25 +60,17 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    self.navigationController.toolbarHidden = NO;
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
     [AppSetting setCurrViewController:self];
-    self.navigationController.toolbarHidden = YES;
     [self.scrollView contentSizeToFit];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void) viewWillAppear:(BOOL)animated
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
-*/
 
 - (IBAction)selectWineCategory:(id)sender {
 }
@@ -90,7 +82,26 @@
 
 - (IBAction)submit:(id)sender
 {
+    [self.msgLabel setHidden:NO];
+    NSString *name = self.wineName.text;
+    NSString *desc = self.wineDesc.text;
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ([name length] == 0)
+    {
+        self.msgLabel.text = @"酒品名称不能为空";
+        return;
+    }
+    
+    if ([desc length] == 0)
+    {
+        self.msgLabel.text = @"酒品名称不能为空";
+        return;
+    }
+    
     NSArray *allViews = [self.view subviews];
+    NSMutableArray *wineUploadImages = [[NSMutableArray alloc] init];
     
     for (NSInteger i =0, l = [allViews count]; i < l; i++)
     {
@@ -98,8 +109,16 @@
         if ([view tag] == 9999)
         {
             UIImageView *image = (UIImageView *)view;
+            [wineUploadImages addObject:@{@"name": @"wine_image", @"image": image.image}];
         }
     }
+    
+    if ([wineUploadImages count] == 0) {
+        self.msgLabel.text = @"至少上传一张图片";
+        return;
+    }
+    
+    
 }
 
 - (void) setPhoto:(UIImage *)image
@@ -112,10 +131,18 @@
 
     CGFloat x = frame.origin.x;
     
-    UIImageView *newImageView = [[UIImageView alloc] initWithFrame:frame];
+    UIView *wrapView = [[UIView alloc] initWithFrame:frame];
+    UIImageView *deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"icon_remove"]];
+    UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    [deleteIcon setFrame:CGRectMake(frame.size.width - deleteIcon.frame.size.width/2, -deleteIcon.frame.size.height/2, deleteIcon.frame.size.width, deleteIcon.frame.size.height)];
+    [wrapView addSubview:newImageView];
+    [wrapView addSubview:deleteIcon];
+    wrapView.tag = 9999;
+
     newImageView.tag = 9999;
     newImageView.image = image;
     [newImageView setContentMode:UIViewContentModeScaleAspectFill];
+    newImageView.layer.masksToBounds = YES;
     
     CGRect newFrame;
     if (x + gap + frame.size.width > screenWith) {
@@ -126,8 +153,8 @@
         newFrame = CGRectMake(frame.origin.x + gap + frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
     }
 
-    [self.wineImageBtn.layer setFrame: newFrame];
-    [self.scrollView addSubview:newImageView];
+    [self.wineImageBtn setFrame:newFrame];
+    [self.scrollView addSubview:wrapView];
 }
 
 #pragma mark -
