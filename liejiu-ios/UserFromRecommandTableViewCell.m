@@ -13,7 +13,7 @@
 
 @implementation UserFromRecommandTableViewCell
 {
-    NSDictionary *userInfo;
+    NSMutableDictionary *userInfo;
 }
 
 - (void)awakeFromNib
@@ -47,10 +47,26 @@
 
 - (void) setUserData:(NSDictionary *)info
 {
-    userInfo = info;
+    userInfo = [info mutableCopy];
 
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[info objectForKey:@"cover"]] placeholderImage:[UIImage imageNamed:@"Icon-60.png"]];
     
+    BOOL beFollowed = (BOOL)[[userInfo objectForKey:@"be_followed"] boolValue];
+    BOOL beFollower = (BOOL)[[userInfo objectForKey:@"be_follower"] boolValue];
+    NSString *followTitle;
+    
+    if (beFollowed && beFollower)
+    {
+        followTitle = @"×相互关注";
+    } else if (beFollower)
+    {
+        followTitle = @"  × 已关注";
+    } else {
+        followTitle = @"  + 加关注";
+    }
+    
+    [self.followBtn setTitle:followTitle forState:UIControlStateNormal];
+
     NSString *levelNum = [NSString stringWithFormat:@"%@", (NSString *)[info objectForKey:@"level"]];
     NSString *menusNum = [NSString stringWithFormat:@"%@", [[info objectForKey:@"menus"] stringValue]];
     NSString *recordsNum = [NSString stringWithFormat:@"%@", [[info objectForKey:@"wines"] stringValue]];
@@ -62,6 +78,7 @@
     self.menuNum.text = [NSString stringWithFormat:@"酒单:%@", menusNum];
     self.nickName.text = (NSString *)[info objectForKey:@"nickname"];
     
+    
     [AppSetting settingLabel:self.level withAttribute:highLightColor inSelectedText:levelNum];
     [AppSetting settingLabel:self.recordNum withAttribute:highLightColor inSelectedText:recordsNum];
     [AppSetting settingLabel:self.menuNum withAttribute:highLightColor inSelectedText:menusNum];
@@ -69,6 +86,25 @@
 
 - (IBAction)clickOnFollowBtn:(id)sender
 {
-    [self.delegate onFollowBtn:userInfo];
+    NSDictionary *params = @{@"userid": (NSString *)[userInfo objectForKey:@"id"]};
+    [self.followBtn setTitle:@"加载中" forState:UIControlStateNormal];
+    
+    [AppSetting httpPost:@"update/relation" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success)
+        {
+            NSDictionary *updateUserInfo = (NSDictionary *)[response objectForKey:@"data"];
+            BOOL beFollowed = (BOOL)[[updateUserInfo objectForKey:@"be_followed"] boolValue];
+            BOOL beFollower = (BOOL)[[updateUserInfo objectForKey:@"be_follower"] boolValue];
+            [userInfo setValue:[NSNumber numberWithBool:beFollowed] forKey:@"be_followed"];
+            [userInfo setValue:[NSNumber numberWithBool:beFollower] forKey:@"be_follower"];
+            [self setUserData:userInfo];
+            [self.delegate onFollowBtn: userInfo];
+            [self setUserData:userInfo];
+        } else {
+            [self setUserData:userInfo];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:msg message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
 }
 @end

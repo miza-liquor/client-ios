@@ -42,4 +42,6 @@
 + (void) topBarStyleSetting:(UIViewController *)view;
 
 + (NSString *) getCurrentVersion;
+
++ (void) shareInView:(UIViewController *)view WithText:(NSString *)text shareImage:(UIImage *)image;
 @end

@@ -11,7 +11,7 @@
 #import "UserFromRecommandTableViewCell.h"
 #import "TopMenuTableViewCell.h"
 #import "LoadingTableViewCell.h"
-#import "RecordTableViewCell.h"
+#import "RecordCellTableViewCell.h"
 #import "AppSetting.h"
 
 @interface SearchViewController ()
@@ -63,6 +63,13 @@
     isLoading = YES;
     [self.tableView reloadData];
     
+    if ([searchTabName isEqualToString:@"user"]) {
+        contentRowHeight = 74;
+    } else if ([searchTabName isEqualToString:@"record"]) {
+        contentRowHeight = 80;
+    } else {
+        contentRowHeight = 126;
+    }
     [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
         if (success && [currentTab isEqualToString:searchTabName]) {
             dataList = (NSArray *)[response objectForKey:@"data"];
@@ -73,13 +80,7 @@
         }
     }];
     
-    if ([searchTabName isEqualToString:@"user"]) {
-        contentRowHeight = 70;
-    } else if ([searchTabName isEqualToString:@"record"]) {
-        contentRowHeight = 70;
-    } else {
-        contentRowHeight = 126;
-    }
+    
 }
 
 - (void) initStaticCell
@@ -148,15 +149,15 @@
         [cell setTopMenuData:dataInfo];
         return cell;
     } else {
-        simpleTableIdentifier = @"RecordTableViewCell";
-        RecordTableViewCell *cell = (RecordTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        simpleTableIdentifier = @"RecordCellTableViewCell";
+        RecordCellTableViewCell *cell = (RecordCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
         if (cell == nil)
         {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
             cell = [nib objectAtIndex:0];
         }
-        
-        [cell setData:dataInfo];
+
+        [cell setRecordData:dataInfo];
         return cell;
     }
 }

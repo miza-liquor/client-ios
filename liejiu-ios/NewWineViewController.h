@@ -15,11 +15,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *wineName;
 @property (weak, nonatomic) IBOutlet UIButton *wineCategoryBtn;
 @property (weak, nonatomic) IBOutlet UITextView *wineDesc;
-@property (weak, nonatomic) IBOutlet UIButton *wineImageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UILabel *msgLabel;
 
 - (IBAction)selectWineCategory:(id)sender;
-- (IBAction)addNewImage:(id)sender;
 - (IBAction)submit:(id)sender;
 @end

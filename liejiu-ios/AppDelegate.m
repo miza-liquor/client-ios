@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MMDrawerController.h"
-#import "MMDrawerVisualState.h"
-#import "ViewController.h"
+#import "UMSocial.h"
 
 @implementation AppDelegate
 
@@ -20,6 +18,7 @@
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    [UMSocialData setAppKey:@"54d88131fd98c50119000abb"];
     return YES;
 }
 							

@@ -12,6 +12,7 @@
 #import "UserRecommHeadTableViewCell.h"
 #import "UserProfileViewController.h"
 #import "AppSetting.h"
+#import "LoadingTableViewCell.h"
 #import <AddressBook/ABAddressBook.h>
 
 @interface AddFriendViewController ()
@@ -20,10 +21,11 @@
 
 @implementation AddFriendViewController
 {
-    NSArray *users;
+    NSMutableArray *users;
     UserRecommHeadTableViewCell *headerCell;
     NSDictionary *selectedUserInfo;
     NSString *searchKeyword;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,7 +41,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     UIBarButtonItem *drawerBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_drawer"] style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
     self.navigationItem.leftBarButtonItem = drawerBtn;
     [AppSetting drawToolBar:self];
@@ -53,7 +55,7 @@
     }
     [self initStaticCell];
 
-    users = @[];
+    users = [[NSMutableArray alloc] init];
     searchKeyword = @"";
     [self getData];
 }
@@ -90,7 +92,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [users count] + 1;
+    return isLoading ? 2 : [users count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,6 +100,10 @@
     if (indexPath.row == 0)
     {
         return headerCell;
+    } else if (isLoading) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+         LoadingTableViewCell *loadingCell = [nib objectAtIndex:0];
+        return loadingCell;
     } else {
         static NSString *recommandTableIdentifier = @"UserFromRecommandTableViewCell";
         UserFromRecommandTableViewCell *cell = (UserFromRecommandTableViewCell *)[tableView dequeueReusableCellWithIdentifier:recommandTableIdentifier];
@@ -137,7 +143,18 @@
 
 - (void) onFollowBtn:(NSDictionary *)userInfo
 {
-    
+    NSString *givenUid = (NSString *)[userInfo objectForKey:@"id"];
+    for (NSInteger i=0,l=[users count]; i<l; i++) {
+        
+        NSDictionary *row =[users objectAtIndex:i];
+        NSString *uid = (NSString *)[row objectForKey:@"id"];
+        if ([uid isEqualToString:givenUid]) {
+            [users replaceObjectAtIndex:i withObject:userInfo];
+            break;
+        }
+    }
+
+    [self.tableView reloadData];
 }
 
 - (void) submitSearchBox:(NSString *)keywork
@@ -159,12 +176,16 @@
 - (void) getData
 {
     NSString *url = [NSString stringWithFormat:@"search/user/%@", searchKeyword];
-    
+    isLoading = YES;
+    users = [[NSMutableArray alloc] init];
+    [self.tableView reloadData];
+
     [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        isLoading = NO;
         if (success == YES)
         {
             // after check login, go to explore page
-            users = (NSArray *)[response objectForKey:@"data"];
+            users = [(NSArray *)[response objectForKey:@"data"] mutableCopy];
             [self.tableView reloadData];
         }
     }];

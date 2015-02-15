@@ -146,6 +146,7 @@
 - (void) clickOnShareBtn
 {
     NSLog(@"click on share btn");
+    [AppSetting shareInView:self WithText:@"test" shareImage:[UIImage imageNamed:@"Icon-57.png"]];
 }
 
 #pragma mark - top wine category delegate

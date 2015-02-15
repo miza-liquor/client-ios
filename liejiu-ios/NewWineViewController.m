@@ -9,6 +9,7 @@
 #import "NewWineViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "TGCameraViewController.h"
+#import "TopWineCategoryViewController.h"
 #import "AppSetting.h"
 
 @interface NewWineViewController () <TGCameraDelegate>
@@ -18,6 +19,9 @@
 @implementation NewWineViewController
 {
     NSMutableArray *wineImages;
+    UIButton *newWineBtn;
+    NSDictionary *currCategory;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    isLoading = NO;
     wineImages = [[NSMutableArray alloc] initWithCapacity:9];
     
     [self.scrollView contentSizeToFit];
@@ -44,12 +48,28 @@
     self.wineDesc.layer.borderWidth = 1;
     self.wineDesc.layer.masksToBounds = YES;
     
-//    CGRect buttonFrame = self.wineImageBtn.frame;
-//    [self.wineImageBtn removeFromSuperview];
-//    [self.wineImageBtn setFrame:buttonFrame];
-//    [self.scrollView addSubview:self.wineImageBtn];
+    newWineBtn = [self createButtonWithPX:20 PY:324];
 }
 
+-(UIButton *) createButtonWithPX:(CGFloat)pX PY:(CGFloat)pY
+{
+    UIImage *listImage = [UIImage imageNamed:@"btn_new_wineimage"];
+    UIButton *listButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    // get the image size and apply it to the button frame
+    CGRect listButtonFrame = listButton.frame;
+    listButtonFrame.size = listImage.size;
+    listButtonFrame.origin.x = pX;
+    listButtonFrame.origin.y = pY;
+    listButton.frame = listButtonFrame;
+    
+    [listButton setImage:listImage forState:UIControlStateNormal];
+    [listButton addTarget:self action:@selector(addNewImage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.scrollView addSubview:listButton];
+
+    return listButton;
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -73,15 +93,20 @@
 }
 
 - (IBAction)selectWineCategory:(id)sender {
+    TopWineCategoryViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"wineCategory"];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (IBAction)addNewImage:(id)sender
+- (void)addNewImage:(id)sender
 {
     [self openCamera];
 }
 
 - (IBAction)submit:(id)sender
 {
+    if (isLoading) return;
+
     [self.msgLabel setHidden:NO];
     NSString *name = self.wineName.text;
     NSString *desc = self.wineDesc.text;
@@ -90,13 +115,19 @@
     
     if ([name length] == 0)
     {
-        self.msgLabel.text = @"酒品名称不能为空";
+        self.msgLabel.text = @"名称不能为空";
         return;
     }
     
     if ([desc length] == 0)
     {
-        self.msgLabel.text = @"酒品名称不能为空";
+        self.msgLabel.text = @"描述不能为空";
+        return;
+    }
+    
+    if(!currCategory)
+    {
+        self.msgLabel.text = @"请选择酒分类";
         return;
     }
     
@@ -118,7 +149,21 @@
         return;
     }
     
-    
+    isLoading = YES;
+    NSDictionary *params = @{
+                                @"name": name,
+                                @"desc": desc,
+                                @"category": (NSString *)[currCategory objectForKey:@"id"],
+                                @"uploadImages": wineUploadImages
+                            };
+    [AppSetting httpPost:@"post/wine" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        isLoading = NO;
+        if (success) {
+            
+        } else {
+            self.msgLabel.text = msg;
+        }
+    }];
 }
 
 - (void) setPhoto:(UIImage *)image
@@ -126,8 +171,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     CGFloat screenWith = 280;
-    CGFloat gap = (screenWith - self.wineImageBtn.frame.size.width * 3) / 2;
-    CGRect frame = self.wineImageBtn.frame;
+    CGFloat gap = (screenWith - newWineBtn.frame.size.width * 3) / 2;
+    CGRect frame = newWineBtn.frame;
 
     CGFloat x = frame.origin.x;
     
@@ -153,8 +198,24 @@
         newFrame = CGRectMake(frame.origin.x + gap + frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
     }
 
-    [self.wineImageBtn setFrame:newFrame];
+    
+    [newWineBtn removeFromSuperview];
+    newWineBtn = [self createButtonWithPX:newFrame.origin.x PY:newFrame.origin.y];
     [self.scrollView addSubview:wrapView];
+}
+
+#pragma mark - top wine category delegate
+- (void) topWineCategoryChanged:(NSDictionary *)info
+{
+    currCategory = info;
+    [self.wineCategoryBtn setTitle:(NSString *)[currCategory objectForKey:@"name"] forState:UIControlStateNormal];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+//    if ([segue.identifier isEqualToString:@"allCategory"])
+//    {
+//    }
 }
 
 #pragma mark -

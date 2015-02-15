@@ -12,7 +12,9 @@
 #import "ExploreViewController.h"
 #import "NewRecordViewController.h"
 #import "WineCenterViewController.h"
+#import "LoginViewController.h"
 #import "MMDrawerVisualState.h"
+#import "UMSocial.h"
 
 // api link
 static NSString *_hostName = @"http://zhangge.me:8882/v1/app/";
@@ -69,7 +71,8 @@ static UIViewController *_currView = nil;
 
 + (void) navigateLoginPage
 {
-    
+    WineCenterViewController *controller = [_currView.storyboard instantiateViewControllerWithIdentifier:@"loginPage"];
+    [_currView.navigationController pushViewController:controller animated:YES];
 }
 
 + (void) setCurrViewController:(UIViewController *) view
@@ -232,6 +235,23 @@ static UIViewController *_currView = nil;
 + (NSString *) getCurrentVersion
 {
     return @"0.9";
+}
+
++ (void) shareInView:(UIViewController *)view WithText:(NSString *)text shareImage:(UIImage *)image
+{
+    
+    [UMSocialSnsService presentSnsIconSheetView:view
+                                         appKey:@"54d88131fd98c50119000abb"
+                                      shareText:text
+                                     shareImage:image
+                                shareToSnsNames:[NSArray arrayWithObjects:
+                                                 UMShareToWechatTimeline,
+                                                 UMShareToWechatSession,
+                                                 UMShareToSina,
+                                                 UMShareToRenren,
+                                                 UMShareToDouban,
+                                                 nil]
+                                       delegate:nil];
 }
 
 @end
