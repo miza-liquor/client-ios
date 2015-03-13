@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopWineCategoryViewController.h"
 @class TPKeyboardAvoidingScrollView;
 
-@interface NewWineViewController : UIViewController
+@interface NewWineViewController : UIViewController<TopWineCategoryViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet TPKeyboardAvoidingScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *wineName;

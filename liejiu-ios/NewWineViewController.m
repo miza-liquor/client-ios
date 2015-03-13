@@ -177,6 +177,7 @@
     CGFloat x = frame.origin.x;
     
     UIView *wrapView = [[UIView alloc] initWithFrame:frame];
+
     UIImageView *deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"icon_remove"]];
     UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
     [deleteIcon setFrame:CGRectMake(frame.size.width - deleteIcon.frame.size.width/2, -deleteIcon.frame.size.height/2, deleteIcon.frame.size.width, deleteIcon.frame.size.height)];
@@ -192,8 +193,9 @@
     CGRect newFrame;
     if (x + gap + frame.size.width > screenWith) {
         newFrame = CGRectMake(20, frame.origin.y + gap + frame.size.height, frame.size.width, frame.size.height);
-        [self.submitBtn setFrame:CGRectMake(self.submitBtn.frame.origin.x, self.submitBtn.frame.origin.y + frame.size.height + gap, self.submitBtn.frame.size.width, self.submitBtn.frame.size.height )];
+        [self.submitBtn.layer setFrame:CGRectMake(self.submitBtn.frame.origin.x, self.submitBtn.frame.origin.y + frame.size.height + gap, self.submitBtn.frame.size.width, self.submitBtn.frame.size.height )];
         [self.msgLabel setFrame:CGRectMake(self.msgLabel.frame.origin.x, self.msgLabel.frame.origin.y + frame.size.height + gap, self.submitBtn.frame.size.width, self.submitBtn.frame.size.height )];
+
     } else {
         newFrame = CGRectMake(frame.origin.x + gap + frame.size.width, frame.origin.y, frame.size.width, frame.size.height);
     }
@@ -201,7 +203,15 @@
     
     [newWineBtn removeFromSuperview];
     newWineBtn = [self createButtonWithPX:newFrame.origin.x PY:newFrame.origin.y];
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeImage:)];
+    [wrapView addGestureRecognizer:singleFingerTap];
     [self.scrollView addSubview:wrapView];
+}
+
+- (void) removeImage:(UITapGestureRecognizer *)recognizer
+{
+    UIView *view = (UIView *) recognizer.view;
+    [view removeFromSuperview];
 }
 
 #pragma mark - top wine category delegate
