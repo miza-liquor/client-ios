@@ -136,6 +136,9 @@
 		B6666CAE1A22184800F446A7 /* MenuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6666CAD1A22184800F446A7 /* MenuListViewController.m */; };
 		B6666CB11A221C9C00F446A7 /* NewMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6666CB01A221C9C00F446A7 /* NewMenuViewController.m */; };
 		B6666CB31A221E0F00F446A7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6666CB21A221E0F00F446A7 /* QuartzCore.framework */; };
+		B67CA4331AB2AF870078A8D5 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4321AB2AF870078A8D5 /* AddressListViewController.m */; };
+		B67CA4361AB2C24E0078A8D5 /* WineSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4351AB2C24E0078A8D5 /* WineSelectViewController.m */; };
+		B67CA4391AB2D0EF0078A8D5 /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4381AB2D0EF0078A8D5 /* RecordDetailViewController.m */; };
 		B68C0B891A5ADC9500BDC35E /* btn_share_o@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B68C0B871A5ADC9500BDC35E /* btn_share_o@2x.png */; };
 		B68C0B8A1A5ADC9500BDC35E /* btn_share_o@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B68C0B881A5ADC9500BDC35E /* btn_share_o@3x.png */; };
 		B69409571A848FDD007B4448 /* RegisterProtocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69409561A848FDD007B4448 /* RegisterProtocalViewController.m */; };
@@ -442,6 +445,12 @@
 		B6666CAF1A221C9C00F446A7 /* NewMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMenuViewController.h; sourceTree = "<group>"; };
 		B6666CB01A221C9C00F446A7 /* NewMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMenuViewController.m; sourceTree = "<group>"; };
 		B6666CB21A221E0F00F446A7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B67CA4311AB2AF870078A8D5 /* AddressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressListViewController.h; sourceTree = "<group>"; };
+		B67CA4321AB2AF870078A8D5 /* AddressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressListViewController.m; sourceTree = "<group>"; };
+		B67CA4341AB2C24E0078A8D5 /* WineSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineSelectViewController.h; sourceTree = "<group>"; };
+		B67CA4351AB2C24E0078A8D5 /* WineSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineSelectViewController.m; sourceTree = "<group>"; };
+		B67CA4371AB2D0EF0078A8D5 /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
+		B67CA4381AB2D0EF0078A8D5 /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
 		B68C0B871A5ADC9500BDC35E /* btn_share_o@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share_o@2x.png"; path = "resource/btn_share_o@2x.png"; sourceTree = "<group>"; };
 		B68C0B881A5ADC9500BDC35E /* btn_share_o@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share_o@3x.png"; path = "resource/btn_share_o@3x.png"; sourceTree = "<group>"; };
 		B69409551A848FDD007B4448 /* RegisterProtocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterProtocalViewController.h; sourceTree = "<group>"; };
@@ -845,6 +854,12 @@
 				B62520451A73A48800230396 /* NewWineViewController.m */,
 				B69409551A848FDD007B4448 /* RegisterProtocalViewController.h */,
 				B69409561A848FDD007B4448 /* RegisterProtocalViewController.m */,
+				B67CA4311AB2AF870078A8D5 /* AddressListViewController.h */,
+				B67CA4321AB2AF870078A8D5 /* AddressListViewController.m */,
+				B67CA4341AB2C24E0078A8D5 /* WineSelectViewController.h */,
+				B67CA4351AB2C24E0078A8D5 /* WineSelectViewController.m */,
+				B67CA4371AB2D0EF0078A8D5 /* RecordDetailViewController.h */,
+				B67CA4381AB2D0EF0078A8D5 /* RecordDetailViewController.m */,
 			);
 			name = subScreen;
 			sourceTree = "<group>";
@@ -1515,6 +1530,7 @@
 				B695A7271A4AB2E9009B68EF /* NewRecordViewController.m in Sources */,
 				B62520431A73915300230396 /* NewRecordDetailViewController.m in Sources */,
 				B64645F71A1B724A0035F208 /* TopStoryDetailViewController.m in Sources */,
+				B67CA4391AB2D0EF0078A8D5 /* RecordDetailViewController.m in Sources */,
 				B6666CAA1A22126200F446A7 /* WineCenterListTableViewCell.m in Sources */,
 				B6223AD71A1CDD6D009BAC53 /* UserProfileInfoTableViewCell.m in Sources */,
 				B6DF27671A14F2F10046629F /* ExploreViewController.m in Sources */,
@@ -1527,6 +1543,7 @@
 				B6666CAE1A22184800F446A7 /* MenuListViewController.m in Sources */,
 				B6E8EB381A846FDA002E5AF2 /* SSKeychain.m in Sources */,
 				B6F0264F1A5D166100D05530 /* WineCenterHeadTableViewCell.m in Sources */,
+				B67CA4361AB2C24E0078A8D5 /* WineSelectViewController.m in Sources */,
 				B6DF27601A14EDF60046629F /* RegisterViewController.m in Sources */,
 				B65F42871A903DEE00F3322A /* RecordTableViewCell.m in Sources */,
 				B6DF275F1A14EDF60046629F /* ForgetPwdViewController.m in Sources */,
@@ -1555,6 +1572,7 @@
 				B64645ED1A1B6CBA0035F208 /* TopStoryTableViewCell.m in Sources */,
 				B6223AC21A1CADFF009BAC53 /* AddFriendViewController.m in Sources */,
 				B6223AB31A1C834A009BAC53 /* SettingTableViewController.m in Sources */,
+				B67CA4331AB2AF870078A8D5 /* AddressListViewController.m in Sources */,
 				B646460B1A1B83B30035F208 /* TopWineHeaderTableViewCell.m in Sources */,
 				B6E95BB61A5BB3C800EE4B44 /* WineDetaiHeadTableViewCell.m in Sources */,
 				B6223AB91A1C9726009BAC53 /* ProtocolViewController.m in Sources */,

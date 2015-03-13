@@ -7,6 +7,7 @@
 //
 
 #import "SettingTableViewController.h"
+#import "LoginViewController.h"
 #import "AppSetting.h"
 
 @interface SettingTableViewController ()
@@ -33,6 +34,11 @@
     self.view.backgroundColor = color;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
+    [self setCurrentVersion];
+}
+
+- (void) setCurrentVersion
+{
     NSString *currVersion = [AppSetting getCurrentVersion];
     NSString *versionInfo = [NSString stringWithFormat:@"检查更新(目前版本 %@)", currVersion];
     self.versionLabel.text = versionInfo;
@@ -41,6 +47,11 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [AppSetting setCurrViewController:self];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,6 +63,8 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier;
+    LoginViewController *ctl;
+    UIAlertView *alert;
     
     switch (indexPath.section) {
         case 0:
@@ -63,10 +76,15 @@
                     identifier = @"feedback";
                     break;
                 case 2:
-                    identifier = @"protocol";
+                    [self checkVersion];
                     break;
                 case 3:
-                    [self checkVersion];
+                    alert = [[UIAlertView alloc] initWithTitle:@"缓存清空完毕" message:nil delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+                    [alert show];
+                    break;
+                case 4:
+                    ctl = [self.storyboard instantiateViewControllerWithIdentifier:@"loginPage"];
+                    [self.navigationController pushViewController:ctl animated:YES];
                     break;
                 default:
                     break;
@@ -130,6 +148,8 @@
         if (![[UIApplication sharedApplication] openURL:url]) {
             NSLog(@"%@%@",@"Failed to open url:",[url description]);
         }
+    } else {
+        [self setCurrentVersion];
     }
 }
 @end

@@ -42,11 +42,18 @@
     barItemConfirm = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(confirmSelect:)];
     UIBarButtonItem *flexibleBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [self setToolbarItems:[NSArray arrayWithObjects:barItemSelectPhoto, flexibleBtn, barItemConfirm, nil]];
+    
+    [self openCamera];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [AppSetting setCurrViewController:self];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    
 }
 
 

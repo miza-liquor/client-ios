@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction) clickOnSidebarMenu:(id)sender;
 - (IBAction) clickOnSearchBtn:(id)sender;
+- (IBAction) clickOnSwitcher:(id)sender;
 
 
 @end

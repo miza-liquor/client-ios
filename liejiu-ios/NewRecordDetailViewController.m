@@ -9,6 +9,8 @@
 #import "NewRecordDetailViewController.h"
 #import "TPKeyboardAvoidingScrollView.h"
 #import "MenuListViewController.h"
+#import "WineSelectViewController.h"
+#import "RecordDetailViewController.h"
 #import "AppSetting.h"
 
 @interface NewRecordDetailViewController ()
@@ -18,6 +20,8 @@
 @implementation NewRecordDetailViewController
 {
     BOOL isUploading;
+    NSString *selectedWineID;
+    NSString *selectedMenuID;
 }
 @synthesize previewImage;
 
@@ -36,13 +40,12 @@
     [self.scrollView contentSizeToFit];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.title = @"详情信息";
+    
     struct CGColor *borderColor = [UIColor colorWithRed:194.0/255.0 green:194.0/255.0 blue:194.0/255.0 alpha:1].CGColor;
     self.recordDesc.layer.borderColor = borderColor;
     self.recordDesc.layer.borderWidth = 1;
     self.recordDesc.layer.masksToBounds = YES;
-    self.recordName.layer.borderColor = borderColor;
-    self.recordName.layer.borderWidth = 1;
-    self.recordName.layer.masksToBounds = YES;
     
     self.recordImage.image = previewImage;
     
@@ -75,7 +78,13 @@
 #pragma mark - delegate menulist
 -(void) selectedMenu:(NSDictionary *)menuInfo
 {
+    selectedMenuID = (NSString *)[menuInfo objectForKey:@"id"];
     self.recordMenu.titleLabel.text = (NSString *)[menuInfo objectForKey:@"menu_name"];
+}
+-(void) selectedWine:(NSDictionary *)wineInfo
+{
+    selectedWineID = (NSString *)[wineInfo objectForKey:@"id"];
+    self.wineName.titleLabel.text = (NSString *)[wineInfo objectForKey:@"c_name"];
 }
 
 - (IBAction)addAddress:(id)sender
@@ -89,6 +98,13 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (IBAction)addWineName:(id)sender {
+    WineSelectViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"wineSelector"];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+    
+}
+
 - (IBAction)submitRecord:(id)sender
 {
     if (isUploading)
@@ -98,10 +114,9 @@
 
     [self.msgLabel setHidden:NO];
     
-    NSString *name = self.recordName.text;
+    NSString *name = @"";
     NSString *desc = self.recordDesc.text;
     NSString *address = self.recordAddress.titleLabel.text;
-    NSString *menuID = self.recordMenu.titleLabel.text;
     
     name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 //    name = [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -109,9 +124,9 @@
     desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 //    desc = [desc stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    if ([name length] == 0)
+    if (!selectedWineID)
     {
-        self.msgLabel.text = @"记录名称不能为空";
+        self.msgLabel.text = @"酒名称不能为空";
         return;
     }
 
@@ -120,10 +135,11 @@
 
     NSString *url = @"post/record";
     NSDictionary *params = @{
+                                @"wine_id": selectedWineID,
                                 @"name": name,
                                 @"desc": desc,
                                 @"address": address,
-                                @"menu_id": menuID,
+                                @"menu_id": selectedMenuID,
                                 @"uploadImages": @[@{
                                                        @"name": @"record_image",
                                                        @"image": self.recordImage.image
@@ -135,6 +151,8 @@
             self.msgLabel.text = msg;
         } else {
             self.msgLabel.text = @"上传成功";
+            RecordDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"recordDetail"];
+            [self.navigationController pushViewController:controller animated:YES];
         }
         isUploading = NO;
     }];

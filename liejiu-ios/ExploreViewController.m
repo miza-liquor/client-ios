@@ -9,6 +9,8 @@
 #import "ExploreViewController.h"
 #import "TopImageTableViewCell.h"
 #import "TopMenuTableViewCell.h"
+#import "RecordTableViewCell.h"
+#import "LoadingTableViewCell.h"
 #import "TopImageViewController.h"
 #import "MenuDetailViewController.h"
 #import "AppSetting.h"
@@ -20,9 +22,13 @@
 @implementation ExploreViewController
 {
     NSArray *topMenus;
+    NSArray *updatesData;
     NSString *selectedTopImageUrl;
     NSDictionary *selectedMenuInfo;
+    NSDictionary *selectedUpdateItem;
     TopImageTableViewCell *topImageCell;
+    BOOL isUpdateModel;
+    BOOL isLoading;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,32 +47,48 @@
     // Do any additional setup after loading the view.
     
     self.title = @"探索";
+    isUpdateModel = NO;
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
      v.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:v];
-    
-    // change navigation bar background
-    // fixed ios6, ios7
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:86/255.0 green:51/255.0 blue:195/255.0 alpha:1.0];
-        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        
-    } else {
-        /* Set background and foreground */
-    }
 
     [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting:self];
     
-    // init data
-    topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];
-    [self initHeader:(NSArray *) [AppSetting getCache:@"topImage"]];
+    [self renderTable];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [AppSetting setCurrViewController:self];
+}
+
+- (void) renderTable
+{
+    if (isUpdateModel) {
+        topImageCell = nil;
+        topMenus = nil;
+        isLoading = YES;
+        updatesData = @[];
+
+        [AppSetting httpGet:@"updates" parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+            isLoading = NO;
+
+            if (success) {
+                updatesData = (NSArray *)[response objectForKey:@"data"];
+                [self.tableView reloadData];
+            } else {
+                NSLog(@"err in fetching updates data");
+            }
+        }];
+
+    } else {
+        topMenus = (NSArray *)[AppSetting getCache:@"topMenu"];
+        [self initHeader:(NSArray *) [AppSetting getCache:@"topImage"]];
+    }
+
+    [self.tableView reloadData];
 }
 
 
@@ -96,14 +118,46 @@
     [self performSegueWithIdentifier:@"search" sender:self];
 }
 
+- (IBAction) clickOnSwitcher:(id)sender
+{
+    UISegmentedControl *seg =  (UISegmentedControl *) sender;
+
+    isUpdateModel = (seg.selectedSegmentIndex == 0) ? NO : YES;
+    [self renderTable];
+}
+
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [topMenus count] + 1;
+    if (isUpdateModel) {
+        return isLoading ? 1 : [updatesData count];
+    } else {
+        return [topMenus count] + 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // is update model
+    if (isUpdateModel) {
+        if (isLoading) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+            return [nib objectAtIndex:0];
+        } else {
+            static NSString *simpleTableIdentifierList = @"RecordTableViewCell";
+            RecordTableViewCell *cell = (RecordTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifierList];
+            if (cell == nil)
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifierList owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+            }
+            
+            NSDictionary *info = (NSDictionary *)[updatesData objectAtIndex:indexPath.row];
+            [cell setRecordData:info];
+            return cell;
+        }
+    }
+
     if (indexPath.row == 0)
     {
         return topImageCell;
@@ -126,15 +180,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 400 : 126;
+    if (isUpdateModel) {
+        return 400;
+    } else {
+        return indexPath.row == 0 ? 400 : 126;
+    }
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != 0)
-    {
-        selectedMenuInfo = (NSDictionary *)[topMenus objectAtIndex:indexPath.row - 1];
-        [self performSegueWithIdentifier:@"menuDetail" sender:self];
+    if (isUpdateModel) {
+        if (!isLoading) {
+            selectedUpdateItem = (NSDictionary *)[updatesData objectAtIndex:indexPath.row - 1];
+        }
+    } else {
+        if (indexPath.row != 0)
+        {
+            selectedMenuInfo = (NSDictionary *)[topMenus objectAtIndex:indexPath.row - 1];
+            [self performSegueWithIdentifier:@"menuDetail" sender:self];
+        }
     }
 }
 
