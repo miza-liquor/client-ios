@@ -1909,7 +1909,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_top_drawer.png" translatesAutoresizingMaskIntoConstraints="NO" id="FgK-Dp-1rP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9IW-TU-O4R">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="9IW-TU-O4R">
                                 <rect key="frame" x="106" y="96" width="110" height="110"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="168" translatesAutoresizingMaskIntoConstraints="NO" id="Fpn-IE-Y1e">
@@ -2353,6 +2353,7 @@
         <image name="btn_more.png" width="40" height="40"/>
         <image name="btn_search.png" width="40" height="40"/>
         <image name="btn_share.png" width="40" height="40"/>
+        <image name="user_default.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -2366,6 +2367,6 @@
         <segue reference="Hh5-PE-MFt"/>
         <segue reference="lWQ-mV-hli"/>
         <segue reference="krQ-if-Ocv"/>
-        <segue reference="ZeE-Jf-56d"/>
+        <segue reference="rKM-p7-TRC"/>
     </inferredMetricsTieBreakers>
 </document>

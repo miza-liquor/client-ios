@@ -121,6 +121,7 @@ static UIViewController *_currView = nil;
             callback(NO, response, msg);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",[error localizedDescription]);
         callback(NO, nil, @"系统错误");
     }];
 }
@@ -148,6 +149,7 @@ static UIViewController *_currView = nil;
             callback(NO, response, msg);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",[error localizedDescription]);
         callback(NO, nil, @"系统错误");
     }];
 }

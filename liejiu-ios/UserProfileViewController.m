@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Minzhang Wei. All rights reserved.
 //
 
+#import "TGCamera.h"
+#import "TGCameraViewController.h"
 #import "UserProfileViewController.h"
 #import "UserProfileInfoTableViewCell.h"
 #import "UserDrinkLikeTableViewCell.h"
@@ -13,7 +15,7 @@
 #import "FollowListViewController.h"
 #import "AppSetting.h"
 
-@interface UserProfileViewController ()
+@interface UserProfileViewController () <TGCameraDelegate>
 
 @end
 
@@ -22,6 +24,9 @@
     NSArray *dataList;
     NSString *tabType;
     NSString *followTypeName;
+    UserProfileInfoTableViewCell *headerCell;
+    
+    BOOL isChangeCover;
 }
 @synthesize fromSubView;
 @synthesize userBasicInfo;
@@ -42,6 +47,7 @@
 
     dataList = @[];
     tabType = @"drinked";
+    isChangeCover = YES;
     
     // check if open from drawer
     if (!fromSubView)
@@ -56,6 +62,11 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting:self];
+    
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserProfileInfoTableViewCell" owner:self options:nil];
+    headerCell = [nib objectAtIndex:0];
+    [headerCell setBasicUserInfo: self.userBasicInfo withTab:tabType];
+    headerCell.delegate = self;
     
     // load tab data
     [self loadTabContent];
@@ -83,18 +94,7 @@
 {
     if (indexPath.row == 0)
     {
-        static NSString *simpleTableIdentifier = @"UserProfileInfoTableViewCell";
-        UserProfileInfoTableViewCell *cell = (UserProfileInfoTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-        if (cell == nil)
-        {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:simpleTableIdentifier owner:self options:nil];
-            cell = [nib objectAtIndex:0];
-
-            [cell setBasicUserInfo: self.userBasicInfo withTab:tabType];
-        }
-
-        cell.delegate = self;
-        return cell;
+        return headerCell;
     } else {
         if ([tabType isEqualToString:@"mymenu"])
         {
@@ -212,6 +212,18 @@
     [self performSegueWithIdentifier:@"follow" sender:self];
 }
 
+- (void) changeUserCover
+{
+    isChangeCover = YES;
+    [self openCamera];
+}
+
+- (void) changeBGCover
+{
+    isChangeCover = NO;
+    [self openCamera];
+}
+
 #pragma mark - Button Handlers
 -(void)leftDrawerButtonPress:(id)sender
 {
@@ -228,5 +240,68 @@
     }
 }
 
+#pragma mark -
+#pragma mark - TGCameraDelegate required
 
+- (void)cameraDidCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cameraDidTakePhoto:(UIImage *)image
+{
+    [self setPhoto:image];
+}
+
+- (void)cameraDidSelectAlbumPhoto:(UIImage *)image
+{
+    [self setPhoto:image];
+}
+
+- (void) setPhoto:(UIImage *)image
+{
+    NSString* updateType = isChangeCover ? @"user_cover" : @"user_background";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"正在上传图片" message:nil delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [alert show];
+    
+    
+    NSDictionary *params = @{
+                             @"type": updateType,
+                             @"uploadImages": @[@{
+                                                    @"name": @"image",
+                                                    @"image": image
+                                                    }]
+                             };
+    [AppSetting httpPost:@"user/update/image" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        
+        NSString *updateMsg;
+        NSString *updateMsgDetail;
+        if (success)
+        {
+            updateMsg = @"更新成功";
+            updateMsgDetail = nil;
+            
+            if (isChangeCover) {
+                [headerCell setUserCover:image];
+            } else {
+                [headerCell setBGCover:image];
+            }
+        } else {
+            updateMsg = @"更新失败";
+            updateMsgDetail = msg;
+        }
+
+        [alert setTitle:updateMsg];
+        [alert setMessage:updateMsgDetail];
+        [alert show];
+    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) openCamera
+{
+    TGCameraNavigationController *navigationController = [TGCameraNavigationController newWithCameraDelegate:self];
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
 @end

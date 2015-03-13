@@ -12,6 +12,8 @@
 
 - (void) onTagChanged: (NSString *) tabName;
 - (void) onClickFollowBtn: (NSString *) followType;
+- (void) changeUserCover;
+- (void) changeBGCover;
 
 @end
 
@@ -28,10 +30,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *tapMenu;
 @property (weak, nonatomic) IBOutlet UIButton *tabCollection;
 @property (weak, nonatomic) IBOutlet UIButton *btnUserImage;
+@property (weak, nonatomic) IBOutlet UIImageView *userBgCover;
 
 - (IBAction) clickOnTab:(id)sender;
 - (IBAction)clickONFollowInfoBtn:(id)sender;
+- (IBAction)clickToChangeCover:(id)sender;
+
 
 - (void) setBasicUserInfo:(NSDictionary *)userBasicInfo withTab:(NSString *)tabName;
+- (void) setUserCover:(UIImage *)image;
+- (void) setBGCover:(UIImage *)image;
 
 @end

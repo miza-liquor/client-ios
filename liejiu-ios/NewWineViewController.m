@@ -10,6 +10,7 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import "TGCameraViewController.h"
 #import "TopWineCategoryViewController.h"
+#import "WineDetailViewController.h"
 #import "AppSetting.h"
 
 @interface NewWineViewController () <TGCameraDelegate>
@@ -65,6 +66,7 @@
     
     [listButton setImage:listImage forState:UIControlStateNormal];
     [listButton addTarget:self action:@selector(addNewImage:) forControlEvents:UIControlEventTouchUpInside];
+    [listButton setTag:888];
     
     [self.scrollView addSubview:listButton];
 
@@ -131,7 +133,7 @@
         return;
     }
     
-    NSArray *allViews = [self.view subviews];
+    NSArray *allViews = [self.scrollView subviews];
     NSMutableArray *wineUploadImages = [[NSMutableArray alloc] init];
     
     for (NSInteger i =0, l = [allViews count]; i < l; i++)
@@ -139,8 +141,18 @@
         UIView *view = (UIView *)[allViews objectAtIndex:i];
         if ([view tag] == 9999)
         {
-            UIImageView *image = (UIImageView *)view;
-            [wineUploadImages addObject:@{@"name": @"wine_image", @"image": image.image}];
+            NSArray *allSubViews = [view subviews];
+            
+            for (NSInteger j =0, k = [allSubViews count]; j < k; j++)
+            {
+                UIImageView *image = (UIImageView *)[allSubViews objectAtIndex:j];
+                if (image && [image tag] == 9999)
+                {
+                    NSString *imageName = [NSString stringWithFormat:@"wine_image_%ld", i];
+                    [wineUploadImages addObject:@{@"name": imageName, @"image": image.image}];
+                }
+            }
+            
         }
     }
     
@@ -149,17 +161,22 @@
         return;
     }
     
+    self.msgLabel.text = @"正在上传...";
     isLoading = YES;
     NSDictionary *params = @{
                                 @"name": name,
                                 @"desc": desc,
                                 @"category": (NSString *)[currCategory objectForKey:@"id"],
+                                @"image_num": [NSString stringWithFormat:@"%ld", [wineUploadImages count]],
                                 @"uploadImages": wineUploadImages
                             };
     [AppSetting httpPost:@"post/wine" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
         isLoading = NO;
         if (success) {
-            
+            NSDictionary *wineInfo = (NSDictionary *)[response objectForKey:@"data"];
+            WineDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"wineDetail"];
+            controller.basicInfo = wineInfo;
+            [self.navigationController pushViewController:controller animated:YES];
         } else {
             self.msgLabel.text = msg;
         }
@@ -181,11 +198,11 @@
     UIImageView *deleteIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"icon_remove"]];
     UIImageView *newImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
     [deleteIcon setFrame:CGRectMake(frame.size.width - deleteIcon.frame.size.width/2, -deleteIcon.frame.size.height/2, deleteIcon.frame.size.width, deleteIcon.frame.size.height)];
+    newImageView.tag = 9999;
     [wrapView addSubview:newImageView];
-    [wrapView addSubview:deleteIcon];
+//    [wrapView addSubview:deleteIcon];
     wrapView.tag = 9999;
 
-    newImageView.tag = 9999;
     newImageView.image = image;
     [newImageView setContentMode:UIViewContentModeScaleAspectFill];
     newImageView.layer.masksToBounds = YES;
@@ -210,6 +227,7 @@
 
 - (void) removeImage:(UITapGestureRecognizer *)recognizer
 {
+    
     UIView *view = (UIView *) recognizer.view;
     [view removeFromSuperview];
 }

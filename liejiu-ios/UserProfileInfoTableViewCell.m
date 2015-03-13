@@ -31,6 +31,10 @@
     [self updateTabBtnState:@"drinked"];
     
     tabList = @[self.tabDrinked, self.tabDrinking, self.tapMenu, self.tabCollection];
+    
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeBGCover:)];
+    [self.userBgCover setUserInteractionEnabled:YES];
+    [self.userBgCover addGestureRecognizer:singleFingerTap];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -53,6 +57,15 @@
     [self.delegate onClickFollowBtn:followType];
 }
 
+- (IBAction)clickToChangeCover:(id)sender {
+    [self.delegate changeUserCover];
+}
+
+- (void) changeBGCover:(UITapGestureRecognizer *)recognizer
+{
+    [self.delegate changeBGCover];
+}
+
 - (void) setBasicUserInfo:(NSDictionary *)userBasicInfo withTab:(NSString *)tabName
 {
     [self updateTabBtnState:tabName];
@@ -61,7 +74,22 @@
     [self.followNum setTitle:[NSString stringWithFormat:@" 关注(%@)", (NSString *)[userBasicInfo objectForKey:@"following"]] forState:UIControlStateNormal];
     [self.likeNum setTitle:[NSString stringWithFormat:@" 赞(%@)", (NSString *)[userBasicInfo objectForKey:@"likes"]] forState:UIControlStateNormal];
 
-    [self.btnUserImage sd_setBackgroundImageWithURL:[NSURL URLWithString:(NSString *)[userBasicInfo objectForKey:@"cover"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon.png"]];
+    [self.btnUserImage sd_setBackgroundImageWithURL:[NSURL URLWithString:(NSString *)[userBasicInfo objectForKey:@"cover"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"user_default"]];
+    
+    NSString *bgCoverLink = (NSString *)[userBasicInfo objectForKey:@"background"];
+    if ([bgCoverLink length] > 0)
+    {
+        [self.userBgCover sd_setImageWithURL:[NSURL URLWithString:(NSString *)[userBasicInfo objectForKey:@"background"]] placeholderImage:[UIImage imageNamed:@"bg_user_profile"]];
+    }
+}
+
+- (void) setUserCover:(UIImage *)image
+{
+    [self.btnUserImage setImage:image forState:UIControlStateNormal];
+}
+- (void) setBGCover:(UIImage *)image
+{
+    [self.userBgCover setImage:image];
 }
 
 - (void) updateTabBtnState:(NSString *)tabName

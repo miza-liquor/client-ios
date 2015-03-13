@@ -139,6 +139,8 @@
 		B67CA4331AB2AF870078A8D5 /* AddressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4321AB2AF870078A8D5 /* AddressListViewController.m */; };
 		B67CA4361AB2C24E0078A8D5 /* WineSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4351AB2C24E0078A8D5 /* WineSelectViewController.m */; };
 		B67CA4391AB2D0EF0078A8D5 /* RecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67CA4381AB2D0EF0078A8D5 /* RecordDetailViewController.m */; };
+		B67CA43C1AB318380078A8D5 /* user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B67CA43A1AB318380078A8D5 /* user_default@2x.png */; };
+		B67CA43D1AB318380078A8D5 /* user_default@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B67CA43B1AB318380078A8D5 /* user_default@3x.png */; };
 		B68C0B891A5ADC9500BDC35E /* btn_share_o@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B68C0B871A5ADC9500BDC35E /* btn_share_o@2x.png */; };
 		B68C0B8A1A5ADC9500BDC35E /* btn_share_o@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B68C0B881A5ADC9500BDC35E /* btn_share_o@3x.png */; };
 		B69409571A848FDD007B4448 /* RegisterProtocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69409561A848FDD007B4448 /* RegisterProtocalViewController.m */; };
@@ -451,6 +453,8 @@
 		B67CA4351AB2C24E0078A8D5 /* WineSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineSelectViewController.m; sourceTree = "<group>"; };
 		B67CA4371AB2D0EF0078A8D5 /* RecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordDetailViewController.h; sourceTree = "<group>"; };
 		B67CA4381AB2D0EF0078A8D5 /* RecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordDetailViewController.m; sourceTree = "<group>"; };
+		B67CA43A1AB318380078A8D5 /* user_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_default@2x.png"; path = "resource/user_default@2x.png"; sourceTree = "<group>"; };
+		B67CA43B1AB318380078A8D5 /* user_default@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "user_default@3x.png"; path = "resource/user_default@3x.png"; sourceTree = "<group>"; };
 		B68C0B871A5ADC9500BDC35E /* btn_share_o@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share_o@2x.png"; path = "resource/btn_share_o@2x.png"; sourceTree = "<group>"; };
 		B68C0B881A5ADC9500BDC35E /* btn_share_o@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_share_o@3x.png"; path = "resource/btn_share_o@3x.png"; sourceTree = "<group>"; };
 		B69409551A848FDD007B4448 /* RegisterProtocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterProtocalViewController.h; sourceTree = "<group>"; };
@@ -1121,6 +1125,8 @@
 				B6F286C21A2DAA36009873B3 /* icon-57.png */,
 				B6F286C31A2DAA36009873B3 /* icon-57@2x.png */,
 				B6F286C41A2DAA36009873B3 /* Icon-60@2x.png */,
+				B67CA43A1AB318380078A8D5 /* user_default@2x.png */,
+				B67CA43B1AB318380078A8D5 /* user_default@3x.png */,
 				B6F286CE1A2DC496009873B3 /* bg_login@2x.png */,
 				B623EC2A1A27610800AAF5BF /* btn_top_bar@2x.png */,
 				B623EC2B1A27610800AAF5BF /* btn_top_bar@3x.png */,
@@ -1390,6 +1396,7 @@
 				B6A034951A5823D900E606B3 /* bg_top_user_week@2x.png in Resources */,
 				B64646071A1B7D820035F208 /* TopWineTableViewCell.xib in Resources */,
 				B6F286FC1A2DF9D5009873B3 /* btn_winelist@3x.png in Resources */,
+				B67CA43C1AB318380078A8D5 /* user_default@2x.png in Resources */,
 				B634C1AF1A6256FD00A0AFB3 /* Icon_love_list@3x.png in Resources */,
 				B623EC441A276BB800AAF5BF /* bg_navbar.png in Resources */,
 				B61DAD131A3858D00065D09C /* bg_user_profile@2x.png in Resources */,
@@ -1438,6 +1445,7 @@
 				B6ABB3341A19F2CD0007B51C /* Default.png in Resources */,
 				B634C1B11A6256FD00A0AFB3 /* Icon_update@2x.png in Resources */,
 				B61DAD1B1A38590F0065D09C /* btn_user_setting@2x.png in Resources */,
+				B67CA43D1AB318380078A8D5 /* user_default@3x.png in Resources */,
 				B65D1D0E1A1B124D0000F6F1 /* TopMenuTableViewCell.xib in Resources */,
 				B6153B4B1A5BF2CE00E67B41 /* WineTabBarTableViewCell.xib in Resources */,
 				B61DACF61A37F9450065D09C /* icon_msg@2x.png in Resources */,

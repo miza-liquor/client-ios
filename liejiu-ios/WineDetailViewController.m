@@ -108,7 +108,7 @@
     } else if (indexPath.row == 2) {
         return wineTabBar;
     }
-    
+
     static NSString *tableIdentifier = @"WineDrinkUserTableViewCell";
     WineDrinkUserTableViewCell *cell = (WineDrinkUserTableViewCell *)[tableView dequeueReusableCellWithIdentifier:tableIdentifier];
     if (cell == nil)
