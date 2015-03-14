@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *maker;
 @property (weak, nonatomic) IBOutlet UILabel *country;
 @property (weak, nonatomic) IBOutlet UIImageView *wineImage;
-@property (weak, nonatomic) IBOutlet UILabel *description;
+@property (weak, nonatomic) IBOutlet UILabel *wineDesc;
+
 - (IBAction)clickOnExpandBtn:(id)sender;
 
 @end

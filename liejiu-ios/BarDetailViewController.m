@@ -255,4 +255,8 @@
     NSLog(@"map detail");
 }
 
+- (IBAction)shareBtn:(id)sender
+{
+    [AppSetting shareInView:self WithText:@"test" shareImage:[UIImage imageNamed:@"Icon-57.png"]];
+}
 @end

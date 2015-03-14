@@ -442,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ges-zr-fg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5599" y="-2790"/>
+            <point key="canvasLocation" x="5599" y="-2798"/>
         </scene>
         <!--资料编辑-->
         <scene sceneID="XCw-cI-r9g">
@@ -461,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1L1-6H-2fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6223" y="-2790"/>
+            <point key="canvasLocation" x="6223" y="-2798"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="uTe-9j-ONa">
@@ -698,7 +698,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXz-2M-wgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6223" y="-2090"/>
+            <point key="canvasLocation" x="6223" y="-2076"/>
         </scene>
         <!--酒品分类-->
         <scene sceneID="kvq-zv-B6x">
@@ -745,6 +745,9 @@
                     <navigationItem key="navigationItem" title="酒吧" id="1u6-dR-G05">
                         <barButtonItem key="rightBarButtonItem" image="btn_share.png" id="avj-8d-4fb">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="shareBtn:" destination="FY1-Hk-ac6" id="xcf-gG-lqj"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1529,7 +1532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pj-dM-RTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4459" y="-994"/>
+            <point key="canvasLocation" x="4459" y="-950"/>
         </scene>
         <!--搜索-->
         <scene sceneID="A0h-de-CzG">
@@ -2361,12 +2364,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="o7G-Ex-V1u"/>
-        <segue reference="i7h-g2-if1"/>
-        <segue reference="lWQ-mV-hli"/>
         <segue reference="Hh5-PE-MFt"/>
+        <segue reference="lWQ-mV-hli"/>
         <segue reference="Gej-oV-mS2"/>
-        <segue reference="eWa-hP-MNi"/>
         <segue reference="krQ-if-Ocv"/>
+        <segue reference="rKM-p7-TRC"/>
+        <segue reference="7rA-qI-T4L"/>
+        <segue reference="i7h-g2-if1"/>
     </inferredMetricsTieBreakers>
 </document>

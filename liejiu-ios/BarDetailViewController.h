@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSDictionary *barBasicInfo;
+- (IBAction)shareBtn:(id)sender;
 
 @end

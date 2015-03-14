@@ -35,6 +35,9 @@
         image.layer.cornerRadius = image.layer.frame.size.height/2;
         image.layer.masksToBounds = YES;
     }
+    
+    // hide menu button
+    [self.menuBtn setHidden:YES];
 }
 
 - (void) setFrame:(CGRect)frame

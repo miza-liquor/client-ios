@@ -13,6 +13,7 @@
 #import "UserDrinkLikeTableViewCell.h"
 #import "UserMenuTableViewCell.h"
 #import "FollowListViewController.h"
+#import "LoadingTableViewCell.h"
 #import "AppSetting.h"
 
 @interface UserProfileViewController () <TGCameraDelegate>
@@ -26,6 +27,7 @@
     NSString *followTypeName;
     UserProfileInfoTableViewCell *headerCell;
     
+    BOOL isLoading;
     BOOL isChangeCover;
 }
 @synthesize fromSubView;
@@ -48,6 +50,7 @@
     dataList = @[];
     tabType = @"drinked";
     isChangeCover = YES;
+    isLoading = YES;
     
     // check if open from drawer
     if (!fromSubView)
@@ -62,7 +65,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [AppSetting drawToolBar:self];
     [AppSetting topBarStyleSetting:self];
-    
+
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserProfileInfoTableViewCell" owner:self options:nil];
     headerCell = [nib objectAtIndex:0];
     [headerCell setBasicUserInfo: self.userBasicInfo withTab:tabType];
@@ -87,7 +90,7 @@
 #pragma mark - table view delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataList count] + 1;
+    return isLoading ? 2 : [dataList count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,6 +99,12 @@
     {
         return headerCell;
     } else {
+        if (isLoading) {
+            NSArray *menuNib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+            LoadingTableViewCell* loading = [menuNib objectAtIndex:0];
+            return loading;
+        }
+
         if ([tabType isEqualToString:@"mymenu"])
         {
             static NSString *menuTableIdentifier = @"UserMenuTableViewCell";
@@ -130,13 +139,6 @@
         return 300;
     } else {
         return 77;
-//        
-//        if ([tabType isEqualToString:@"mymenu"])
-//        {
-//            return 80;
-//        } else {
-//            return 77;
-//        }
     }
 }
 
@@ -151,18 +153,27 @@
 
 - (void) loadTabContent
 {
+    isLoading = YES;
     NSString *userID = (NSString *)[self.userBasicInfo objectForKey:@"id"];
     NSString *cacheName = [NSString stringWithFormat:@"user-%@-%@", userID, tabType];
     dataList = (NSArray *)[AppSetting getCache:cacheName];
     NSString *url = [NSString stringWithFormat:@"%@/%@", tabType, userID];
+    NSString *currentTab = tabType;
     
     if (dataList != nil || [dataList count] > 0)
     {
+        isLoading = NO;
         [self.tableView reloadData];
         return;
     }
     
     [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (![currentTab isEqualToString:tabType])
+        {
+            return;
+        }
+
+        isLoading = NO;
         if (success == YES)
         {
             // after check login, go to explore page

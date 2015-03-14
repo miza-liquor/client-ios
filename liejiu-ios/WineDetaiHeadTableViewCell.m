@@ -37,7 +37,7 @@
     self.category.text = [NSString stringWithFormat:@"分类:%@", (NSString *)[info objectForKey:@"category_name"]];
     self.maker.text = [NSString stringWithFormat: @"酒商:%@",(NSString *)[info objectForKey:@"maker"]];
     self.country.text = [NSString stringWithFormat: @"国家:%@",(NSString *)[info objectForKey:@"country_name"]];
-    self.description.text = (NSString *)[info objectForKey:@"desc"];
+    self.wineDesc.text = (NSString *)[info objectForKey:@"desc"];
 //    self.comment.text = (NSString *)[comment objectForKey:@"content"];
 }
 
