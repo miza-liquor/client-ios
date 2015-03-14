@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RecordTableViewCellDelegate
+
+- (void) addMenu: (NSDictionary *) recordInfo;
+
+@end
+
 @interface RecordTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *recordCover;
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
@@ -19,8 +25,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *likeNum;
 @property (weak, nonatomic) IBOutlet UILabel *msgNum;
 @property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UIView *toolBg;
 
 - (IBAction)clickOnMenu:(id)sender;
 - (void) setRecordData:(NSDictionary *) data;
+
+@property (nonatomic, weak) id <RecordTableViewCellDelegate> delegate;
 
 @end

@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="x13-Fe-FQh">
                         <rect key="frame" x="0.0" y="0.0" width="310" height="200"/>
@@ -84,7 +84,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIv-DC-vK9">
                         <rect key="frame" x="10" y="366" width="300" height="30"/>
@@ -103,11 +103,12 @@
                 <outlet property="msgNum" destination="1un-vr-NOh" id="OxF-aA-GpT"/>
                 <outlet property="recordCover" destination="x13-Fe-FQh" id="Y8A-9G-e8z"/>
                 <outlet property="recordDesc" destination="Lnb-a0-eIy" id="0tB-EQ-y6w"/>
+                <outlet property="toolBg" destination="LVv-gC-PfE" id="BQ4-UN-WJC"/>
                 <outlet property="userImage" destination="Z6z-I0-5Li" id="59J-ot-H17"/>
                 <outlet property="userName" destination="aPY-NW-LzX" id="zH7-a2-m2u"/>
                 <outlet property="wineName" destination="v2f-6U-yri" id="Qzr-cT-qLf"/>
             </connections>
-            <point key="canvasLocation" x="215" y="368"/>
+            <point key="canvasLocation" x="88" y="369"/>
         </tableViewCell>
     </objects>
     <resources>

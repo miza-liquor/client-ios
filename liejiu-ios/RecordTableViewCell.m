@@ -10,6 +10,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation RecordTableViewCell
+{
+    NSDictionary *recordInfo;
+}
 
 - (void)awakeFromNib
 {
@@ -21,6 +24,8 @@
     struct CGColor *borderColor = [UIColor colorWithRed:148.0/255 green:204.0/255 blue:204.0/255 alpha:1].CGColor;
     self.contentView.layer.borderColor = borderColor;
     self.contentView.layer.borderWidth = 1;
+    self.toolBg.layer.borderColor = borderColor;
+    self.toolBg.layer.borderWidth = 1;
 }
 
 - (void) setFrame:(CGRect)frame
@@ -35,9 +40,15 @@
 
 - (void) setRecordData:(NSDictionary *) data
 {
+    recordInfo = data;
     NSDictionary *owner = (NSDictionary *)[data objectForKey:@"creator"];
     [self.recordCover sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"Icon.png"]];
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[owner objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"Icon.png"]];
+    
+
+    NSString *menuNum = [NSString stringWithFormat:@" 加入酒单 (%@)", (NSString *)[data objectForKey:@"menu_num"]];
+    [self.menuBtn setTitle:menuNum forState:UIControlStateNormal];
+
     self.userName.text = (NSString *)[owner objectForKey:@"nickname"];
     self.createdAt.text = (NSString *)[data objectForKey:@"created_at"];
     self.wineName.text = (NSString *)[data objectForKey:@"name"];
@@ -55,5 +66,6 @@
 }
 
 - (IBAction)clickOnMenu:(id)sender {
+    [self.delegate addMenu:recordInfo];
 }
 @end

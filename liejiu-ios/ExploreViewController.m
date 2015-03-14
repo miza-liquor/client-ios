@@ -13,6 +13,8 @@
 #import "LoadingTableViewCell.h"
 #import "TopImageViewController.h"
 #import "MenuDetailViewController.h"
+#import "MenuListViewController.h"
+#import "RecordDetailViewController.h"
 #import "AppSetting.h"
 
 @interface ExploreViewController ()
@@ -153,6 +155,7 @@
             }
             
             NSDictionary *info = (NSDictionary *)[updatesData objectAtIndex:indexPath.row];
+            cell.delegate = self;
             [cell setRecordData:info];
             return cell;
         }
@@ -191,7 +194,9 @@
 {
     if (isUpdateModel) {
         if (!isLoading) {
-            selectedUpdateItem = (NSDictionary *)[updatesData objectAtIndex:indexPath.row - 1];
+            selectedUpdateItem = (NSDictionary *)[updatesData objectAtIndex:indexPath.row];
+            RecordDetailViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"recordDetail"];
+            [self.navigationController pushViewController:controller animated:YES];
         }
     } else {
         if (indexPath.row != 0)
@@ -228,5 +233,16 @@
     }
 }
 
+- (void) addMenu: (NSDictionary *) info
+{
+    MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void) selectedMenu:(NSDictionary *)menuInfo
+{
+    
+}
 
 @end
