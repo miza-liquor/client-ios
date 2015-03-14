@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKu-gd-Cug" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3844" y="-3796"/>
+            <point key="canvasLocation" x="3844" y="-3770"/>
         </scene>
         <!--系统设置-->
         <scene sceneID="0Fs-A3-11B">
@@ -562,7 +562,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPo-xE-m5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5599" y="-3796"/>
+            <point key="canvasLocation" x="5765" y="-3796"/>
         </scene>
         <!--排行榜-->
         <scene sceneID="0ph-tT-pFp">
@@ -634,7 +634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3C8-j8-z17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4463" y="-3796"/>
+            <point key="canvasLocation" x="4463" y="-3770"/>
         </scene>
         <!--全部排行榜-->
         <scene sceneID="UNu-0Z-70W">
@@ -987,7 +987,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLO-8g-YWw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4459" y="-6029"/>
+            <point key="canvasLocation" x="4459" y="-5975"/>
         </scene>
         <!--使用帮助-->
         <scene sceneID="QSq-VI-CYn">
@@ -2299,7 +2299,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oan-Jd-5yT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5004" y="-3796"/>
+            <point key="canvasLocation" x="5004" y="-3770"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pLh-pj-gB0">
@@ -2361,12 +2361,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="i7h-g2-if1"/>
         <segue reference="o7G-Ex-V1u"/>
-        <segue reference="Gej-oV-mS2"/>
-        <segue reference="Hh5-PE-MFt"/>
+        <segue reference="i7h-g2-if1"/>
         <segue reference="lWQ-mV-hli"/>
+        <segue reference="Hh5-PE-MFt"/>
+        <segue reference="Gej-oV-mS2"/>
+        <segue reference="eWa-hP-MNi"/>
         <segue reference="krQ-if-Ocv"/>
-        <segue reference="rKM-p7-TRC"/>
     </inferredMetricsTieBreakers>
 </document>

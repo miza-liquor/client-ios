@@ -9,6 +9,7 @@
 #import "FollowListViewController.h"
 #import "FollowUserListTableViewCell.h"
 #import "UserProfileViewController.h"
+#import "LoadingTableViewCell.h"
 #import "AppSetting.h"
 
 @interface FollowListViewController ()
@@ -17,9 +18,11 @@
 
 @implementation FollowListViewController
 {
-    NSArray *userList;
+    NSMutableArray *userList;
     NSDictionary *selectedUser;
+    BOOL isLoading;
 }
+
 @synthesize userID;
 @synthesize followType;
 
@@ -39,7 +42,6 @@
     
     self.navigationItem.title = [followType isEqualToString:@"following"] ? @"关注" : @"粉丝";
     
-    userList = @[];
     [self getData];
     
 }
@@ -65,11 +67,17 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of sections.
-    return [userList count];
+    return isLoading ? 1 : [userList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (isLoading) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil];
+        LoadingTableViewCell *cell = [nib objectAtIndex:0];
+        return cell;
+    }
+
     static NSString *simpleTableIdentifier = @"FollowUserListTableViewCell";
     FollowUserListTableViewCell *cell = (FollowUserListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
@@ -79,6 +87,7 @@
     }
     
     NSDictionary *data = (NSDictionary *)[userList objectAtIndex:indexPath.row];
+    cell.delegate = self;
     [cell setData:data];
     
     return cell;
@@ -97,23 +106,19 @@
 
 - (void) getData
 {
-    NSString *cacheName = [NSString stringWithFormat:@"user:%@-type:%@", userID, followType];
-    NSArray *cache = (NSArray *)[AppSetting getCache:cacheName];
+    userList = [[NSMutableArray alloc] init];
     NSString *url = [NSString stringWithFormat:@"%@/%@", followType, userID];
-    
-    if (cache == Nil)
-    {
-        [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
-            if (success == YES)
-            {
-                userList = (NSArray *)[response objectForKey:@"data"];
-                [AppSetting setCache:cacheName value:userList];
-                [self.tableView reloadData];
-            }
-        }];
-    } else {
-        userList = cache;
-    }
+    isLoading = YES;
+    [self.tableView reloadData];
+
+    [AppSetting httpGet:url parameters:Nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        isLoading = NO;
+        if (success == YES)
+        {
+            userList = [(NSArray *)[response objectForKey:@"data"] mutableCopy];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -124,6 +129,22 @@
         userProfile.fromSubView = YES;
         userProfile.userBasicInfo = selectedUser;
     }
+}
+
+- (void) onFollowBtn:(NSDictionary *)userInfo
+{
+    NSString *givenUid = (NSString *)[userInfo objectForKey:@"id"];
+    for (NSInteger i=0,l=[userList count]; i<l; i++) {
+        
+        NSDictionary *row =[userList objectAtIndex:i];
+        NSString *uid = (NSString *)[row objectForKey:@"id"];
+        if ([uid isEqualToString:givenUid]) {
+            [userList replaceObjectAtIndex:i withObject:userInfo];
+            break;
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 @end

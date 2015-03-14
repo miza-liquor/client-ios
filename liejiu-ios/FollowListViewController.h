@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FollowUserListTableViewCell.h"
 
-@interface FollowListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FollowListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, FollowUserListTableViewCellDelegate>
 
 @property (nonatomic) NSString *userID;
 @property (nonatomic) NSString *followType;
