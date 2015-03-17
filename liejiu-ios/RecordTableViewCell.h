@@ -22,12 +22,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *wineName;
 @property (weak, nonatomic) IBOutlet UILabel *recordDesc;
 @property (weak, nonatomic) IBOutlet UIButton *menuBtn;
-@property (weak, nonatomic) IBOutlet UILabel *likeNum;
-@property (weak, nonatomic) IBOutlet UILabel *msgNum;
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 @property (weak, nonatomic) IBOutlet UILabel *address;
 @property (weak, nonatomic) IBOutlet UIView *toolBg;
 
 - (IBAction)clickOnMenu:(id)sender;
+- (IBAction)clickOnLike:(id)sender;
+- (IBAction)clickOnComment:(id)sender;
 - (void) setRecordData:(NSDictionary *) data;
 
 @property (nonatomic, weak) id <RecordTableViewCellDelegate> delegate;

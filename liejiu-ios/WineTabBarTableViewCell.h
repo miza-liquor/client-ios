@@ -14,12 +14,14 @@
 @end
 
 @interface WineTabBarTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btnDrinking;
 @property (weak, nonatomic) IBOutlet UIButton *btnDrinked;
-@property (weak, nonatomic) IBOutlet UIButton *btnAddToMenu;
-- (IBAction)clickOnTabBtn:(id)sender;
+//@property (weak, nonatomic) IBOutlet UIButton *btnAddToMenu;
+//- (IBAction)clickOnTabBtn:(id)sender;
 
+- (IBAction)clickOnBtnDrinking:(id)sender;
+- (IBAction)clickOnBtnDrinked:(id)sender;
 @property (nonatomic, weak) id <WineTabBarTableViewCellDelegate> delegate;
 
 -(void) setData:(NSDictionary *)data;

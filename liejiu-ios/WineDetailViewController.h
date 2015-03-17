@@ -11,7 +11,7 @@
 #import "WineDrinkUserTableViewCell.h"
 #import "MenuListViewController.h"
 
-@interface WineDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, WineTabBarTableViewCellDelegate, WineDrinkUserTableViewCellDelegate, MenuListViewControllerDelegate>
+@interface WineDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, WineDrinkUserTableViewCellDelegate, MenuListViewControllerDelegate>
 
 @property (nonatomic) NSDictionary *basicInfo;
 

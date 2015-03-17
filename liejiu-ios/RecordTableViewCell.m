@@ -8,10 +8,11 @@
 
 #import "RecordTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AppSetting.h"
 
 @implementation RecordTableViewCell
 {
-    NSDictionary *recordInfo;
+    NSMutableDictionary *recordInfo;
 }
 
 - (void)awakeFromNib
@@ -40,7 +41,7 @@
 
 - (void) setRecordData:(NSDictionary *) data
 {
-    recordInfo = data;
+    recordInfo = [data mutableCopy];
     NSDictionary *owner = (NSDictionary *)[data objectForKey:@"creator"];
     [self.recordCover sd_setImageWithURL:[NSURL URLWithString:(NSString *)[data objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"Icon.png"]];
     [self.userImage sd_setImageWithURL:[NSURL URLWithString:(NSString *)[owner objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"Icon.png"]];
@@ -54,8 +55,13 @@
     self.wineName.text = (NSString *)[data objectForKey:@"name"];
     self.recordDesc.text = (NSString *)[data objectForKey:@"desc"];
     self.address.text = (NSString *)[data objectForKey:@"address"];
-    self.likeNum.text = (NSString *)[data objectForKey:@"like_num"];
-    self.msgNum.text = (NSString *)[data objectForKey:@"comment_num"];
+    [self.likeBtn setTitle:(NSString *)[data objectForKey:@"like_num"] forState:UIControlStateNormal];
+    [self.commentBtn setTitle:(NSString *)[data objectForKey:@"comment_num"] forState:UIControlStateNormal];
+    
+    BOOL meLiked = (BOOL)[[data objectForKey:@"me_liked"] boolValue];
+    if (meLiked) {
+        [self.likeBtn setImage:[UIImage imageNamed:@"icon_liked"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -67,5 +73,36 @@
 
 - (IBAction)clickOnMenu:(id)sender {
     [self.delegate addMenu:recordInfo];
+}
+
+- (IBAction)clickOnLike:(id)sender {
+    BOOL meLiked = (BOOL)[[recordInfo objectForKey:@"me_liked"] boolValue];
+    NSDictionary *params = @{
+                             @"content_id": (NSString *)[recordInfo objectForKey:@"id"],
+                             @"category": @"record",
+                             @"status": meLiked ? @"0" : @"1"
+                            };
+    [AppSetting httpPost:@"update/like" parameters:params callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+        if (success) {
+            NSDictionary *data = (NSDictionary *)[response objectForKey:@"data"];
+            BOOL meLiked = (BOOL)[[data objectForKey:@"me_liked"] boolValue];
+            [self.likeBtn setTitle:(NSString *)[data objectForKey:@"like_num"] forState:UIControlStateNormal];
+            if (meLiked) {
+                [self.likeBtn setImage:[UIImage imageNamed:@"icon_liked"] forState:UIControlStateNormal];
+            } else {
+                [self.likeBtn setImage:[UIImage imageNamed:@"icon_like"] forState:UIControlStateNormal];
+            }
+            
+            [recordInfo setValue:[data objectForKey:@"me_liked"] forKey:@"me_liked"];
+            [recordInfo setValue:[data objectForKey:@"like_num"] forKey:@"like_num"];
+
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新失败" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
+}
+
+- (IBAction)clickOnComment:(id)sender {
 }
 @end

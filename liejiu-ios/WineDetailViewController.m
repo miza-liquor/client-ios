@@ -47,7 +47,7 @@
     
     [self initWineBasicHeader];
     tabType = @"drinked";
-    [self loadTabContent];
+//    [self loadTabContent];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -86,7 +86,7 @@
     
     NSArray *nibTab = [[NSBundle mainBundle] loadNibNamed:@"WineTabBarTableViewCell" owner:self options:nil];
     wineTabBar = [nibTab objectAtIndex:0];
-    wineTabBar.delegate = self;
+//    wineTabBar.delegate = self;
     [wineTabBar setData: basicInfo];
 }
 
@@ -157,19 +157,19 @@
     }
 }
 
-- (void) onTagChanged: (NSString *) tabName
-{
-    tabType = tabName;
-    if ([tabType isEqualToString: @"menu"])
-    {
-        MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
-        controller.wineInfo = self.basicInfo;
-        controller.delegate = self;
-        [self.navigationController pushViewController:controller animated:YES];
-        return;
-    }
-    [self loadTabContent];
-}
+//- (void) onTagChanged: (NSString *) tabName
+//{
+//    tabType = tabName;
+//    if ([tabType isEqualToString: @"menu"])
+//    {
+//        MenuListViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"myMenuList"];
+//        controller.wineInfo = self.basicInfo;
+//        controller.delegate = self;
+//        [self.navigationController pushViewController:controller animated:YES];
+//        return;
+//    }
+//    [self loadTabContent];
+//}
 
 - (void) onTagUserImage:(NSDictionary *)userInfo
 {
@@ -177,49 +177,49 @@
     [self performSegueWithIdentifier:@"userDetail" sender:self];
 }
 
-- (void) loadTabContent
-{
-    list = nil;
-    NSString *wineID = (NSString *)[basicInfo objectForKey:@"id"];
-    NSString *cacheName = [NSString stringWithFormat:@"wine-%@-%@", wineID, tabType];
-    list = (NSArray *)[AppSetting getCache:cacheName];
-    
-    if (list != nil || [list count] > 0)
-    {
-        [self.tableView reloadData];
-        return;
-    }
-    
-    NSString *url = [NSString stringWithFormat:@"wine/%@/%@", tabType, wineID];
-    [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
-        if (success == YES)
-        {
-            // after check login, go to explore page
-            NSArray *data = (NSArray *)[response objectForKey:@"data"];
-            int i = 0;
-            int step =  6;
-            int groupIdx = -1;
-            NSMutableArray *renderData = [[NSMutableArray alloc] initWithCapacity:(int)ceilf([data count]/step)];
-            
-            for (NSArray *wine in data) {
-                NSMutableArray *groupData;
-                if (i % step == 0)
-                {
-                    groupData = [[NSMutableArray alloc] initWithCapacity:step];
-                    [renderData addObject:groupData];
-                    groupIdx++;
-                }
-                [(NSMutableArray *)[renderData objectAtIndex:groupIdx] addObject:wine];
-                i++;
-            }
-            list = [NSArray arrayWithArray: renderData];
-            [AppSetting setCache:cacheName value: list];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"error with fetching data");
-        }
-    }];
-}
+//- (void) loadTabContent
+//{
+//    list = nil;
+//    NSString *wineID = (NSString *)[basicInfo objectForKey:@"id"];
+//    NSString *cacheName = [NSString stringWithFormat:@"wine-%@-%@", wineID, tabType];
+//    list = (NSArray *)[AppSetting getCache:cacheName];
+//    
+//    if (list != nil || [list count] > 0)
+//    {
+//        [self.tableView reloadData];
+//        return;
+//    }
+//    
+//    NSString *url = [NSString stringWithFormat:@"wine/%@/%@", tabType, wineID];
+//    [AppSetting httpGet:url parameters:nil callback:^(BOOL success, NSDictionary *response, NSString *msg) {
+//        if (success == YES)
+//        {
+//            // after check login, go to explore page
+//            NSArray *data = (NSArray *)[response objectForKey:@"data"];
+//            int i = 0;
+//            int step =  6;
+//            int groupIdx = -1;
+//            NSMutableArray *renderData = [[NSMutableArray alloc] initWithCapacity:(int)ceilf([data count]/step)];
+//            
+//            for (NSArray *wine in data) {
+//                NSMutableArray *groupData;
+//                if (i % step == 0)
+//                {
+//                    groupData = [[NSMutableArray alloc] initWithCapacity:step];
+//                    [renderData addObject:groupData];
+//                    groupIdx++;
+//                }
+//                [(NSMutableArray *)[renderData objectAtIndex:groupIdx] addObject:wine];
+//                i++;
+//            }
+//            list = [NSArray arrayWithArray: renderData];
+//            [AppSetting setCache:cacheName value: list];
+//            [self.tableView reloadData];
+//        } else {
+//            NSLog(@"error with fetching data");
+//        }
+//    }];
+//}
 
 -(void) selectedMenu:(NSDictionary *)menuInfo
 {

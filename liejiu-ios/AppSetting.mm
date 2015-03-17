@@ -250,7 +250,7 @@ static UIViewController *_currView = nil;
                                                  UMShareToWechatTimeline,
                                                  UMShareToWechatSession,
                                                  UMShareToSina,
-                                                 UMShareToRenren,
+//                                                 UMShareToRenren,
                                                  UMShareToDouban,
                                                  nil]
                                        delegate:nil];

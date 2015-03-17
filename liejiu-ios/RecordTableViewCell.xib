@@ -53,11 +53,11 @@
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LVv-gC-PfE">
                         <rect key="frame" x="0.0" y="320" width="310" height="41"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jl-8l-IvP">
-                                <rect key="frame" x="10" y="6" width="104" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jl-8l-IvP">
+                                <rect key="frame" x="10" y="6" width="101" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.42352941179999998" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="  加入酒单">
+                                <state key="normal" title="加入酒单">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -65,24 +65,27 @@
                                     <action selector="clickOnMenu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pog-xo-Szn"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_like.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPk-I2-Pst">
-                                <rect key="frame" x="148" y="9" width="30" height="25"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_msg.png" translatesAutoresizingMaskIntoConstraints="NO" id="p9b-fB-iml">
-                                <rect key="frame" x="228" y="8" width="30" height="30"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="like" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtD-HD-nxy">
-                                <rect key="frame" x="181" y="10" width="40" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSZ-pG-ZvM">
+                                <rect key="frame" x="145" y="8" width="70" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.95686274510000002" green="0.44705882349999998" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="msg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1un-vr-NOh">
-                                <rect key="frame" x="259" y="11" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.17254901959999999" green="0.58431372550000005" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title=" 0" image="icon_like.png">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.44705882349999998" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickOnLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Bn9-n5-JSW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GA-70-nD8">
+                                <rect key="frame" x="225" y="7" width="70" height="33"/>
+                                <state key="normal" title="0" image="icon_msg.png">
+                                    <color key="titleColor" red="0.27058823529999998" green="0.59999999999999998" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickOnComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s3j-EG-jdL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
@@ -97,10 +100,10 @@
             <color key="backgroundColor" red="0.97254901959999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="address" destination="kIv-DC-vK9" id="NPN-24-cYT"/>
+                <outlet property="commentBtn" destination="8GA-70-nD8" id="Vui-L9-3vU"/>
                 <outlet property="createdAt" destination="hdW-64-lh6" id="vyI-ym-A4V"/>
-                <outlet property="likeNum" destination="VtD-HD-nxy" id="TYL-gU-ffJ"/>
+                <outlet property="likeBtn" destination="lSZ-pG-ZvM" id="E9E-kz-Odo"/>
                 <outlet property="menuBtn" destination="3Jl-8l-IvP" id="eod-PN-EDM"/>
-                <outlet property="msgNum" destination="1un-vr-NOh" id="OxF-aA-GpT"/>
                 <outlet property="recordCover" destination="x13-Fe-FQh" id="Y8A-9G-e8z"/>
                 <outlet property="recordDesc" destination="Lnb-a0-eIy" id="0tB-EQ-y6w"/>
                 <outlet property="toolBg" destination="LVv-gC-PfE" id="BQ4-UN-WJC"/>
